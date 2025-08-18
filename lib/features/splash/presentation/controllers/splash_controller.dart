@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/app_router.dart';
+import 'package:movix/core/utils/assets_manager.dart';
 
 class SplashController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -10,6 +11,7 @@ class SplashController extends GetxController
   @override
   void onInit() {
     super.onInit();
+    precacheImage(const AssetImage(Assets.assetsImagesSparkLogo), Get.context!);
     animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 2000),

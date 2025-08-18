@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeManager.lightThemeData,
       darkTheme: ThemeManager.darkThemeData,
       themeMode: ThemeMode.dark,
+      initialRoute: AppRoutes.kSplashView,
     );
   }
 }
