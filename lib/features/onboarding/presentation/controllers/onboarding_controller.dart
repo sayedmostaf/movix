@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/app_router.dart';
+import 'package:movix/core/utils/assets_manager.dart';
 import 'package:movix/features/onboarding/data/data_sources/static.dart';
 
 class OnboardingController extends GetxController {
@@ -9,9 +10,8 @@ class OnboardingController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    for (var imagePath in onboardingImages) {
-      precacheImage(AssetImage(imagePath), Get.context!);
-    }
+    loadImages();
+
     controller = PageController(initialPage: pageIndex.value);
     controller.addListener(() {
       int currentPage = controller.page!.round();
@@ -19,6 +19,13 @@ class OnboardingController extends GetxController {
         pageIndex.value = currentPage;
       }
     });
+  }
+
+  void loadImages() {
+    for (var imagePath in onboardingImages) {
+      precacheImage(AssetImage(imagePath), Get.context!);
+    }
+    precacheImage(const AssetImage(Assets.assetsImagesShade), Get.context!);
   }
 
   @override

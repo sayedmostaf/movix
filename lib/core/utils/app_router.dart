@@ -1,4 +1,5 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:movix/core/bindings/auth_binding.dart';
 import 'package:movix/core/bindings/onboarding_binding.dart';
 import 'package:movix/core/bindings/splash_binding.dart';
 import 'package:movix/features/auth/presentation/views/auth_view.dart';
@@ -21,6 +22,10 @@ class AppRoutes {
       page: () => const OnBoardingView(),
       binding: OnboardingBinding(),
     ),
-    GetPage(name: kAuthView, page: () => const AuthView()),
+    GetPage(
+      name: kAuthView,
+      page: () => const AuthView(),
+      binding: AuthBinding(),
+    ),
   ];
 }

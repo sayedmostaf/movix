@@ -16,9 +16,9 @@ class SkipButton extends StatelessWidget {
       onPressed: onboardingController.onPressedSkip,
       child: Text(
         StringsManager.skip,
-        style: StylesManager.styleLatoRegular18().copyWith(
-          color: ColorManager.primaryColor,
-        ),
+        style: StylesManager.styleLatoRegular18(
+          context,
+        ).copyWith(color: ColorManager.primaryColor),
       ),
     );
   }
