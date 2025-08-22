@@ -19,7 +19,14 @@ abstract class ThemeManager {
     colorScheme: ColorScheme.fromSwatch(primarySwatch: customPrimarySwatch),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        backgroundColor: MaterialStatePropertyAll(ColorManager.primaryColor),
+        backgroundColor: MaterialStateProperty.resolveWith<Color>((
+          Set<MaterialState> states,
+        ) {
+          if (states.contains(MaterialState.disabled)) {
+            return Colors.grey;
+          }
+          return ColorManager.primaryColor;
+        }),
         overlayColor: MaterialStatePropertyAll(Color(0xFFF7DA80)),
         shape: MaterialStatePropertyAll(
           RoundedRectangleBorder(
@@ -31,7 +38,7 @@ abstract class ThemeManager {
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(),
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: ColorManager.primaryColor),
+        borderSide: BorderSide(color: Colors.black),
       ),
     ),
   );
@@ -39,9 +46,16 @@ abstract class ThemeManager {
     colorScheme: ColorScheme.fromSwatch(
       primarySwatch: customPrimarySwatch,
     ).copyWith(brightness: Brightness.dark),
-    elevatedButtonTheme: const ElevatedButtonThemeData(
+    elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        backgroundColor: MaterialStatePropertyAll(ColorManager.primaryColor),
+        backgroundColor: MaterialStateProperty.resolveWith<Color>((
+          Set<MaterialState> states,
+        ) {
+          if (states.contains(MaterialState.disabled)) {
+            return Colors.grey;
+          }
+          return ColorManager.primaryColor;
+        }),
         overlayColor: MaterialStatePropertyAll(Color(0xFFF7DA80)),
         shape: MaterialStatePropertyAll(
           RoundedRectangleBorder(
@@ -54,7 +68,7 @@ abstract class ThemeManager {
     inputDecorationTheme: const InputDecorationTheme(
       border: OutlineInputBorder(),
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: ColorManager.primaryColor),
+        borderSide: BorderSide(color: Colors.white),
       ),
     ),
   );

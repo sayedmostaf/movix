@@ -79,11 +79,14 @@ class SignInForm extends StatelessWidget {
           SizedBox(height: 5),
           Align(
             alignment: Alignment.centerRight,
-            child: Text(
-              StringsManager.forgetPassword,
-              style: StylesManager.styleRobotoRegular16(
-                context,
-              ).copyWith(color: ColorManager.primaryColor),
+            child: GestureDetector(
+              onTap: authController.forgetPasswordOnTap,
+              child: Text(
+                StringsManager.forgetPassword,
+                style: StylesManager.styleRobotoRegular16(
+                  context,
+                ).copyWith(color: ColorManager.primaryColor),
+              ),
             ),
           ),
         ],

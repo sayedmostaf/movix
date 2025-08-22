@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:movix/features/auth/data/data_sources/static.dart';
-import 'package:movix/features/auth/presentation/views/widgets/custom_login_provider_button.dart';
+import 'package:movix/features/auth/presentation/views/auth_view/widgets/custom_login_provider_button.dart';
 
 class CustomLoginProviderRow extends StatelessWidget {
   const CustomLoginProviderRow({super.key});

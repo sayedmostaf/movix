@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 
 class AuthController extends GetxController {
@@ -113,6 +114,11 @@ class AuthController extends GetxController {
     if (password.contains(RegExp(r'\s'))) {
       return StringsManager.passwordSpace;
     }
+    return null;
+  }
+
+  void Function()? forgetPasswordOnTap() {
+    Get.toNamed(AppRoutes.kForgetPasswordView);
     return null;
   }
 }

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 
-import '../../controllers/auth_controller.dart';
+import '../../../controllers/auth_controller.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({super.key});
