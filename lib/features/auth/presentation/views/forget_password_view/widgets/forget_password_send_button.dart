@@ -6,8 +6,8 @@ import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/features/auth/presentation/controllers/forget_password_controller.dart';
 
-class SendButton extends StatelessWidget {
-  const SendButton({super.key});
+class ForgetPasswordSendButton extends StatelessWidget {
+  const ForgetPasswordSendButton({super.key});
 
   @override
   Widget build(BuildContext context) {

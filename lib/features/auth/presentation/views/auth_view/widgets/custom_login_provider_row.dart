@@ -1,4 +1,6 @@
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/features/auth/data/data_sources/static.dart';
 import 'package:movix/features/auth/presentation/views/auth_view/widgets/custom_login_provider_button.dart';
 
@@ -13,7 +15,9 @@ class CustomLoginProviderRow extends StatelessWidget {
         customLoginProviderImages.length,
         (index) => CustomLoginProviderButton(
           image: customLoginProviderImages[index],
-          onTap: () {},
+          onTap: () {
+            Get.toNamed(AppRoutes.kEmailVerifyView);
+          },
         ),
       ),
     );

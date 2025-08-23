@@ -1,12 +1,11 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
-import 'package:movix/core/widgets/back_button.dart';
-import 'package:movix/features/auth/presentation/views/forget_password_view/widgets/password_reset_text_form_field.dart';
-import 'package:movix/features/auth/presentation/views/forget_password_view/widgets/forget_password_send_button.dart';
+import 'package:movix/features/auth/presentation/views/email_verify_view/widgets/email_verification_send_button.dart';
 
-class ForgetPasswordViewBody extends StatelessWidget {
-  const ForgetPasswordViewBody({super.key});
+class EmailVerifyViewBody extends StatelessWidget {
+  const EmailVerifyViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +21,8 @@ class ForgetPasswordViewBody extends StatelessWidget {
             StringsManager.sendPasswordResendEmail,
             style: StylesManager.styleLatoBold25(context),
           ),
-          const SizedBox(height: 20),
-          PasswordResetTextFormField(),
-          Spacer(),
-          ForgetPasswordSendButton(),
+          const Spacer(),
+          EmailVerificationSendButton(),
           SizedBox(height: 50),
         ],
       ),
