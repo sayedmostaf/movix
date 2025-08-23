@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 
-class ContinueAsGuestButton extends StatelessWidget {
-  const ContinueAsGuestButton({super.key});
+class SkipToHomeWidget extends StatelessWidget {
+  const SkipToHomeWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.centerRight,
       child: TextButton(
-        onPressed: () {
-          Get.toNamed(AppRoutes.kImproveYourFeedsView);
-        },
+        onPressed: () {},
         child: Text(
-          StringsManager.continueAsGuest,
+          StringsManager.skip,
           style: StylesManager.styleLatoRegular18(
             context,
           ).copyWith(color: ColorManager.primaryColor),
