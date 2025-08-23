@@ -3,12 +3,14 @@ import 'package:movix/core/bindings/auth_binding.dart';
 import 'package:movix/core/bindings/email_verify_binding.dart';
 import 'package:movix/core/bindings/forget_password_binding.dart';
 import 'package:movix/core/bindings/improve_your_feed_binding.dart';
+import 'package:movix/core/bindings/main_binding.dart';
 import 'package:movix/core/bindings/onboarding_binding.dart';
 import 'package:movix/core/bindings/splash_binding.dart';
 import 'package:movix/features/auth/presentation/views/auth_view/auth_view.dart';
 import 'package:movix/features/auth/presentation/views/email_verify_view/email_verify_view.dart';
 import 'package:movix/features/auth/presentation/views/forget_password_view/forget_password_view.dart';
 import 'package:movix/features/auth/presentation/views/improve_your_feeds_view/improve_your_feeds_view.dart';
+import 'package:movix/features/main/presentation/view/main_view.dart';
 import 'package:movix/features/onboarding/presentation/views/on_boarding_view.dart';
 import 'package:movix/features/splash/presentation/views/splash_view.dart';
 
@@ -19,6 +21,7 @@ class AppRoutes {
   static const kForgetPasswordView = '/forgetPassword';
   static const kEmailVerifyView = '/emailVerify';
   static const kImproveYourFeedsView = '/improveYourFeeds';
+  static const kMainView = '/main';
 
   static List<GetPage<dynamic>>? getPages = [
     GetPage(
@@ -50,6 +53,11 @@ class AppRoutes {
       name: kImproveYourFeedsView,
       page: () => const ImproveYourFeedsView(),
       binding: ImproveYourFeedBinding(),
+    ),
+    GetPage(
+      name: kMainView,
+      page: () => const MainView(),
+      binding: MainBinding(),
     ),
   ];
 }
