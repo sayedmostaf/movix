@@ -3,6 +3,54 @@ import 'package:get/get.dart';
 import 'package:movix/core/utils/size_config.dart';
 
 abstract class StylesManager {
+  static TextStyle styleLatoRegular14(BuildContext context) =>
+      Get.theme.brightness == Brightness.dark
+      ? TextStyle(
+          fontFamily: 'Lato',
+          fontSize: getResponsiveFontSize(context, fontSize: 14),
+          fontWeight: FontWeight.w400,
+        )
+      : TextStyle(
+          fontFamily: 'Lato',
+          fontSize: getResponsiveFontSize(context, fontSize: 14),
+          fontWeight: FontWeight.w400,
+        );
+  static TextStyle styleLatoRegular16(BuildContext context) =>
+      Get.theme.brightness == Brightness.dark
+      ? TextStyle(
+          fontFamily: 'Lato',
+          fontSize: getResponsiveFontSize(context, fontSize: 16),
+          fontWeight: FontWeight.w400,
+        )
+      : TextStyle(
+          fontFamily: 'Lato',
+          fontSize: getResponsiveFontSize(context, fontSize: 16),
+          fontWeight: FontWeight.w400,
+        );
+  static TextStyle styleLatoRegular10(BuildContext context) =>
+      Get.theme.brightness == Brightness.dark
+      ? TextStyle(
+          fontFamily: 'Lato',
+          fontSize: getResponsiveFontSize(context, fontSize: 10),
+          fontWeight: FontWeight.w400,
+        )
+      : TextStyle(
+          fontFamily: 'Lato',
+          fontSize: getResponsiveFontSize(context, fontSize: 10),
+          fontWeight: FontWeight.w400,
+        );
+  static TextStyle styleLatoLight20(BuildContext context) =>
+      Get.theme.brightness == Brightness.dark
+      ? TextStyle(
+          fontFamily: 'Lato',
+          fontSize: getResponsiveFontSize(context, fontSize: 20),
+          fontWeight: FontWeight.w300,
+        )
+      : TextStyle(
+          fontFamily: 'Lato',
+          fontSize: getResponsiveFontSize(context, fontSize: 20),
+          fontWeight: FontWeight.w300,
+        );
   static TextStyle styleLatoRegular18(BuildContext context) =>
       Get.theme.brightness == Brightness.dark
       ? TextStyle(
@@ -39,6 +87,7 @@ abstract class StylesManager {
           fontSize: getResponsiveFontSize(context, fontSize: 12),
           fontWeight: FontWeight.w700,
         );
+
   static TextStyle styleLatoBold25(BuildContext context) =>
       Get.theme.brightness == Brightness.dark
       ? TextStyle(

@@ -7,7 +7,7 @@ List<String> customLoginProviderImages = [
   Assets.assetsImagesTwitter,
 ];
 
-Map<String, int> genres = {
+Map<String, int> genresToIds = {
   "Action": 28,
   "Adventure": 12,
   "Animation": 16,

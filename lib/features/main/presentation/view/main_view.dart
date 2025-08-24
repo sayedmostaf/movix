@@ -30,7 +30,7 @@ class MainView extends StatelessWidget {
           curve: Curves.ease,
         ),
       ),
-      navBarStyle: NavBarStyle.style6,
+      navBarStyle: NavBarStyle.style9,
     );
   }
 
