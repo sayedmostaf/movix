@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
-import 'package:movix/features/home/presentation/views/widgets/custom_home_app_bar.dart';
-import 'package:movix/features/home/presentation/views/widgets/home_trending_shows.dart';
-import 'package:movix/features/home/presentation/views/widgets/people_of_the_week_widget.dart';
-import 'package:movix/features/home/presentation/views/widgets/show_section.dart';
-import 'package:movix/features/home/presentation/views/widgets/trailers_list_view.dart';
+import 'package:movix/features/home/presentation/views/home_view/widgets/custom_home_app_bar.dart';
+import 'package:movix/features/home/presentation/views/home_view/widgets/home_trending_shows.dart';
+import 'package:movix/features/home/presentation/views/home_view/widgets/people_of_the_week_widget.dart';
+import 'package:movix/features/home/presentation/views/home_view/widgets/show_section.dart';
+import 'package:movix/features/home/presentation/views/home_view/widgets/trailers_list_view.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -31,14 +33,20 @@ class HomeViewBody extends StatelessWidget {
         SliverToBoxAdapter(
           child: ShowSection(
             sectionTitle: StringsManager.trendingMovies,
-            showAllOnTap: () {},
+            showAllOnTap: () => Get.toNamed(
+              AppRoutes.kShowsSectionView,
+              arguments: StringsManager.trendingMovies,
+            ),
           ),
         ),
         const SliverToBoxAdapter(child: SizedBox(height: 30)),
         SliverToBoxAdapter(
           child: ShowSection(
             sectionTitle: StringsManager.trendingTvShows,
-            showAllOnTap: () {},
+            showAllOnTap: () => Get.toNamed(
+              AppRoutes.kShowsSectionView,
+              arguments: StringsManager.trendingTvShows,
+            ),
           ),
         ),
         const SliverToBoxAdapter(child: SizedBox(height: 30)),
@@ -47,7 +55,10 @@ class HomeViewBody extends StatelessWidget {
         SliverToBoxAdapter(
           child: ShowSection(
             sectionTitle: StringsManager.picksForYour,
-            showAllOnTap: () {},
+            showAllOnTap: () => Get.toNamed(
+              AppRoutes.kShowsSectionView,
+              arguments: StringsManager.picksForYour,
+            ),
           ),
         ),
         const SliverToBoxAdapter(child: SizedBox(height: 30)),
@@ -56,7 +67,10 @@ class HomeViewBody extends StatelessWidget {
         SliverToBoxAdapter(
           child: ShowSection(
             sectionTitle: StringsManager.fromYourLists,
-            showAllOnTap: () {},
+            showAllOnTap: () => Get.toNamed(
+              AppRoutes.kShowsSectionView,
+              arguments: StringsManager.fromYourLists,
+            ),
           ),
         ),
         const SliverToBoxAdapter(child: SizedBox(height: 30)),

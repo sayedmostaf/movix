@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
+import 'package:movix/core/widgets/functions/build_genre_id_values_row.dart';
 import 'package:movix/features/home/data/data_sources/dummy_data.dart';
 import 'package:movix/features/home/data/data_sources/static.dart';
 
@@ -15,7 +16,7 @@ class MoreInfoColumn extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          buildIdValueRow(
+          buildGenreIdValuesRow(
             ids: showsGenresIds[index],
             idToValueMap: idsToGenres,
             context: context,
@@ -43,30 +44,5 @@ class MoreInfoColumn extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Widget buildIdValueRow({
-    required List<int> ids,
-    required Map<int, String> idToValueMap,
-    required BuildContext context,
-  }) {
-    List<Widget> widgets = [];
-    for (int i = 0; i < ids.length; i++) {
-      int id = ids[i];
-      if (idToValueMap.keys.contains(id)) {
-        widgets.add(
-          Text(
-            idToValueMap[id]!,
-            style: StylesManager.styleLatoRegular14(context),
-          ),
-        );
-        if (i < ids.length - 1) {
-          widgets.add(
-            Text(' • ', style: StylesManager.styleLatoRegular14(context)),
-          );
-        }
-      }
-    }
-    return Row(mainAxisAlignment: MainAxisAlignment.center, children: widgets);
   }
 }

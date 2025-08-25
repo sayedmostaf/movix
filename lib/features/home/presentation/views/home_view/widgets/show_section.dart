@@ -3,7 +3,7 @@ import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/features/home/data/data_sources/dummy_data.dart';
-import 'package:movix/features/home/presentation/views/widgets/show_card.dart';
+import 'package:movix/features/home/presentation/views/home_view/widgets/show_card.dart';
 
 class ShowSection extends StatelessWidget {
   const ShowSection({super.key, required this.sectionTitle, this.showAllOnTap});
@@ -34,8 +34,9 @@ class ShowSection extends StatelessWidget {
           ),
           SizedBox(height: 15),
           SizedBox(
-            height: MediaQuery.of(context).size.width * 0.3 / 0.7,
+            height: MediaQuery.of(context).size.width * 0.3 / 0.6,
             child: ListView.builder(
+              physics: BouncingScrollPhysics(),
               itemBuilder: (context, index) => Padding(
                 padding: EdgeInsets.only(right: 15),
                 child: ShowCard(

@@ -10,6 +10,7 @@ import 'package:movix/features/auth/presentation/views/auth_view/auth_view.dart'
 import 'package:movix/features/auth/presentation/views/email_verify_view/email_verify_view.dart';
 import 'package:movix/features/auth/presentation/views/forget_password_view/forget_password_view.dart';
 import 'package:movix/features/auth/presentation/views/improve_your_feeds_view/improve_your_feeds_view.dart';
+import 'package:movix/features/home/presentation/views/section_view/section_view.dart';
 import 'package:movix/features/main/presentation/view/main_view.dart';
 import 'package:movix/features/onboarding/presentation/views/on_boarding_view.dart';
 import 'package:movix/features/splash/presentation/views/splash_view.dart';
@@ -22,6 +23,8 @@ class AppRoutes {
   static const kEmailVerifyView = '/emailVerify';
   static const kImproveYourFeedsView = '/improveYourFeeds';
   static const kMainView = '/main';
+  static const kShowsSectionView = '/showsSection';
+
 
   static List<GetPage<dynamic>>? getPages = [
     GetPage(
@@ -58,6 +61,10 @@ class AppRoutes {
       name: kMainView,
       page: () => const MainView(),
       binding: MainBinding(),
+    ),
+    GetPage(
+      name: kShowsSectionView,
+      page: () => const ShowsSectionView(),
     ),
   ];
 }

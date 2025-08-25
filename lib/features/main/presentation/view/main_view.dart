@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/features/explore/presentation/views/explore_view.dart';
-import 'package:movix/features/home/presentation/views/home_view.dart';
+import 'package:movix/features/home/presentation/views/home_view/home_view.dart';
 import 'package:movix/features/lists/presentation/views/lists_view.dart';
 import 'package:movix/features/main/presentation/controllers/bottom_navigation_bar_controller.dart';
 import 'package:movix/features/profile/presentation/views/profile_view.dart';

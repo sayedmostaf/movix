@@ -5,7 +5,7 @@ import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import '../../controllers/home_controller.dart';
+import '../../../controllers/home_controller.dart';
 
 class TrailersListView extends StatelessWidget {
   const TrailersListView({super.key});
@@ -28,6 +28,7 @@ class TrailersListView extends StatelessWidget {
           SizedBox(
             height: (MediaQuery.of(context).size.width) * 180 / 374,
             child: ListView.builder(
+              physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => Padding(
                 padding: EdgeInsets.only(right: 15),
                 child: ClipRRect(
