@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:movix/features/home/data/data_sources/dummy_data.dart';
 
 class ShowImage extends StatelessWidget {
-  const ShowImage({super.key, required this.index});
+  const ShowImage({super.key, required this.index, required this.images});
   final int index;
+  final List<String> images;
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
@@ -12,7 +13,7 @@ class ShowImage extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: CachedNetworkImageProvider(showsImages[index]),
+            image: CachedNetworkImageProvider(images[index]),
             fit: BoxFit.fill,
           ),
           borderRadius: BorderRadius.circular(5),

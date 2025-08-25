@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movix/features/home/data/data_sources/dummy_data.dart';
 import 'package:movix/features/home/presentation/views/section_view/widgets/show_details.dart';
 import 'package:movix/features/home/presentation/views/section_view/widgets/show_image.dart';
 
@@ -11,7 +12,7 @@ class CustomShowListViewItem extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.2,
       child: Row(
         children: [
-          ShowImage(index: index),
+          ShowImage(index: index, images: showsImages),
           SizedBox(width: 10),
           ShowDetails(index: index),
         ],

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
+import 'package:movix/core/widgets/functions/enums.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/custom_home_app_bar.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/home_trending_shows.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/people_of_the_week_widget.dart';
@@ -35,7 +36,10 @@ class HomeViewBody extends StatelessWidget {
             sectionTitle: StringsManager.trendingMovies,
             showAllOnTap: () => Get.toNamed(
               AppRoutes.kShowsSectionView,
-              arguments: StringsManager.trendingMovies,
+              arguments: {
+                'title': StringsManager.trendingMovies,
+                'showType': ShowType.Movie,
+              },
             ),
           ),
         ),
@@ -45,7 +49,10 @@ class HomeViewBody extends StatelessWidget {
             sectionTitle: StringsManager.trendingTvShows,
             showAllOnTap: () => Get.toNamed(
               AppRoutes.kShowsSectionView,
-              arguments: StringsManager.trendingTvShows,
+              arguments: {
+                'title': StringsManager.trendingTvShows,
+                'showType': ShowType.TV,
+              },
             ),
           ),
         ),
@@ -57,7 +64,10 @@ class HomeViewBody extends StatelessWidget {
             sectionTitle: StringsManager.picksForYour,
             showAllOnTap: () => Get.toNamed(
               AppRoutes.kShowsSectionView,
-              arguments: StringsManager.picksForYour,
+              arguments: {
+                'title': StringsManager.picksForYour,
+                'showType': ShowType.Movie,
+              },
             ),
           ),
         ),
@@ -69,7 +79,10 @@ class HomeViewBody extends StatelessWidget {
             sectionTitle: StringsManager.fromYourLists,
             showAllOnTap: () => Get.toNamed(
               AppRoutes.kShowsSectionView,
-              arguments: StringsManager.fromYourLists,
+              arguments: {
+                'title': StringsManager.fromYourLists,
+                'showType': ShowType.Movie,
+              },
             ),
           ),
         ),
