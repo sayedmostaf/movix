@@ -8,6 +8,7 @@ import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/circular_image.dart';
 import 'package:movix/core/widgets/functions/enums.dart';
 import 'package:movix/features/home/data/data_sources/dummy_data.dart';
+import 'package:movix/features/home/presentation/views/home_view/widgets/people_list_view.dart';
 
 class PeopleOfTheWeekWidget extends StatelessWidget {
   const PeopleOfTheWeekWidget({super.key});
@@ -45,35 +46,10 @@ class PeopleOfTheWeekWidget extends StatelessWidget {
             ],
           ),
           SizedBox(height: 15),
-          SizedBox(
-            height: MediaQuery.of(context).size.width * 0.3 + 30,
-            child: ListView.builder(
-              physics: const BouncingScrollPhysics(),
-
-              itemBuilder: (context, index) => Padding(
-                padding: const EdgeInsets.only(right: 15),
-                child: Column(
-                  children: [
-                    CircularImage(index: index),
-                    const SizedBox(height: 10),
-                    Flexible(
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text(
-                          peoplesNames[index],
-                          style: StylesManager.styleLatoSemiBold16(context),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              itemCount: showsImages.length,
-              scrollDirection: Axis.horizontal,
-            ),
-          ),
+          PeopleListView(),
         ],
       ),
     );
   }
 }
+

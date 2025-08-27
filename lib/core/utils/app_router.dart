@@ -5,12 +5,16 @@ import 'package:movix/core/bindings/forget_password_binding.dart';
 import 'package:movix/core/bindings/improve_your_feed_binding.dart';
 import 'package:movix/core/bindings/main_binding.dart';
 import 'package:movix/core/bindings/onboarding_binding.dart';
+import 'package:movix/core/bindings/show_person_details_binding.dart';
 import 'package:movix/core/bindings/splash_binding.dart';
 import 'package:movix/features/auth/presentation/views/auth_view/auth_view.dart';
 import 'package:movix/features/auth/presentation/views/email_verify_view/email_verify_view.dart';
 import 'package:movix/features/auth/presentation/views/forget_password_view/forget_password_view.dart';
 import 'package:movix/features/auth/presentation/views/improve_your_feeds_view/improve_your_feeds_view.dart';
+import 'package:movix/features/home/presentation/views/media_view/media_view.dart';
+import 'package:movix/features/home/presentation/views/person_details_view/person_details_view.dart';
 import 'package:movix/features/home/presentation/views/section_view/section_view.dart';
+import 'package:movix/features/home/presentation/views/show_details_view/views/show_details_view.dart';
 import 'package:movix/features/main/presentation/view/main_view.dart';
 import 'package:movix/features/onboarding/presentation/views/on_boarding_view.dart';
 import 'package:movix/features/splash/presentation/views/splash_view.dart';
@@ -24,7 +28,9 @@ class AppRoutes {
   static const kImproveYourFeedsView = '/improveYourFeeds';
   static const kMainView = '/main';
   static const kShowsSectionView = '/showsSection';
-
+  static const kShowDetailsView = '/showDetails';
+  static const kPersonDetailsView = '/personDetails';
+  static const kMediaView = '/media';
 
   static List<GetPage<dynamic>>? getPages = [
     GetPage(
@@ -62,9 +68,13 @@ class AppRoutes {
       page: () => const MainView(),
       binding: MainBinding(),
     ),
+    GetPage(name: kShowsSectionView, page: () => const ShowsSectionView()),
     GetPage(
-      name: kShowsSectionView,
-      page: () => const ShowsSectionView(),
+      name: kShowDetailsView,
+      page: () => const ShowDetailsView(),
+      binding: ShowDetailsBinding(),
     ),
+    GetPage(name: kPersonDetailsView, page: () => const PersonDetailsView()),
+    GetPage(name: kMediaView, page: () => const MediaView()),
   ];
 }
