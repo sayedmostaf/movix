@@ -11,46 +11,43 @@ class ShowSection extends StatelessWidget {
   final void Function()? showAllOnTap;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            children: [
-              Text(sectionTitle, style: StylesManager.styleLatoBold16(context)),
-              Spacer(),
-              GestureDetector(
-                onTap: showAllOnTap,
-                child: Text(
-                  StringsManager.showAll,
-                  style: StylesManager.styleLatoRegular16(
-                    context,
-                  ).copyWith(color: ColorManager.primaryColor),
-                ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(
+          children: [
+            Text(sectionTitle, style: StylesManager.styleLatoBold16(context)),
+            Spacer(),
+            GestureDetector(
+              onTap: showAllOnTap,
+              child: Text(
+                StringsManager.showAll,
+                style: StylesManager.styleLatoRegular16(
+                  context,
+                ).copyWith(color: ColorManager.primaryColor),
               ),
-              SizedBox(width: 20),
-            ],
-          ),
-          SizedBox(height: 15),
-          SizedBox(
-            height: MediaQuery.of(context).size.width * 0.3 / 0.6,
-            child: ListView.builder(
-              physics: BouncingScrollPhysics(),
-              itemBuilder: (context, index) => Padding(
-                padding: EdgeInsets.only(right: 15),
-                child: ShowCard(
-                  imageUrl: showsImages[index],
-                  showYear: showsYear[index],
-                  showRating: showsRating[index],
-                ),
-              ),
-              itemCount: showsImages.length,
-              scrollDirection: Axis.horizontal,
             ),
+            SizedBox(width: 20),
+          ],
+        ),
+        SizedBox(height: 15),
+        SizedBox(
+          height: MediaQuery.of(context).size.width * 0.3 / 0.6,
+          child: ListView.builder(
+            physics: BouncingScrollPhysics(),
+            itemBuilder: (context, index) => Padding(
+              padding: EdgeInsets.only(right: 15),
+              child: ShowCard(
+                imageUrl: showsImages[index],
+                showYear: showsYear[index],
+                showRating: showsRating[index],
+              ),
+            ),
+            itemCount: showsImages.length,
+            scrollDirection: Axis.horizontal,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

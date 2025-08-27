@@ -42,7 +42,6 @@ class PeopleOfTheWeekWidget extends StatelessWidget {
                   ).copyWith(color: ColorManager.primaryColor),
                 ),
               ),
-              SizedBox(width: 20),
             ],
           ),
           SizedBox(height: 15),

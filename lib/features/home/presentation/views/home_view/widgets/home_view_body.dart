@@ -32,27 +32,33 @@ class HomeViewBody extends StatelessWidget {
         ),
         const SliverToBoxAdapter(child: SizedBox(height: 30)),
         SliverToBoxAdapter(
-          child: ShowSection(
-            sectionTitle: StringsManager.trendingMovies,
-            showAllOnTap: () => Get.toNamed(
-              AppRoutes.kShowsSectionView,
-              arguments: {
-                'title': StringsManager.trendingMovies,
-                'showType': ShowType.Movie,
-              },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: ShowSection(
+              sectionTitle: StringsManager.trendingMovies,
+              showAllOnTap: () => Get.toNamed(
+                AppRoutes.kShowsSectionView,
+                arguments: {
+                  'title': StringsManager.trendingMovies,
+                  'showType': ShowType.Movie,
+                },
+              ),
             ),
           ),
         ),
         const SliverToBoxAdapter(child: SizedBox(height: 30)),
         SliverToBoxAdapter(
-          child: ShowSection(
-            sectionTitle: StringsManager.trendingTvShows,
-            showAllOnTap: () => Get.toNamed(
-              AppRoutes.kShowsSectionView,
-              arguments: {
-                'title': StringsManager.trendingTvShows,
-                'showType': ShowType.TV,
-              },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: ShowSection(
+              sectionTitle: StringsManager.trendingTvShows,
+              showAllOnTap: () => Get.toNamed(
+                AppRoutes.kShowsSectionView,
+                arguments: {
+                  'title': StringsManager.trendingTvShows,
+                  'showType': ShowType.TV,
+                },
+              ),
             ),
           ),
         ),
@@ -60,14 +66,17 @@ class HomeViewBody extends StatelessWidget {
         const SliverToBoxAdapter(child: TrailersListView()),
         const SliverToBoxAdapter(child: SizedBox(height: 30)),
         SliverToBoxAdapter(
-          child: ShowSection(
-            sectionTitle: StringsManager.picksForYour,
-            showAllOnTap: () => Get.toNamed(
-              AppRoutes.kShowsSectionView,
-              arguments: {
-                'title': StringsManager.picksForYour,
-                'showType': ShowType.Movie,
-              },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: ShowSection(
+              sectionTitle: StringsManager.picksForYour,
+              showAllOnTap: () => Get.toNamed(
+                AppRoutes.kShowsSectionView,
+                arguments: {
+                  'title': StringsManager.picksForYour,
+                  'showType': ShowType.Movie,
+                },
+              ),
             ),
           ),
         ),
@@ -75,14 +84,17 @@ class HomeViewBody extends StatelessWidget {
         const SliverToBoxAdapter(child: PeopleOfTheWeekWidget()),
         const SliverToBoxAdapter(child: SizedBox(height: 30)),
         SliverToBoxAdapter(
-          child: ShowSection(
-            sectionTitle: StringsManager.fromYourLists,
-            showAllOnTap: () => Get.toNamed(
-              AppRoutes.kShowsSectionView,
-              arguments: {
-                'title': StringsManager.fromYourLists,
-                'showType': ShowType.Movie,
-              },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: ShowSection(
+              sectionTitle: StringsManager.fromYourLists,
+              showAllOnTap: () => Get.toNamed(
+                AppRoutes.kShowsSectionView,
+                arguments: {
+                  'title': StringsManager.fromYourLists,
+                  'showType': ShowType.Movie,
+                },
+              ),
             ),
           ),
         ),

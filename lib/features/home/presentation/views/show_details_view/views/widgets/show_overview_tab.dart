@@ -38,7 +38,7 @@ class ShowOverviewTab extends StatelessWidget {
           textColor: Colors.grey,
           mainAxisAlignment: MainAxisAlignment.start,
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 15),
         Row(
           children: [
             Text(

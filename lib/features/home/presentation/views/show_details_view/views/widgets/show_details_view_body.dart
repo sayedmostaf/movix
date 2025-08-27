@@ -24,7 +24,7 @@ class ShowDetailsViewBody extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 2),
                 child: SizedBox(
                   height: getResponsiveFontSize(context, fontSize: 25),
-                  child: const CustomTabBar(),
+                  child: const CustomShowsTabBar(),
                 ),
               ),
               const Divider(),

@@ -11,45 +11,47 @@ class CustomPersonListViewItem extends StatelessWidget {
   final int index;
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(5),
-      onTap: () => Get.toNamed(
-        AppRoutes.kShowDetailsView,
-        arguments: {'showType': ShowType.Person},
-      ),
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.2,
-        child: Row(
-          children: [
-            ShowImage(index: index, images: peoplesImages),
-            SizedBox(width: 10),
-            SizedBox(
-              width:
-                  MediaQuery.of(context).size.width -
-                  40 -
-                  10 -
-                  (MediaQuery.of(context).size.height * 0.2 * (27 / 40)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    peoplesImages[index],
-                    style: StylesManager.styleLatoRegular18(context),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    'Actor, Breaking Bad (2008)',
-                    style: StylesManager.styleLatoRegular16(
-                      context,
-                    ).copyWith(color: Colors.grey),
-                  ),
-                ],
+    return Material(
+      child: InkWell(
+        borderRadius: BorderRadius.circular(5),
+        onTap: () => Get.toNamed(
+          AppRoutes.kPersonDetailsView,
+          arguments: {'showType': ShowType.Person},
+        ),
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height * 0.2,
+          child: Row(
+            children: [
+              ShowImage(index: index, images: peoplesImages),
+              const SizedBox(width: 10),
+              SizedBox(
+                width:
+                    MediaQuery.of(context).size.width -
+                    40 -
+                    10 -
+                    (MediaQuery.of(context).size.height * 0.2 * (27 / 40)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      peoplesNames[index],
+                      style: StylesManager.styleLatoRegular18(context),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      'Actor, Breaking Bad (2008)',
+                      style: StylesManager.styleLatoRegular16(
+                        context,
+                      ).copyWith(color: Colors.grey),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
