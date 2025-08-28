@@ -4,6 +4,7 @@ import 'package:movix/core/bindings/email_verify_binding.dart';
 import 'package:movix/core/bindings/forget_password_binding.dart';
 import 'package:movix/core/bindings/improve_your_feed_binding.dart';
 import 'package:movix/core/bindings/main_binding.dart';
+import 'package:movix/core/bindings/media_binding.dart';
 import 'package:movix/core/bindings/onboarding_binding.dart';
 import 'package:movix/core/bindings/show_details_binding.dart';
 import 'package:movix/core/bindings/show_person_details_binding.dart';
@@ -80,6 +81,10 @@ class AppRoutes {
       page: () => const PersonDetailsView(),
       binding: ShowPersonDetailsBinding(),
     ),
-    GetPage(name: kMediaView, page: () => const MediaView()),
+    GetPage(
+      name: kMediaView,
+      page: () => const MediaView(),
+      binding: MediaBinding(),
+    ),
   ];
 }
