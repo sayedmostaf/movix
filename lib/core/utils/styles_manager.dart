@@ -124,7 +124,7 @@ abstract class StylesManager {
           fontSize: getResponsiveFontSize(context, fontSize: 34),
           fontWeight: FontWeight.w700,
         );
-  static TextStyle styleLatoBold16(BuildContext context) =>
+  static TextStyle styleLatoBold20(BuildContext context) =>
       Get.theme.brightness == Brightness.dark
       ? TextStyle(
           fontFamily: 'Lato',

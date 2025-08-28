@@ -16,7 +16,7 @@ class ShowSection extends StatelessWidget {
       children: [
         Row(
           children: [
-            Text(sectionTitle, style: StylesManager.styleLatoBold16(context)),
+            Text(sectionTitle, style: StylesManager.styleLatoBold20(context)),
             Spacer(),
             GestureDetector(
               onTap: showAllOnTap,

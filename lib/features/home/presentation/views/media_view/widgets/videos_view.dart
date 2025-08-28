@@ -52,7 +52,7 @@ class VideosView extends StatelessWidget {
                   SizedBox(height: 5),
                   Text(
                     'Trailer of the Movie',
-                    style: StylesManager.styleLatoBold16(context),
+                    style: StylesManager.styleLatoBold20(context),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ],

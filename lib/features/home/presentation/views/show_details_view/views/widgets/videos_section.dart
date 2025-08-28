@@ -21,12 +21,12 @@ class VideosSection extends StatelessWidget {
           children: [
             Text(
               StringsManager.videos,
-              style: StylesManager.styleLatoBold16(context),
+              style: StylesManager.styleLatoBold20(context),
             ),
             SizedBox(width: 10),
             Text(
               '9',
-              style: StylesManager.styleLatoBold16(
+              style: StylesManager.styleLatoBold20(
                 context,
               ).copyWith(color: Colors.grey),
             ),

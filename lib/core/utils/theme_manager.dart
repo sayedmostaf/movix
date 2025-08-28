@@ -26,8 +26,14 @@ abstract class ThemeManager {
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(),
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.black),
+        borderSide: BorderSide(color: ColorManager.primaryColor),
       ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: ColorManager.primaryColor),
+      ),
+    ),
+    textSelectionTheme: const TextSelectionThemeData(
+      cursorColor: ColorManager.primaryColor,
     ),
   );
   static ThemeData get darkThemeData => ThemeData.dark().copyWith(
@@ -55,8 +61,14 @@ abstract class ThemeManager {
     inputDecorationTheme: const InputDecorationTheme(
       border: OutlineInputBorder(),
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.white),
+        borderSide: BorderSide(color: ColorManager.primaryColor),
       ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: ColorManager.primaryColor),
+      ),
+    ),
+    textSelectionTheme: const TextSelectionThemeData(
+      cursorColor: ColorManager.primaryColor,
     ),
   );
 }

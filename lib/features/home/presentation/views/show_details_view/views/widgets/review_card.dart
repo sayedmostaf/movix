@@ -33,7 +33,7 @@ class ReviewCard extends StatelessWidget {
                 children: [
                   Text(
                     'Sayed Mostafa',
-                    style: StylesManager.styleLatoBold16(context),
+                    style: StylesManager.styleLatoBold20(context),
                   ),
                   Text(
                     '@sayedmostafa.2004',
@@ -50,7 +50,7 @@ class ReviewCard extends StatelessWidget {
                 size: getResponsiveFontSize(context, fontSize: 16),
               ),
               SizedBox(width: 5),
-              Text('6/10', style: StylesManager.styleLatoBold16(context)),
+              Text('6/10', style: StylesManager.styleLatoBold20(context)),
             ],
           ),
           const SizedBox(height: 10),

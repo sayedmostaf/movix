@@ -22,7 +22,7 @@ class NextButton extends StatelessWidget {
             onboardingController.pageIndex.value == onboardingImages.length - 1
                 ? StringsManager.getStarted
                 : StringsManager.next,
-            style: StylesManager.styleLatoBold16(
+            style: StylesManager.styleLatoBold20(
               context,
             ).copyWith(color: Colors.black),
           ),
