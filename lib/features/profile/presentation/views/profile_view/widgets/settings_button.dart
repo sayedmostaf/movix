@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/color_manager.dart';
 
 class SettingsButton extends StatelessWidget {
@@ -10,7 +12,7 @@ class SettingsButton extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: IconButton(
-        onPressed: () {},
+        onPressed:() => Get.toNamed(AppRoutes.kSettingsView),
         icon: Icon(FontAwesomeIcons.gear, color: ColorManager.primaryColor),
       ),
     );

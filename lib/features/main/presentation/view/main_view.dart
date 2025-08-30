@@ -7,7 +7,7 @@ import 'package:movix/features/explore/presentation/views/explore_view.dart';
 import 'package:movix/features/home/presentation/views/home_view/home_view.dart';
 import 'package:movix/features/lists/presentation/views/lists_view.dart';
 import 'package:movix/features/main/presentation/controllers/bottom_navigation_bar_controller.dart';
-import 'package:movix/features/profile/presentation/views/profile_view.dart';
+import 'package:movix/features/profile/presentation/views/profile_view/profile_view.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class MainView extends StatelessWidget {

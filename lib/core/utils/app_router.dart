@@ -19,6 +19,7 @@ import 'package:movix/features/home/presentation/views/section_view/section_view
 import 'package:movix/features/home/presentation/views/show_details_view/views/show_details_view.dart';
 import 'package:movix/features/main/presentation/view/main_view.dart';
 import 'package:movix/features/onboarding/presentation/views/on_boarding_view.dart';
+import 'package:movix/features/profile/presentation/views/settings_view/settings_view.dart';
 import 'package:movix/features/splash/presentation/views/splash_view.dart';
 
 class AppRoutes {
@@ -33,6 +34,7 @@ class AppRoutes {
   static const kShowDetailsView = '/showDetails';
   static const kPersonDetailsView = '/personDetails';
   static const kMediaView = '/media';
+  static const kSettingsView = '/settings';
 
   static List<GetPage<dynamic>>? getPages = [
     GetPage(
@@ -86,5 +88,6 @@ class AppRoutes {
       page: () => const MediaView(),
       binding: MediaBinding(),
     ),
+    GetPage(name: kSettingsView, page: () => const SettingsView()),
   ];
 }
