@@ -1,17 +1,15 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
-import 'package:movix/core/widgets/circular_image.dart';
 import 'package:movix/core/widgets/functions/enums.dart';
-import 'package:movix/features/home/data/data_sources/dummy_data.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/people_list_view.dart';
 
-class PeopleOfTheWeekWidget extends StatelessWidget {
-  const PeopleOfTheWeekWidget({super.key});
+class PeopleSection extends StatelessWidget {
+  const PeopleSection({super.key, required this.sectionTitle});
+  final String sectionTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -22,16 +20,13 @@ class PeopleOfTheWeekWidget extends StatelessWidget {
         children: [
           Row(
             children: [
-              Text(
-                StringsManager.peopleOfTheWeek,
-                style: StylesManager.styleLatoBold20(context),
-              ),
+              Text(sectionTitle, style: StylesManager.styleLatoBold20(context)),
               const Spacer(),
               GestureDetector(
                 onTap: () => Get.toNamed(
                   AppRoutes.kShowsSectionView,
                   arguments: {
-                    'title': StringsManager.peopleOfTheWeek,
+                    'title': sectionTitle,
                     'showType': ShowType.Person,
                   },
                 ),

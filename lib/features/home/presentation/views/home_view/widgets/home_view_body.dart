@@ -6,7 +6,7 @@ import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/functions/enums.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/custom_home_app_bar.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/home_trending_shows.dart';
-import 'package:movix/features/home/presentation/views/home_view/widgets/people_of_the_week_widget.dart';
+import 'package:movix/core/widgets/people_of_the_week_widget.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/show_section.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/trailers_list_view.dart';
 
@@ -81,7 +81,9 @@ class HomeViewBody extends StatelessWidget {
           ),
         ),
         const SliverToBoxAdapter(child: SizedBox(height: 30)),
-        const SliverToBoxAdapter(child: PeopleOfTheWeekWidget()),
+        const SliverToBoxAdapter(
+          child: PeopleSection(sectionTitle: StringsManager.peopleOfTheWeek),
+        ),
         const SliverToBoxAdapter(child: SizedBox(height: 30)),
         SliverToBoxAdapter(
           child: Padding(
