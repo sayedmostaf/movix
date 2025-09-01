@@ -1,8 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
@@ -17,6 +16,8 @@ class SignOutButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {
           FirebaseAuth.instance.signOut();
+          GoogleSignIn googleSignIn = GoogleSignIn();
+          googleSignIn.signOut();
           Get.offAllNamed(AppRoutes.kAuthView);
         },
         style: ButtonStyle(

@@ -1,12 +1,18 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:movix/core/errors/failure.dart';
 import 'package:movix/core/errors/firebase_auth_failure.dart';
+import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/features/auth/domain/entities/user_data.dart';
 import 'package:movix/features/auth/domain/repos/auth_repo.dart';
 
 class AuthRepoImpl extends AuthRepo {
   final FirebaseAuth _firebaseAuth;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+
   AuthRepoImpl({required FirebaseAuth firebaseAuth})
     : _firebaseAuth = firebaseAuth;
   @override
@@ -49,9 +55,25 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future<Either<Failure, void>> logInUserWithGoogle() {
-    // TODO: implement logInUserWithGoogle
-    throw UnimplementedError();
+  Future<Either<Failure, void>> logInUserWithGoogle() async {
+    try {
+      final googleUser = await _googleSignIn.signIn();
+      if (googleUser == null) {
+        return left(Failure(message: StringsManager.noAccountSelected));
+      }
+      final googleAuth = await googleUser.authentication;
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+      await _firebaseAuth.signInWithCredential(credential);
+      return right(null);
+    } on FirebaseAuthException catch (e) {
+      return left(FirebaseAuthFailure.fromFirebaseAuthException(e));
+    } catch (e) {
+      log(e.toString());
+      return left(Failure(message: e.toString()));
+    }
   }
 
   @override
