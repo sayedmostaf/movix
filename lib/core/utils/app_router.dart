@@ -90,4 +90,4 @@ class AppRoutes {
     ),
     GetPage(name: kSettingsView, page: () => const SettingsView()),
   ];
-}
+} 
