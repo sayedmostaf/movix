@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movix/features/profile/presentation/views/settings_view/widgets/change_account_name_widget.dart';
 import 'package:movix/features/profile/presentation/views/settings_view/widgets/change_app_theme_widget.dart';
+import 'package:movix/features/profile/presentation/views/settings_view/widgets/sign_out_button.dart';
 
 class SettingsViewBody extends StatelessWidget {
   const SettingsViewBody({super.key});
@@ -19,6 +20,8 @@ class SettingsViewBody extends StatelessWidget {
           SliverToBoxAdapter(child: ChangeAccountNameWidget()),
           SliverToBoxAdapter(child: SizedBox(height: 10)),
           SliverToBoxAdapter(child: ChangeAppThemeWidget()),
+          SliverToBoxAdapter(child: SizedBox(height: 10)),
+          SliverToBoxAdapter(child: SignOutButton()),
         ],
       ),
     );

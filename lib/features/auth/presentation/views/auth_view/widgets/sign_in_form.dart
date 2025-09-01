@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/features/auth/presentation/controllers/auth_controllers/auth_controller.dart';
+import 'package:movix/features/auth/presentation/controllers/auth_controllers/log_in_user_with_email_and_password_controller.dart';
 
 class SignInForm extends StatelessWidget {
   const SignInForm({super.key});
@@ -13,9 +13,12 @@ class SignInForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthController authController = Get.find<AuthController>();
+    final LogInUserWithEmailAndPasswordController
+    logInUserWithEmailAndPasswordController =
+        Get.find<LogInUserWithEmailAndPasswordController>();
 
     return Form(
-      key: authController.loginKey,
+      key: logInUserWithEmailAndPasswordController.loginKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -38,7 +41,7 @@ class SignInForm extends StatelessWidget {
               ),
             ),
             validator: authController.emailValidator,
-            onChanged: authController.loginEmailOnSaved,
+            onChanged: logInUserWithEmailAndPasswordController.loginEmailOnSaved,
           ),
           SizedBox(height: 30),
           Text(
@@ -73,7 +76,7 @@ class SignInForm extends StatelessWidget {
               ),
               obscureText: authController.obscure,
               validator: authController.passwordValidator,
-              onChanged: authController.loginPasswordOnSaved,
+              onChanged: logInUserWithEmailAndPasswordController.loginPasswordOnSaved,
             ),
           ),
           SizedBox(height: 5),
