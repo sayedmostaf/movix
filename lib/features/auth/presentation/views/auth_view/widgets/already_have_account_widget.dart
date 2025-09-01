@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
-import 'package:movix/features/auth/presentation/controllers/auth_controller.dart';
+import 'package:movix/features/auth/presentation/controllers/auth_controllers/auth_controller.dart';
 
 class AlreadyHaveAccountWidget extends StatelessWidget {
   const AlreadyHaveAccountWidget({super.key});
