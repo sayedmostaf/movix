@@ -102,4 +102,14 @@ class AuthRepoImpl extends AuthRepo {
       return left(FirebaseAuthFailure.fromFirebaseAuthException(e));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> logInAnonymously() async {
+    try {
+      await _firebaseAuth.signInAnonymously();
+      return right(null);
+    } on FirebaseAuthException catch (e) {
+      return left(FirebaseAuthFailure.fromFirebaseAuthException(e));
+    }
+  }
 }
