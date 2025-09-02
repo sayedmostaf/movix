@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:movix/core/widgets/loading_overlay.dart';
+import 'package:movix/features/auth/presentation/controllers/forget_password_controllers/forget_password_controller.dart';
 import 'package:movix/features/auth/presentation/views/forget_password_view/widgets/forget_password_view_body.dart';
 
 class ForgetPasswordView extends StatelessWidget {
@@ -6,6 +9,21 @@ class ForgetPasswordView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: ForgetPasswordViewBody());
+    final ForgetPasswordController forgetPasswordController =
+        Get.find<ForgetPasswordController>();
+    return Scaffold(
+      body: Stack(
+        children: [
+          const ForgetPasswordViewBody(),
+          Obx(() {
+            if (forgetPasswordController.loading.isTrue) {
+              return const LoadingOverlay();
+            } else {
+              return const SizedBox.shrink();
+            }
+          }),
+        ],
+      ),
+    );
   }
 }

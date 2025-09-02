@@ -1,8 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/strings_manager.dart';
+import 'package:movix/features/auth/domain/usecases/forget_password_usecase.dart';
 
 class ForgetPasswordController extends GetxController {
   final GlobalKey<FormFieldState> emailKey =
@@ -11,6 +14,15 @@ class ForgetPasswordController extends GetxController {
   bool sendButtonEnabled = true;
   Timer? countdownTimer;
   int countdown = 120;
+  RxBool loading = false.obs;
+  final ForgetPasswordUseCase forgetPasswordUseCase;
+
+  ForgetPasswordController({required this.forgetPasswordUseCase});
+
+  @override
+  void onInit() {
+    super.onInit();
+  }
 
   @override
   void onClose() {
@@ -33,6 +45,7 @@ class ForgetPasswordController extends GetxController {
     if (emailKey.currentState!.validate()) {
       emailKey.currentState!.save();
       startCountdown();
+      sendForgotPasswordEmail();
     }
     return null;
   }
@@ -50,5 +63,25 @@ class ForgetPasswordController extends GetxController {
       }
       update();
     });
+  }
+
+  void sendForgotPasswordEmail() async {
+    loading.value = true;
+    var result = await forgetPasswordUseCase.execute(email);
+    result.fold(
+      (failure) => Get.snackbar(
+        StringsManager.operationFailed,
+        failure.message,
+        backgroundColor: Colors.red.withOpacity(0.5),
+      ),
+      (success) {
+        Get.snackbar(
+          StringsManager.operationSuccess,
+          StringsManager.passwordResetEmailSent,
+          backgroundColor: Colors.green.withOpacity(0.5),
+        );
+      },
+    );
+    loading.value = false;
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
-import 'package:movix/features/auth/presentation/controllers/forget_password_controller.dart';
+import 'package:movix/features/auth/presentation/controllers/forget_password_controllers/forget_password_controller.dart';
 
 class PasswordResetTextFormField extends StatelessWidget {
   const PasswordResetTextFormField({super.key});

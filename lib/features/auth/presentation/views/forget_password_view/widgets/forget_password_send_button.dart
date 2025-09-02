@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
-import 'package:movix/features/auth/presentation/controllers/forget_password_controller.dart';
+import 'package:movix/features/auth/presentation/controllers/forget_password_controllers/forget_password_controller.dart';
 
 class ForgetPasswordSendButton extends StatelessWidget {
   const ForgetPasswordSendButton({super.key});

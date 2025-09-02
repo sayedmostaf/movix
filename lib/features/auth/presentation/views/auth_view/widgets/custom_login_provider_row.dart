@@ -27,12 +27,6 @@ class CustomLoginProviderRow extends StatelessWidget {
             Get.toNamed(AppRoutes.kEmailVerifyView);
           },
         ),
-        CustomLoginProviderButton(
-          image: customLoginProviderImages[2],
-          onTap: () {
-            Get.toNamed(AppRoutes.kEmailVerifyView);
-          },
-        ),
       ],
     );
   }
