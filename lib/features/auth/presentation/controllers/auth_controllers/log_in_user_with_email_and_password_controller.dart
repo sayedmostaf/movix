@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/strings_manager.dart';
@@ -35,7 +34,7 @@ class LogInUserWithEmailAndPasswordController extends GetxController {
           StringsManager.loggedInSuccessfully,
           backgroundColor: Colors.green.withOpacity(0.5),
         );
-        Get.offAllNamed(AppRoutes.kMainView);
+        Get.offAllNamed(AppRoutes.kEmailVerifyView);
       },
     );
     loading.value = false;

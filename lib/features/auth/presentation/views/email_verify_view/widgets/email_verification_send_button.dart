@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
-import 'package:movix/features/auth/presentation/controllers/email_verify_controller.dart';
+import 'package:movix/features/auth/presentation/controllers/email_verify_controllers/email_verify_controller.dart';
 
 class EmailVerificationSendButton extends StatelessWidget {
   const EmailVerificationSendButton({super.key});
@@ -18,13 +18,13 @@ class EmailVerificationSendButton extends StatelessWidget {
           height: 50,
           child: GetBuilder<EmailVerifyController>(
             builder: (emailVerifyController) => ElevatedButton(
-              onPressed: emailVerifyController.sendEnabledButton
+              onPressed: emailVerifyController.sendButtonEnabled
                   ? emailVerifyController.sendOnPressed
                   : null,
               child: Text(
                 StringsManager.send,
                 style: StylesManager.styleRobotoBold16(context).copyWith(
-                  color: emailVerifyController.sendEnabledButton
+                  color: emailVerifyController.sendButtonEnabled
                       ? Colors.black
                       : ColorManager.primaryColor,
                 ),
@@ -35,7 +35,7 @@ class EmailVerificationSendButton extends StatelessWidget {
         SizedBox(height: 8),
         GetBuilder<EmailVerifyController>(
           builder: (emailVerifyController) {
-            if (!emailVerifyController.sendEnabledButton) {
+            if (!emailVerifyController.sendButtonEnabled) {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
