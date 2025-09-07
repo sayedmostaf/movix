@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/strings_manager.dart';
@@ -12,12 +11,11 @@ class SignUpForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AuthController authController = Get.find<AuthController>();
-    final SignUpWithEmailAndPasswordController
-    signUpWithEmailAndPasswordController =
-        Get.find<SignUpWithEmailAndPasswordController>();
+    final authController = Get.find<AuthController>();
+    final signUpController = Get.find<SignUpWithEmailAndPasswordController>();
+
     return Form(
-      key: signUpWithEmailAndPasswordController.registerKey,
+      key: signUpController.registerKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -29,7 +27,7 @@ class SignUpForm extends StatelessWidget {
                   : Colors.black.withOpacity(0.6),
             ),
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           TextFormField(
             decoration: InputDecoration(
               hintText: StringsManager.enterYourName,
@@ -40,9 +38,10 @@ class SignUpForm extends StatelessWidget {
               ),
             ),
             validator: authController.usernameValidator,
-            onSaved: signUpWithEmailAndPasswordController.registerNameOnSaved,
+            onSaved: signUpController.registerNameOnSaved,
+            onChanged: signUpController.registerNameOnSaved,
           ),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Text(
             StringsManager.email,
             style: StylesManager.styleRobotoRegular16(context).copyWith(
@@ -51,7 +50,7 @@ class SignUpForm extends StatelessWidget {
                   : Colors.black.withOpacity(0.6),
             ),
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           TextFormField(
             decoration: InputDecoration(
               hintText: StringsManager.enterYourEmail,
@@ -62,9 +61,10 @@ class SignUpForm extends StatelessWidget {
               ),
             ),
             validator: authController.emailValidator,
-            onSaved: signUpWithEmailAndPasswordController.registerNameOnSaved,
+            onSaved: signUpController.registerEmailOnSaved, // ✅ FIXED
+            onChanged: signUpController.registerEmailOnSaved, // ✅ FIXED
           ),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Text(
             StringsManager.password,
             style: StylesManager.styleRobotoRegular16(context).copyWith(
@@ -74,9 +74,8 @@ class SignUpForm extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 5),
-
           GetBuilder<AuthController>(
-            builder: (authController) => TextFormField(
+            builder: (_) => TextFormField(
               decoration: InputDecoration(
                 hintText: StringsManager.enterYourPassword,
                 hintStyle: StylesManager.styleRobotoRegular16(context).copyWith(
@@ -98,11 +97,11 @@ class SignUpForm extends StatelessWidget {
               ),
               obscureText: authController.obscure,
               validator: authController.passwordValidator,
-              onChanged: signUpWithEmailAndPasswordController.registerPasswordOnSaved,
-              onSaved: signUpWithEmailAndPasswordController.registerPasswordOnSaved,
+              onSaved: signUpController.registerPasswordOnSaved,
+              onChanged: signUpController.registerPasswordOnSaved,
             ),
           ),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Text(
             StringsManager.confirmPassword,
             style: StylesManager.styleRobotoRegular16(context).copyWith(
@@ -113,7 +112,7 @@ class SignUpForm extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           GetBuilder<AuthController>(
-            builder: (authController) => TextFormField(
+            builder: (_) => TextFormField(
               key: authController.confirmPasswordKey,
               decoration: InputDecoration(
                 hintText: StringsManager.enterYourPassword,
@@ -124,9 +123,9 @@ class SignUpForm extends StatelessWidget {
                 ),
               ),
               obscureText: authController.obscure,
-              validator: signUpWithEmailAndPasswordController.confirmPasswordValidator,
-              onChanged: (value) =>
-                  authController.confirmPasswordKey.currentState!.validate(),
+              validator: signUpController.confirmPasswordValidator,
+              onChanged: (_) =>
+                  authController.confirmPasswordKey.currentState?.validate(),
             ),
           ),
         ],

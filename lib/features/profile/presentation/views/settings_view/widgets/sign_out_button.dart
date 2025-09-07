@@ -15,6 +15,7 @@ class SignOutButton extends StatelessWidget {
       height: 50,
       child: ElevatedButton(
         onPressed: () async {
+          // Create an instance of FirebaseAuth, GoogleSignIn, and FacebookAuth
           final FirebaseAuth auth = FirebaseAuth.instance;
           final GoogleSignIn googleSignIn = GoogleSignIn();
 
@@ -26,28 +27,22 @@ class SignOutButton extends StatelessWidget {
             bool isGoogleUser = currentUser.providerData.any(
               (userInfo) => userInfo.providerId == 'google.com',
             );
-
             // Determine if the user is signed in anonymously
             bool isAnonymous = currentUser.isAnonymous;
 
             if (isGoogleUser) {
               // User is signed in with Google, so sign out from Google
               await googleSignIn.signOut();
-              // Then, sign out from Firebase Auth
-              await auth.signOut();
-              // Navigate to AuthView
-              Get.offAllNamed(AppRoutes.kAuthView);
-            } else if (isAnonymous) {
-              // User is signed in anonymously, so delete the anonymous account
-              await currentUser.delete();
-              // After deletion, you may want to navigate to the AuthView or sign in the user differently
-              Get.offAllNamed(AppRoutes.kAuthView);
-            } else {
-              // If signed in with a different provider or email/password, simply sign out from Firebase Auth
-              await auth.signOut();
-              // Navigate to AuthView
-              Get.offAllNamed(AppRoutes.kAuthView);
             }
+            if (isAnonymous) {
+              await currentUser.delete();
+            }
+            // For both Google and Facebook users, as well as other authentication methods:
+            // Sign out from Firebase Auth
+            await auth.signOut();
+
+            // Navigate to AuthView after sign-out or account deletion
+            Get.offAllNamed(AppRoutes.kAuthView);
           }
         },
         style: ButtonStyle(

@@ -14,9 +14,7 @@ class GenresList extends StatelessWidget {
         runSpacing: 10,
         alignment: WrapAlignment.center,
         crossAxisAlignment: WrapCrossAlignment.center,
-        children: genresToIds.entries
-            .map((e) => GenreItem(name: e.key, value: e.value))
-            .toList(),
+        children: genres.map((e) => GenreItem(genreModel: e)).toList(),
       ),
     );
   }

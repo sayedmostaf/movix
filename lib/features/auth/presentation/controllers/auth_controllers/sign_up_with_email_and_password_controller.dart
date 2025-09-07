@@ -42,8 +42,8 @@ class SignUpWithEmailAndPasswordController {
   }
 
   void Function()? registerOnPressed() {
-    registerEmail = '';
-    registerName = '';
+    // registerEmail = '';
+    // registerName = '';
     if (registerKey.currentState!.validate()) {
       registerKey.currentState!.save();
       signUpEmailAndPassword(
@@ -64,7 +64,7 @@ class SignUpWithEmailAndPasswordController {
   }
 
   void registerPasswordOnSaved(String? password) {
-    registerPassword = password!;
+  registerPassword = password!;
   }
 
   String? confirmPasswordValidator(String? value) {

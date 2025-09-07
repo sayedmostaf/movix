@@ -6,14 +6,17 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:movix/core/errors/failure.dart';
 import 'package:movix/core/errors/firebase_auth_failure.dart';
 import 'package:movix/core/utils/strings_manager.dart';
+import 'package:movix/features/auth/data/data_sources/auth_remote_data_source.dart';
+import 'package:movix/features/auth/data/models/genre_model.dart';
 import 'package:movix/features/auth/domain/entities/user_data.dart';
 import 'package:movix/features/auth/domain/repos/auth_repo.dart';
 
 class AuthRepoImpl extends AuthRepo {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final AuthRemoteDataSource? authRemoteDataSource;
 
-  AuthRepoImpl({required FirebaseAuth firebaseAuth})
+  AuthRepoImpl({this.authRemoteDataSource, required FirebaseAuth firebaseAuth})
     : _firebaseAuth = firebaseAuth;
   @override
   Future<Either<Failure, void>> addFavouriteGenres() {
@@ -112,6 +115,16 @@ class AuthRepoImpl extends AuthRepo {
       return right(null);
     } on FirebaseAuthException catch (e) {
       return left(FirebaseAuthFailure.fromFirebaseAuthException(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<GenreModel>>> getUserGenres()async {
+    try{
+      List<GenreModel> genres = await authRemoteDataSource!.getUserGenres();
+      return right(genres);
+    }catch(e){
+      return left(Failure(message: StringsManager.somethingWentWrong));
     }
   }
 }
