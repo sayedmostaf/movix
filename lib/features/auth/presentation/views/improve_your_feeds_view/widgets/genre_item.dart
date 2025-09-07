@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/features/auth/data/models/genre_model.dart';
-import 'package:movix/features/auth/presentation/controllers/improve_your_feed_controller.dart';
+import 'package:movix/features/auth/presentation/controllers/improve_your_feed_controllers/improve_your_feed_controller.dart';
 
 class GenreItem extends StatelessWidget {
   const GenreItem({super.key, required this.genreModel});
   final GenreModel genreModel;
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<ImproveYourFeedController>();
+    final controller = Get.find<ImproveYourFeedsController>();
     return GestureDetector(
       onTap: () => controller.selectGenre(genreModel),
       child: Obx(

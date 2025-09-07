@@ -41,7 +41,9 @@ class SignInForm extends StatelessWidget {
               ),
             ),
             validator: authController.emailValidator,
-            onChanged: logInUserWithEmailAndPasswordController.loginEmailOnSaved,
+            onChanged:
+                logInUserWithEmailAndPasswordController.loginEmailOnSaved,
+            onSaved: logInUserWithEmailAndPasswordController.loginEmailOnSaved,
           ),
           SizedBox(height: 30),
           Text(
@@ -76,7 +78,10 @@ class SignInForm extends StatelessWidget {
               ),
               obscureText: authController.obscure,
               validator: authController.passwordValidator,
-              onChanged: logInUserWithEmailAndPasswordController.loginPasswordOnSaved,
+              onChanged:
+                  logInUserWithEmailAndPasswordController.loginPasswordOnSaved,
+              onSaved:
+                  logInUserWithEmailAndPasswordController.loginPasswordOnSaved,
             ),
           ),
           SizedBox(height: 5),

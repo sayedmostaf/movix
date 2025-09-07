@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/features/auth/domain/entities/user_data.dart';
-import 'package:movix/features/auth/domain/usecases/get_user_genres_use_case.dart';
+import 'package:movix/features/auth/domain/usecases/get_user_genre_flag_use_case.dart';
 import 'package:movix/features/auth/domain/usecases/log_in_with_email_and_password_usecase.dart';
 
 class LogInUserWithEmailAndPasswordController extends GetxController {
   final LogInWithEmailAndPasswordUseCase usecase;
-  final GetUserGenresUseCase getUserGenreUseCase;
+  final GetUserGenreFlagUseCase getUserGenreUseCase;
   LogInUserWithEmailAndPasswordController({
     required this.getUserGenreUseCase,
     required this.usecase,
@@ -64,11 +64,11 @@ class LogInUserWithEmailAndPasswordController extends GetxController {
 
   Future<void> getGenres() async {
     var result = await getUserGenreUseCase.execute();
-    result.fold((l) => Get.offAllNamed(AppRoutes.kMainView), (genres) {
-      if (genres.isEmpty) {
+    result.fold((l) => Get.offAllNamed(AppRoutes.kMainView), (genreFlag) {
+      if (!genreFlag) {
         Get.offAllNamed(AppRoutes.kImproveYourFeedsView);
       } else {
-        Get.offAllNamed(AppRoutes.kMainView, arguments: {'genres': genres});
+        Get.offAllNamed(AppRoutes.kMainView);
       }
     });
   }

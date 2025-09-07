@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
-import 'package:movix/features/auth/presentation/controllers/improve_your_feed_controller.dart';
+import 'package:movix/features/auth/presentation/controllers/improve_your_feed_controllers/improve_your_feed_controller.dart';
 
 class AllSetButton extends StatelessWidget {
   const AllSetButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final improveYourFeedController = Get.find<ImproveYourFeedController>();
+    final improveYourFeedController = Get.find<ImproveYourFeedsController>();
 
     return Align(
       alignment: Alignment.bottomCenter,

@@ -19,9 +19,15 @@ class AuthRepoImpl extends AuthRepo {
   AuthRepoImpl({this.authRemoteDataSource, required FirebaseAuth firebaseAuth})
     : _firebaseAuth = firebaseAuth;
   @override
-  Future<Either<Failure, void>> addFavouriteGenres() {
-    // TODO: implement addFavouriteGenres
-    throw UnimplementedError();
+  Future<Either<Failure, void>> addFavouriteGenres(
+    List<GenreModel> genres,
+  ) async {
+    try {
+      await authRemoteDataSource!.setUserGenres(genres);
+      return right(null);
+    } catch (e) {
+      return left(Failure(message: StringsManager.somethingWentWrong));
+    }
   }
 
   @override
@@ -119,11 +125,21 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future<Either<Failure, List<GenreModel>>> getUserGenres()async {
-    try{
-      List<GenreModel> genres = await authRemoteDataSource!.getUserGenres();
-      return right(genres);
-    }catch(e){
+  Future<Either<Failure, bool>> getUserGenresFlag() async {
+    try {
+      bool flag = await authRemoteDataSource!.getUserGenresFlag();
+      return right(flag);
+    } catch (e) {
+      return left(Failure(message: StringsManager.somethingWentWrong));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> setUserGenresFlag() async {
+    try {
+      await authRemoteDataSource!.setUserGenresFlag();
+      return right(null);
+    } catch (e) {
       return left(Failure(message: StringsManager.somethingWentWrong));
     }
   }

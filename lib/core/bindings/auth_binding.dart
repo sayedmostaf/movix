@@ -5,7 +5,7 @@ import 'package:movix/features/auth/data/data_sources/auth_remote_data_source.da
 import 'package:movix/features/auth/data/data_sources/auth_remote_data_source_impl.dart';
 import 'package:movix/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:movix/features/auth/domain/repos/auth_repo.dart';
-import 'package:movix/features/auth/domain/usecases/get_user_genres_use_case.dart';
+import 'package:movix/features/auth/domain/usecases/get_user_genre_flag_use_case.dart';
 import 'package:movix/features/auth/domain/usecases/log_in_anonymously_usecase.dart';
 import 'package:movix/features/auth/domain/usecases/log_in_with_email_and_password_usecase.dart';
 import 'package:movix/features/auth/domain/usecases/log_in_with_google_usecase.dart';
@@ -58,8 +58,8 @@ class AuthBinding extends Bindings {
       () => SignUpWithEmailAndPasswordUseCase(authRepo: Get.find()),
       fenix: true,
     );
-    Get.lazyPut<GetUserGenresUseCase>(
-      () => GetUserGenresUseCase(authRepo: Get.find()),
+    Get.lazyPut<GetUserGenreFlagUseCase>(
+      () => GetUserGenreFlagUseCase(authRepo: Get.find()),
       fenix: true,
     );
 
