@@ -10,7 +10,7 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
   @override
   Future<List<TrendingMovieEntity>> getTrendingMovies(int page) async {
     var data = await apiService.get(
-      endPoint: '/trending/movie/week?page=$page',
+      endPoint: '/trending/movie/day?language=en-US&page=$page',
     );
     List<TrendingMovieEntity> items = [];
     for (var item in data['results']) {
