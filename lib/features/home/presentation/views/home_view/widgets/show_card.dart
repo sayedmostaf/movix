@@ -2,19 +2,17 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:movix/core/utils/app_router.dart';
+import 'package:movix/core/utils/assets_manager.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/functions/enums.dart';
+import 'package:movix/features/home/domain/entities/trending_movie_entity.dart';
 
 class ShowCard extends StatelessWidget {
-  const ShowCard({
-    super.key,
-    required this.imageUrl,
-    required this.showYear,
-    required this.showRating,
-  });
-  final String imageUrl, showYear, showRating;
+  const ShowCard({super.key, required this.trendingMovieEntity});
+  final TrendingMovieEntity trendingMovieEntity;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -33,13 +31,22 @@ class ShowCard extends StatelessWidget {
             children: [
               AspectRatio(
                 aspectRatio: 27 / 40,
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: CachedNetworkImageProvider(imageUrl),
-                      fit: BoxFit.fill,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(5),
+                  child: CachedNetworkImage(
+                    imageUrl: trendingMovieEntity.posterPath != null
+                        ? 'https://image.tmdb.org/t/p/original${trendingMovieEntity.posterPath}'
+                        : '',
+                    placeholder: (context, url) => Center(
+                      child: Lottie.asset(Assets.assetsAnimationsMovieLoading),
                     ),
-                    borderRadius: BorderRadius.circular(5),
+                    errorWidget: (context, url, error) => Center(
+                      child: Icon(
+                        FontAwesomeIcons.circleExclamation,
+                        color: Colors.red,
+                        size: getResponsiveFontSize(context, fontSize: 50),
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -50,7 +57,7 @@ class ShowCard extends StatelessWidget {
                   FittedBox(
                     fit: BoxFit.scaleDown,
                     child: Text(
-                      showYear,
+                      trendingMovieEntity.releaseDate!.year.toString(),
                       style: StylesManager.styleLatoRegular14(context),
                     ),
                   ),
@@ -58,7 +65,7 @@ class ShowCard extends StatelessWidget {
                   FittedBox(
                     fit: BoxFit.scaleDown,
                     child: Text(
-                      showRating,
+                      trendingMovieEntity.voteAverage?.toStringAsFixed(1) ?? "",
                       style: StylesManager.styleLatoRegular14(context),
                     ),
                   ),

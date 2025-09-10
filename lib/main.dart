@@ -5,9 +5,11 @@ import 'package:movix/core/cache/cache_helper.dart';
 import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/theme_manager.dart';
 import 'package:movix/firebase_options.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load();
   CacheData.initializeCache();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());

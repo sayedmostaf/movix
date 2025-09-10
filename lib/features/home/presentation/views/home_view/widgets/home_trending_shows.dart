@@ -1,10 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/widgets/functions/build_cover_image.dart';
 import 'package:movix/core/widgets/functions/build_cover_overlay.dart';
 import 'package:movix/features/home/data/data_sources/dummy_data.dart';
-import 'package:movix/features/home/presentation/controllers/home_controller.dart';
+import 'package:movix/features/home/presentation/controllers/home_controllers/home_controller.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/more_info_column.dart';
 
 class HomeTrendingShows extends StatelessWidget {

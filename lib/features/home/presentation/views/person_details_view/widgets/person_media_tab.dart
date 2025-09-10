@@ -24,6 +24,7 @@ class PersonMediaTab extends StatelessWidget {
               'showType': ShowType.Movie,
             },
           ),
+          trendingMovies: [],
         ),
         const SizedBox(height: 15),
         ShowSection(
@@ -35,6 +36,7 @@ class PersonMediaTab extends StatelessWidget {
               'showType': ShowType.TV,
             },
           ),
+          trendingMovies: [],
         ),
         const SizedBox(height: 30),
       ],

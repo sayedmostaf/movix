@@ -3,9 +3,8 @@ import 'package:get/get.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
+import 'package:movix/features/home/presentation/controllers/home_controllers/home_controller.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-
-import '../../../controllers/home_controller.dart';
 
 class TrailersListView extends StatelessWidget {
   const TrailersListView({super.key});

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:movix/core/utils/assets_manager.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/widgets/custom_search_field.dart';
-import 'package:movix/features/home/presentation/controllers/home_controller.dart';
+import 'package:movix/features/home/presentation/controllers/home_controllers/home_controller.dart';
 
 class CustomHomeAppBar extends StatelessWidget {
   const CustomHomeAppBar({super.key});

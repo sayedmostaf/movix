@@ -3,12 +3,19 @@ import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/features/home/data/data_sources/dummy_data.dart';
+import 'package:movix/features/home/domain/entities/trending_movie_entity.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/show_card.dart';
 
 class ShowSection extends StatelessWidget {
-  const ShowSection({super.key, required this.sectionTitle, this.showAllOnTap});
+  const ShowSection({
+    super.key,
+    required this.sectionTitle,
+    this.showAllOnTap,
+    required this.trendingMovies,
+  });
   final String sectionTitle;
   final void Function()? showAllOnTap;
+  final List<TrendingMovieEntity> trendingMovies;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -38,12 +45,10 @@ class ShowSection extends StatelessWidget {
             itemBuilder: (context, index) => Padding(
               padding: EdgeInsets.only(right: 15),
               child: ShowCard(
-                imageUrl: showsImages[index],
-                showYear: showsYear[index],
-                showRating: showsRating[index],
+                trendingMovieEntity: trendingMovies[index],
               ),
             ),
-            itemCount: showsImages.length,
+            itemCount: trendingMovies.length,
             scrollDirection: Axis.horizontal,
           ),
         ),
