@@ -7,7 +7,8 @@ import 'package:movix/features/home/domain/usecases/get_trending_movies_usecase.
 class TrendingMoviesController extends GetxController {
   final GetTrendingMoviesUseCase getTrendingMoviesUseCase;
   TrendingMoviesController({required this.getTrendingMoviesUseCase});
-  var movies = <TrendingMovieEntity>[].obs;
+  List<TrendingMovieEntity> movies = [];
+
   RxBool loading = false.obs;
 
   @override
@@ -25,7 +26,10 @@ class TrendingMoviesController extends GetxController {
         failure.message,
         backgroundColor: Colors.red.withOpacity(0.5),
       ),
-      (moviesList) => movies.addAll(moviesList),
+      (moviesList) {
+        movies.addAll(moviesList);
+        update();
+      },
     );
     loading.value = false;
   }

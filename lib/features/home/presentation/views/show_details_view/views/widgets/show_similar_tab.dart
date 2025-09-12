@@ -50,7 +50,8 @@ class ShowSimilarTab extends StatelessWidget {
             itemBuilder: (context, index) => Padding(
               padding: EdgeInsets.only(right: 15),
               child: ShowCard(
-                trendingMovieEntity: TrendingMovieEntity(id: 123),
+                show: TrendingMovieEntity(id: 123),
+                showType: ShowType.Movie,
               ),
             ),
             itemCount: showsImages.length,

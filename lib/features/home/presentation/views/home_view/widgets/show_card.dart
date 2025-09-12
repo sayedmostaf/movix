@@ -11,8 +11,9 @@ import 'package:movix/core/widgets/functions/enums.dart';
 import 'package:movix/features/home/domain/entities/trending_movie_entity.dart';
 
 class ShowCard extends StatelessWidget {
-  const ShowCard({super.key, required this.trendingMovieEntity});
-  final TrendingMovieEntity trendingMovieEntity;
+  const ShowCard({super.key, required this.show, required this.showType});
+  final dynamic show;
+  final ShowType showType;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -34,8 +35,8 @@ class ShowCard extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(5),
                   child: CachedNetworkImage(
-                    imageUrl: trendingMovieEntity.posterPath != null
-                        ? 'https://image.tmdb.org/t/p/original${trendingMovieEntity.posterPath}'
+                    imageUrl: show.posterPath != null
+                        ? 'https://image.tmdb.org/t/p/original${show.posterPath}'
                         : '',
                     placeholder: (context, url) => Center(
                       child: Lottie.asset(Assets.assetsAnimationsMovieLoading),
@@ -57,7 +58,7 @@ class ShowCard extends StatelessWidget {
                   FittedBox(
                     fit: BoxFit.scaleDown,
                     child: Text(
-                      trendingMovieEntity.releaseDate!.year.toString(),
+                      show.releaseDate!.year.toString(),
                       style: StylesManager.styleLatoRegular14(context),
                     ),
                   ),
@@ -65,7 +66,7 @@ class ShowCard extends StatelessWidget {
                   FittedBox(
                     fit: BoxFit.scaleDown,
                     child: Text(
-                      trendingMovieEntity.voteAverage?.toStringAsFixed(1) ?? "",
+                      show.voteAverage?.toStringAsFixed(1) ?? "",
                       style: StylesManager.styleLatoRegular14(context),
                     ),
                   ),

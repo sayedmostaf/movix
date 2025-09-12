@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
+import 'package:movix/core/widgets/functions/enums.dart';
 import 'package:movix/features/home/data/data_sources/dummy_data.dart';
 import 'package:movix/features/home/domain/entities/trending_movie_entity.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/show_card.dart';
@@ -11,11 +12,13 @@ class ShowSection extends StatelessWidget {
     super.key,
     required this.sectionTitle,
     this.showAllOnTap,
-    required this.trendingMovies,
+    required this.items,
+    required this.showType,
   });
   final String sectionTitle;
   final void Function()? showAllOnTap;
-  final List<TrendingMovieEntity> trendingMovies;
+  final List<dynamic> items;
+  final ShowType showType;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -44,11 +47,9 @@ class ShowSection extends StatelessWidget {
             physics: BouncingScrollPhysics(),
             itemBuilder: (context, index) => Padding(
               padding: EdgeInsets.only(right: 15),
-              child: ShowCard(
-                trendingMovieEntity: trendingMovies[index],
-              ),
+              child: ShowCard(show: items[index],showType: showType,),
             ),
-            itemCount: trendingMovies.length,
+            itemCount: items.length,
             scrollDirection: Axis.horizontal,
           ),
         ),

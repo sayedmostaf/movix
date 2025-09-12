@@ -5,6 +5,7 @@ import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/functions/enums.dart';
 import 'package:movix/features/home/presentation/controllers/home_controllers/trending_movies_controller.dart';
+import 'package:movix/features/home/presentation/controllers/home_controllers/trending_tv_shows_controller.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/custom_home_app_bar.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/home_trending_shows.dart';
 import 'package:movix/core/widgets/people_of_the_week_widget.dart';
@@ -18,6 +19,8 @@ class HomeViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final TrendingMoviesController trendingMoviesController =
         Get.find<TrendingMoviesController>();
+    final TrendingTvShowsController trendingTvShowsController =
+        Get.find<TrendingTvShowsController>();
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(child: SizedBox(height: 50)),
@@ -37,7 +40,7 @@ class HomeViewBody extends StatelessWidget {
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Obx(() {
+            child: GetBuilder<TrendingMoviesController>(builder: (context) {
               return ShowSection(
                 sectionTitle: StringsManager.trendingMovies,
                 showAllOnTap: () => Get.toNamed(
@@ -47,7 +50,8 @@ class HomeViewBody extends StatelessWidget {
                     'showType': ShowType.Movie,
                   },
                 ),
-                trendingMovies: trendingMoviesController.movies.toList(),
+                items: trendingMoviesController.movies,
+                showType: ShowType.Movie,
               );
             }),
           ),
@@ -56,16 +60,21 @@ class HomeViewBody extends StatelessWidget {
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: ShowSection(
-              sectionTitle: StringsManager.trendingTvShows,
-              showAllOnTap: () => Get.toNamed(
-                AppRoutes.kShowsSectionView,
-                arguments: {
-                  'title': StringsManager.trendingTvShows,
-                  'showType': ShowType.TV,
-                },
-              ),
-              trendingMovies: [],
+            child:  GetBuilder<TrendingTvShowsController>(
+              builder: (context) {
+                return ShowSection(
+                  sectionTitle: StringsManager.trendingTvShows,
+                  showAllOnTap: () => Get.toNamed(
+                    AppRoutes.kShowsSectionView,
+                    arguments: {
+                      'title': StringsManager.trendingTvShows,
+                      'showType': ShowType.TV,
+                    },
+                  ),
+                  items: [],
+                  showType: ShowType.TV,
+                );
+              }
             ),
           ),
         ),
@@ -84,7 +93,8 @@ class HomeViewBody extends StatelessWidget {
                   'showType': ShowType.Movie,
                 },
               ),
-              trendingMovies: [],
+              items: [],
+              showType: ShowType.Movie,
             ),
           ),
         ),
@@ -105,7 +115,8 @@ class HomeViewBody extends StatelessWidget {
                   'showType': ShowType.Movie,
                 },
               ),
-              trendingMovies: [],
+              items: [],
+              showType: ShowType.Movie,
             ),
           ),
         ),

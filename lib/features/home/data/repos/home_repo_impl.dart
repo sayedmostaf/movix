@@ -5,6 +5,7 @@ import 'package:movix/core/errors/server_failure.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/features/home/data/data_sources/home_remote_data_source.dart';
 import 'package:movix/features/home/domain/entities/trending_movie_entity.dart';
+import 'package:movix/features/home/domain/entities/trending_tv_show_entity.dart';
 import 'package:movix/features/home/domain/repos/home_repo.dart';
 
 class HomeRepoImpl extends HomeRepo {
@@ -17,6 +18,20 @@ class HomeRepoImpl extends HomeRepo {
     try {
       var result = await homeRemoteDataSource.getTrendingMovies(page);
       return right(result);
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return left(Failure(message: StringsManager.somethingWentWrong));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<TrendingTvShowEntity>>> getTrendingTvShows(
+    int page,
+  ) async {
+    try {
+      var results = await homeRemoteDataSource.getTrendingTvShows(page);
+      return right(results);
     } on DioException catch (e) {
       return left(ServerFailure.fromDioException(e));
     } catch (e) {
