@@ -4,13 +4,14 @@ import 'package:movix/core/usecase/use_case.dart';
 import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';
 import 'package:movix/features/home/domain/repos/home_repo.dart';
 
-class GetTrendingMoviesUseCase extends UseCase<List<MovieMiniResultEntity >, int> {
+class GetNowPlayingMoviesUseCase
+    extends UseCase<List<MovieMiniResultEntity>, int> {
   final HomeRepo homeRepo;
-  GetTrendingMoviesUseCase({required this.homeRepo});
+  GetNowPlayingMoviesUseCase({required this.homeRepo});
   @override
-  Future<Either<Failure, List<MovieMiniResultEntity >>> execute([
+  Future<Either<Failure, List<MovieMiniResultEntity>>> execute([
     int? inputs,
   ]) async {
-    return await homeRepo.getTrendingMovies(inputs!);
+    return await homeRepo.getNowPlayingMovies(inputs!);
   }
 }

@@ -8,7 +8,7 @@ import 'package:movix/core/utils/assets_manager.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/functions/enums.dart';
-import 'package:movix/features/home/domain/entities/trending_movie_entity.dart';
+import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';
 
 class ShowCard extends StatelessWidget {
   const ShowCard({super.key, required this.show, required this.showType});

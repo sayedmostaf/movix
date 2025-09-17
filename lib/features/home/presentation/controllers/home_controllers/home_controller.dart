@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:movix/features/home/data/data_sources/dummy_data.dart';
@@ -9,15 +8,12 @@ class HomeController extends GetxController
   bool search = false;
   AnimationController? animationController;
   Animation<Offset>? slideAnimation;
-  PageController pageController = PageController();
-  Timer? autoScrollTimer;
   List<YoutubePlayerController> videosControllers = [];
 
   @override
   void onInit() {
     super.onInit();
     _initSearchAnimation();
-    _initScrollTimer();
     _initTrailersVideos();
   }
 
@@ -50,20 +46,6 @@ class HomeController extends GetxController
     }
   }
 
-  void _initScrollTimer() {
-    final int itemCount = showsImages.length;
-    autoScrollTimer = Timer.periodic(Duration(seconds: 5), (timer) {
-      if (pageController.hasClients) {
-        int nextPage = (pageController.page!.round() + 1) % itemCount;
-
-        pageController.animateToPage(
-          nextPage,
-          duration: Duration(seconds: 1),
-          curve: Curves.easeInOut,
-        );
-      }
-    });
-  }
 
   void Function()? toggleSearch() {
     search = !search;
@@ -79,8 +61,6 @@ class HomeController extends GetxController
   @override
   void onClose() {
     animationController?.dispose();
-    autoScrollTimer?.cancel();
-    pageController.dispose();
     for (var video in videosControllers) {
       video.dispose();
     }

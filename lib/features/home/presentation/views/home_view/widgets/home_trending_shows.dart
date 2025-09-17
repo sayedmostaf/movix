@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:movix/core/widgets/functions/build_cover_image.dart';
 import 'package:movix/core/widgets/functions/build_cover_overlay.dart';
 import 'package:movix/features/home/data/data_sources/dummy_data.dart';
+import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';
 import 'package:movix/features/home/presentation/controllers/home_controllers/home_controller.dart';
+import 'package:movix/features/home/presentation/controllers/home_controllers/now_playing_movies_controller.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/more_info_column.dart';
 
 class HomeTrendingShows extends StatelessWidget {
@@ -11,26 +13,36 @@ class HomeTrendingShows extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final HomeController homeController = Get.find<HomeController>();
+    final NowPlayingMoviesController nowPlayingMoviesController =
+        Get.find<NowPlayingMoviesController>();
     return SizedBox(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.6,
-      child: PageView.builder(
-        itemBuilder: (context, index) {
-          return buildShowView(index, context);
+      height: 40 * MediaQuery.of(context).size.width / 27,
+      child: GetBuilder<NowPlayingMoviesController>(
+        builder: (context) {
+          return PageView.builder(
+            itemBuilder: (context, index) {
+              return buildShowView(
+                nowPlayingMoviesController.movies[index],
+                context,
+              );
+            },
+            itemCount: nowPlayingMoviesController.movies.length,
+            controller: nowPlayingMoviesController.pageController,
+          );
         },
-        itemCount: showsImages.length,
-        controller: homeController.pageController,
       ),
     );
   }
 
-  Stack buildShowView(int index, BuildContext context) {
+  Stack buildShowView(MovieMiniResultEntity movie, BuildContext context) {
     return Stack(
       children: [
-        buildCoverImage(showsImages[index]),
+        buildCoverImage(
+          'https://image.tmdb.org/t/p/original${movie.posterPath}',
+        ),
         buildCoverOverlay(context),
-        MoreInfoColumn(index: index),
+        MoreInfoColumn(movie: movie),
       ],
     );
   }

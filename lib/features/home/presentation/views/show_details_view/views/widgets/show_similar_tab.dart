@@ -6,7 +6,7 @@ import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/functions/enums.dart';
 import 'package:movix/features/home/data/data_sources/dummy_data.dart';
-import 'package:movix/features/home/domain/entities/trending_movie_entity.dart';
+import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/show_card.dart';
 
 class ShowSimilarTab extends StatelessWidget {
@@ -50,7 +50,7 @@ class ShowSimilarTab extends StatelessWidget {
             itemBuilder: (context, index) => Padding(
               padding: EdgeInsets.only(right: 15),
               child: ShowCard(
-                show: TrendingMovieEntity(id: 123),
+                show: MovieMiniResultEntity(id: 123),
                 showType: ShowType.Movie,
               ),
             ),

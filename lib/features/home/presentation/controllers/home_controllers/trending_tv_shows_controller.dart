@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/strings_manager.dart';
-import 'package:movix/features/home/domain/entities/trending_tv_show_entity.dart';
+import 'package:movix/features/home/domain/entities/tv_show_mini_result_entity.dart';
 import 'package:movix/features/home/domain/usecases/get_trending_tv_shows_usecase.dart';
 
 class TrendingTvShowsController extends GetxController {
   final GetTrendingTvShowsUseCase getTrendingTvShowsUseCase;
   TrendingTvShowsController({required this.getTrendingTvShowsUseCase});
 
-  List<TrendingTvShowEntity> tvShows = [];
+  List<TvShowMiniResultEntity> tvShows = [];
   RxBool loading = false.obs;
 
   @override
