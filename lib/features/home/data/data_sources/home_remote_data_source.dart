@@ -5,4 +5,7 @@ abstract class HomeRemoteDataSource {
   Future<List<MovieMiniResultEntity>> getTrendingMovies(int page);
   Future<List<TvShowMiniResultEntity>> getTrendingTvShows(int page);
   Future<List<MovieMiniResultEntity>> getNowPlayingMovies(int page);
+  Future<List<String>> getNowPlayingMoviesTrailers(
+    List<MovieMiniResultEntity> movies,
+  );
 }

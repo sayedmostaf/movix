@@ -4,6 +4,7 @@ import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/features/home/presentation/controllers/home_controllers/home_controller.dart';
+import 'package:movix/features/home/presentation/controllers/home_controllers/movie_trailers_controller.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class TrailersListView extends StatelessWidget {
@@ -11,8 +12,6 @@ class TrailersListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final HomeController homeController = Get.find<HomeController>();
-
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
@@ -24,39 +23,44 @@ class TrailersListView extends StatelessWidget {
             style: StylesManager.styleLatoBold20(context),
           ),
           const SizedBox(height: 15),
-          SizedBox(
-            height: (MediaQuery.of(context).size.width) * 180 / 374,
-            child: ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              itemBuilder: (context, index) => Padding(
-                padding: EdgeInsets.only(right: 15),
-                child: ClipRRect(
-                  borderRadius: BorderRadiusGeometry.circular(10),
-                  child: YoutubePlayer(
-                    controller: homeController.videosControllers[index],
-                    showVideoProgressIndicator: true,
-                    progressIndicatorColor: ColorManager.primaryColor,
-                    bottomActions: [
-                      const SizedBox(width: 14.0),
-                      CurrentPosition(),
-                      const SizedBox(width: 8.0),
-                      ProgressBar(
-                        isExpanded: true,
-                        colors: const ProgressBarColors(
-                          playedColor: ColorManager.primaryColor,
-                          handleColor: ColorManager.primaryColor,
-                        ),
+          GetBuilder<MovieTrailersController>(
+            builder: (movieTrailersController) {
+              return SizedBox(
+                height: (MediaQuery.of(context).size.width) * 180 / 374,
+                child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context, index) => Padding(
+                    padding: EdgeInsets.only(right: 15),
+                    child: ClipRRect(
+                      borderRadius: BorderRadiusGeometry.circular(10),
+                      child: YoutubePlayer(
+                        controller:
+                            movieTrailersController.videosControllers[index],
+                        showVideoProgressIndicator: true,
+                        progressIndicatorColor: ColorManager.primaryColor,
+                        bottomActions: [
+                          const SizedBox(width: 14.0),
+                          CurrentPosition(),
+                          const SizedBox(width: 8.0),
+                          ProgressBar(
+                            isExpanded: true,
+                            colors: const ProgressBarColors(
+                              playedColor: ColorManager.primaryColor,
+                              handleColor: ColorManager.primaryColor,
+                            ),
+                          ),
+                          RemainingDuration(),
+                          const PlaybackSpeedButton(),
+                        ],
+                        width: MediaQuery.of(context).size.width - 100,
                       ),
-                      RemainingDuration(),
-                      const PlaybackSpeedButton(),
-                    ],
-                    width: MediaQuery.of(context).size.width - 100,
+                    ),
                   ),
+                  itemCount: movieTrailersController.videosControllers.length,
+                  scrollDirection: Axis.horizontal,
                 ),
-              ),
-              itemCount: homeController.videosControllers.length,
-              scrollDirection: Axis.horizontal,
-            ),
+              );
+            },
           ),
         ],
       ),

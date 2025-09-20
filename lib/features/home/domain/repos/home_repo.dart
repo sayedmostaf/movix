@@ -13,4 +13,7 @@ abstract class HomeRepo {
   Future<Either<Failure, List<MovieMiniResultEntity>>> getNowPlayingMovies(
     int page,
   );
+  Future<Either<Failure, List<String>>> getNowPlayingMoviesTrailer(
+    List<MovieMiniResultEntity> movies,
+  );
 }

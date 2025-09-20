@@ -2,6 +2,7 @@ import 'package:movix/core/utils/api_service.dart';
 import 'package:movix/core/widgets/functions/extensions.dart';
 import 'package:movix/features/home/data/data_sources/home_remote_data_source.dart';
 import 'package:movix/features/home/data/models/movie_mini_result/movie_mini_result.dart';
+import 'package:movix/features/home/data/models/movie_trailer/movie_trailer.dart';
 import 'package:movix/features/home/data/models/tv_show_mini_result/tv_show_mini_result.dart';
 import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';
 import 'package:movix/features/home/domain/entities/tv_show_mini_result_entity.dart';
@@ -43,5 +44,23 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
       items.add(MovieMiniResult.fromJson(item).toEntity());
     }
     return items;
+  }
+
+  @override
+  Future<List<String>> getNowPlayingMoviesTrailers(
+    List<MovieMiniResultEntity> movies,
+  ) async {
+    List<String> youtubeKeys = [];
+    for (var movie in movies) {
+      var data = await apiService.get(endPoint: '/movie/${movie.id}/videos');
+      for (var item in data['results']) {
+        MovieTrailer res = MovieTrailer.fromJson(item);
+        if (res.type == 'Trailer' && res.site == 'YouTube') {
+          youtubeKeys.add(res.key!);
+          break;
+        }
+      }
+    }
+    return youtubeKeys;
   }
 }
