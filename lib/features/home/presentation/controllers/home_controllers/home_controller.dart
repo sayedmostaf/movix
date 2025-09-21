@@ -1,49 +1,13 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:movix/features/main/presentation/controllers/bottom_navigation_bar_controller.dart';
 
 class HomeController extends GetxController
     with GetSingleTickerProviderStateMixin {
-  bool search = false;
-  AnimationController? animationController;
-  Animation<Offset>? slideAnimation;
-
-  @override
-  void onInit() {
-    super.onInit();
-    _initSearchAnimation();
-  }
-
-  void _initSearchAnimation() {
-    animationController = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 300),
-    );
-    slideAnimation = Tween<Offset>(begin: Offset(0, -0.1), end: Offset.zero)
-        .animate(
-          CurvedAnimation(
-            parent: animationController!,
-            curve: Curves.easeInOut,
-          ),
-        );
-  }
-
-
-
+  final BottomNavigationBarController bottomNavigationBarController =
+      Get.find<BottomNavigationBarController>();
 
   void Function()? toggleSearch() {
-    search = !search;
-    if (search) {
-      animationController?.forward();
-    } else {
-      animationController?.reverse();
-    }
-    update();
-    return null;
-  }
-
-  @override
-  void onClose() {
-    animationController?.dispose();
-    super.onClose();
+    bottomNavigationBarController.controller.jumpToTab(2);
   }
 }

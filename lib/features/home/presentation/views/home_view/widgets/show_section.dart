@@ -13,12 +13,10 @@ class ShowSection extends StatelessWidget {
     required this.sectionTitle,
     this.showAllOnTap,
     required this.items,
-    required this.showType,
   });
   final String sectionTitle;
   final void Function()? showAllOnTap;
   final List<dynamic> items;
-  final ShowType showType;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -47,7 +45,7 @@ class ShowSection extends StatelessWidget {
             physics: BouncingScrollPhysics(),
             itemBuilder: (context, index) => Padding(
               padding: EdgeInsets.only(right: 15),
-              child: ShowCard(show: items[index],showType: showType,),
+              child: ShowCard(show: items[index]),
             ),
             itemCount: items.length,
             scrollDirection: Axis.horizontal,

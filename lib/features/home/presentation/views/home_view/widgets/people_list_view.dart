@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/circular_image.dart';
 import 'package:movix/features/home/data/data_sources/dummy_data.dart';
@@ -14,26 +16,32 @@ class PeopleListView extends StatelessWidget {
       height: MediaQuery.of(context).size.width * 0.3 + 30,
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
-
         itemBuilder: (context, index) => Padding(
           padding: const EdgeInsets.only(right: 15),
-          child: Column(
-            children: [
-              CircularImage(
-                imageUrl:
-                    'https://image.tmdb.org/t/p/original${people[index].profilePath}',
-              ),
-              const SizedBox(height: 10),
-              Flexible(
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Text(
-                    people[index].name ?? "",
-                    style: StylesManager.styleLatoSemiBold16(context),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(5),
+            onTap: () => Get.toNamed(
+              AppRoutes.kPersonDetailsView,
+              arguments: {'show': people[index]},
+            ),
+            child: Column(
+              children: [
+                CircularImage(
+                  imageUrl:
+                      'https://image.tmdb.org/t/p/original${people[index].profilePath}',
+                ),
+                const SizedBox(height: 10),
+                Flexible(
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      people[index].name ?? '',
+                      style: StylesManager.styleLatoSemiBold16(context),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         itemCount: people.length,

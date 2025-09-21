@@ -7,21 +7,16 @@ import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/assets_manager.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
-import 'package:movix/core/widgets/functions/enums.dart';
-import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';
 
 class ShowCard extends StatelessWidget {
-  const ShowCard({super.key, required this.show, required this.showType});
+  const ShowCard({super.key, required this.show});
   final dynamic show;
-  final ShowType showType;
   @override
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(5),
-      onTap: () => Get.toNamed(
-        AppRoutes.kShowDetailsView,
-        arguments: {'showType': ShowType.Movie},
-      ),
+      onTap: () =>
+          Get.toNamed(AppRoutes.kShowDetailsView, arguments: {'show': show}),
       child: ConstrainedBox(
         constraints: BoxConstraints(
           maxWidth: MediaQuery.of(context).size.width * 0.3,

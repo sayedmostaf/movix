@@ -1,3 +1,4 @@
+import 'package:movix/core/widgets/functions/enums.dart';
 import 'package:movix/features/home/data/models/movie_mini_result/movie_mini_result.dart';
 import 'package:movix/features/home/data/models/person_mini_result/person_mini_result.dart';
 import 'package:movix/features/home/data/models/tv_show_mini_result/tv_show_mini_result.dart';
@@ -15,6 +16,11 @@ extension TrendingMovieX on MovieMiniResult {
           : DateTime.parse(releaseDate!),
       posterPath: posterPath,
       genres: genreIds,
+      showType: mediaType == 'movie'
+          ? ShowType.Movie
+          : mediaType == 'tv'
+          ? ShowType.TV
+          : ShowType.Person,
     );
   }
 }
@@ -29,6 +35,11 @@ extension TrendingTvShowX on TvShowMiniResult {
           : DateTime.parse(firstAirDate!),
       posterPath: posterPath,
       genres: genreIds,
+      showType: mediaType == 'movie'
+          ? ShowType.Movie
+          : mediaType == 'tv'
+          ? ShowType.TV
+          : ShowType.Person,
     );
   }
 }
@@ -39,6 +50,11 @@ extension TrendingPeopleX on PersonMiniResult {
       id: id!,
       name: name,
       profilePath: profilePath,
+      showType: mediaType == 'movie'
+          ? ShowType.Movie
+          : mediaType == 'tv'
+          ? ShowType.TV
+          : ShowType.Person,
     );
   }
 }

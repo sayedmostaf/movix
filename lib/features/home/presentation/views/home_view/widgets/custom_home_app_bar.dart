@@ -29,25 +29,10 @@ class CustomHomeAppBar extends StatelessWidget {
               ),
             ],
           ),
-          GetBuilder<HomeController>(
-            builder: (_) {
-              return SlideTransition(
-                position: homeController.slideAnimation!,
-                child: homeController.search
-                    ? _buildSearchField(context)
-                    : SizedBox(),
-              );
-            },
-          ),
+          
         ],
       ),
     );
   }
 
-  Widget _buildSearchField(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      child: CustomSearchField(),
-    );
-  }
 }

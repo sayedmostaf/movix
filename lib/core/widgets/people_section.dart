@@ -13,9 +13,11 @@ class PeopleSection extends StatelessWidget {
     super.key,
     required this.sectionTitle,
     required this.people,
+    required this.showAllOnTap,
   });
   final String sectionTitle;
   final List<PersonMiniResultEntity> people;
+  final Function()? showAllOnTap;
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +31,7 @@ class PeopleSection extends StatelessWidget {
               Text(sectionTitle, style: StylesManager.styleLatoBold20(context)),
               const Spacer(),
               GestureDetector(
-                onTap: () => Get.toNamed(
-                  AppRoutes.kShowsSectionView,
-                  arguments: {
-                    'title': sectionTitle,
-                    'showType': ShowType.Person,
-                  },
-                ),
+                onTap: () => showAllOnTap,
                 child: Text(
                   StringsManager.showAll,
                   style: StylesManager.styleLatoRegular16(

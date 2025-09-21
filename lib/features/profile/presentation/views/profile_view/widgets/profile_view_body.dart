@@ -32,7 +32,6 @@ class ProfileViewBody extends StatelessWidget {
                 },
               ),
               items: [],
-              showType: ShowType.Movie,
             ),
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 20)),
@@ -47,14 +46,14 @@ class ProfileViewBody extends StatelessWidget {
                 },
               ),
               items: [],
-              showType: ShowType.Movie,
             ),
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 20)),
-          const SliverToBoxAdapter(
+           SliverToBoxAdapter(
             child: PeopleSection(
               sectionTitle: StringsManager.favouriteCelebrities,
               people: [],
+              showAllOnTap: () {},
             ),
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 30)),
