@@ -8,12 +8,11 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 class MovieTrailersController extends GetxController {
   final GetNowPlayingMoviesTrailerUseCase getNowPlayingMoviesTrailerUseCase;
   MovieTrailersController({required this.getNowPlayingMoviesTrailerUseCase});
-  RxBool loading = false.obs;
+  RxBool loading = true.obs;
   List<String> youtubeKeys = [];
   List<YoutubePlayerController> videosControllers = [];
 
   Future getTrendingMoviesTrailers(List<MovieMiniResultEntity> movies) async {
-    loading.value = true;
     var result = await getNowPlayingMoviesTrailerUseCase.execute(movies);
     result.fold(
       (failure) => Get.snackbar(

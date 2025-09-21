@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/widgets/functions/enums.dart';
-import 'package:movix/core/widgets/people_of_the_week_widget.dart';
+import 'package:movix/core/widgets/people_section.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/show_section.dart';
 import 'package:movix/features/profile/presentation/views/profile_view/widgets/profile_card.dart';
 import 'package:movix/features/profile/presentation/views/profile_view/widgets/settings_button.dart';
@@ -54,6 +54,7 @@ class ProfileViewBody extends StatelessWidget {
           const SliverToBoxAdapter(
             child: PeopleSection(
               sectionTitle: StringsManager.favouriteCelebrities,
+              people: [],
             ),
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 30)),

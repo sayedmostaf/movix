@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/circular_image.dart';
 import 'package:movix/features/home/data/data_sources/dummy_data.dart';
+import 'package:movix/features/home/domain/entities/person_mini_result_entity.dart';
 
 class PeopleListView extends StatelessWidget {
-  const PeopleListView({super.key});
+  const PeopleListView({super.key, required this.people});
+  final List<PersonMiniResultEntity> people;
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +19,16 @@ class PeopleListView extends StatelessWidget {
           padding: const EdgeInsets.only(right: 15),
           child: Column(
             children: [
-              CircularImage(index: index),
+              CircularImage(
+                imageUrl:
+                    'https://image.tmdb.org/t/p/original${people[index].profilePath}',
+              ),
               const SizedBox(height: 10),
               Flexible(
                 child: FittedBox(
                   fit: BoxFit.scaleDown,
                   child: Text(
-                    peoplesNames[index],
+                    people[index].name ?? "",
                     style: StylesManager.styleLatoSemiBold16(context),
                   ),
                 ),
@@ -31,7 +36,7 @@ class PeopleListView extends StatelessWidget {
             ],
           ),
         ),
-        itemCount: showsImages.length,
+        itemCount: people.length,
         scrollDirection: Axis.horizontal,
       ),
     );

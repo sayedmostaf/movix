@@ -64,7 +64,9 @@ class ShowOverviewTab extends StatelessWidget {
           ],
         ),
         SizedBox(height: 15),
-        PeopleListView(),
+        PeopleListView(
+          people: [],
+        ),
         const SizedBox(height: 30),
       ],
     );

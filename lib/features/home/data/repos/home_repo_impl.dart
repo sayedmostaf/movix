@@ -5,6 +5,7 @@ import 'package:movix/core/errors/server_failure.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/features/home/data/data_sources/home_remote_data_source.dart';
 import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';
+import 'package:movix/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:movix/features/home/domain/entities/tv_show_mini_result_entity.dart';
 import 'package:movix/features/home/domain/repos/home_repo.dart';
 
@@ -61,6 +62,20 @@ class HomeRepoImpl extends HomeRepo {
       var results = await homeRemoteDataSource.getNowPlayingMoviesTrailers(
         movies,
       );
+      return right(results);
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return left(Failure(message: StringsManager.somethingWentWrong));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<PersonMiniResultEntity>>> getTrendingPeople(
+    int page,
+  ) async {
+    try {
+      var results = await homeRemoteDataSource.getTrendingPeople(page);
       return right(results);
     } on DioException catch (e) {
       return left(ServerFailure.fromDioException(e));

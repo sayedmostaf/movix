@@ -5,10 +5,11 @@ import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/functions/enums.dart';
 import 'package:movix/features/home/presentation/controllers/home_controllers/trending_movies_controller.dart';
+import 'package:movix/features/home/presentation/controllers/home_controllers/trending_people_controller.dart';
 import 'package:movix/features/home/presentation/controllers/home_controllers/trending_tv_shows_controller.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/custom_home_app_bar.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/home_trending_shows.dart';
-import 'package:movix/core/widgets/people_of_the_week_widget.dart';
+import 'package:movix/core/widgets/people_section.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/show_section.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/trailers_list_view.dart';
 
@@ -40,27 +41,29 @@ class HomeViewBody extends StatelessWidget {
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: GetBuilder<TrendingMoviesController>(builder: (context) {
-              return ShowSection(
-                sectionTitle: StringsManager.trendingMovies,
-                showAllOnTap: () => Get.toNamed(
-                  AppRoutes.kShowsSectionView,
-                  arguments: {
-                    'title': StringsManager.trendingMovies,
-                    'showType': ShowType.Movie,
-                  },
-                ),
-                items: trendingMoviesController.movies,
-                showType: ShowType.Movie,
-              );
-            }),
+            child: GetBuilder<TrendingMoviesController>(
+              builder: (context) {
+                return ShowSection(
+                  sectionTitle: StringsManager.trendingMovies,
+                  showAllOnTap: () => Get.toNamed(
+                    AppRoutes.kShowsSectionView,
+                    arguments: {
+                      'title': StringsManager.trendingMovies,
+                      'showType': ShowType.Movie,
+                    },
+                  ),
+                  items: trendingMoviesController.movies,
+                  showType: ShowType.Movie,
+                );
+              },
+            ),
           ),
         ),
         const SliverToBoxAdapter(child: SizedBox(height: 30)),
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child:  GetBuilder<TrendingTvShowsController>(
+            child: GetBuilder<TrendingTvShowsController>(
               builder: (context) {
                 return ShowSection(
                   sectionTitle: StringsManager.trendingTvShows,
@@ -74,7 +77,7 @@ class HomeViewBody extends StatelessWidget {
                   items: [],
                   showType: ShowType.TV,
                 );
-              }
+              },
             ),
           ),
         ),
@@ -99,8 +102,15 @@ class HomeViewBody extends StatelessWidget {
           ),
         ),
         const SliverToBoxAdapter(child: SizedBox(height: 30)),
-        const SliverToBoxAdapter(
-          child: PeopleSection(sectionTitle: StringsManager.peopleOfTheWeek),
+        SliverToBoxAdapter(
+          child: GetBuilder<TrendingPeopleController>(
+            builder: (trendingPeopleController) {
+              return PeopleSection(
+                sectionTitle: StringsManager.peopleOfTheWeek,
+                people: trendingPeopleController.people,
+              );
+            },
+          ),
         ),
         const SliverToBoxAdapter(child: SizedBox(height: 30)),
         SliverToBoxAdapter(

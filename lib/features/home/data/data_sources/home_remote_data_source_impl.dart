@@ -3,8 +3,10 @@ import 'package:movix/core/widgets/functions/extensions.dart';
 import 'package:movix/features/home/data/data_sources/home_remote_data_source.dart';
 import 'package:movix/features/home/data/models/movie_mini_result/movie_mini_result.dart';
 import 'package:movix/features/home/data/models/movie_trailer/movie_trailer.dart';
+import 'package:movix/features/home/data/models/person_mini_result/person_mini_result.dart';
 import 'package:movix/features/home/data/models/tv_show_mini_result/tv_show_mini_result.dart';
 import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';
+import 'package:movix/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:movix/features/home/domain/entities/tv_show_mini_result_entity.dart';
 
 class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
@@ -52,7 +54,9 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
   ) async {
     List<String> youtubeKeys = [];
     for (var movie in movies) {
-      var data = await apiService.get(endPoint: '/movie/${movie.id}/videos');
+      var data = await apiService.get(
+        endPoint: '/movie/${movie.id}/videos?language=en-US',
+      );
       for (var item in data['results']) {
         MovieTrailer res = MovieTrailer.fromJson(item);
         if (res.type == 'Trailer' && res.site == 'YouTube') {
@@ -62,5 +66,17 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
       }
     }
     return youtubeKeys;
+  }
+
+  @override
+  Future<List<PersonMiniResultEntity>> getTrendingPeople(int page) async {
+    var data = await apiService.get(
+      endPoint: '/trending/person/day?language=en-US&page=$page',
+    );
+    List<PersonMiniResultEntity> items = [];
+    for (var item in data['results']) {
+      items.add(PersonMiniResult.fromJson(item).toEntity());
+    }
+    return items;
   }
 }

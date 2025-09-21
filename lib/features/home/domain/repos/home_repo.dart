@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:movix/core/errors/failure.dart';
 import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';
+import 'package:movix/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:movix/features/home/domain/entities/tv_show_mini_result_entity.dart';
 
 abstract class HomeRepo {
@@ -15,5 +16,8 @@ abstract class HomeRepo {
   );
   Future<Either<Failure, List<String>>> getNowPlayingMoviesTrailer(
     List<MovieMiniResultEntity> movies,
+  );
+  Future<Either<Failure, List<PersonMiniResultEntity>>> getTrendingPeople(
+    int page,
   );
 }
