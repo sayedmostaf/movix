@@ -10,4 +10,5 @@ abstract class HomeRemoteDataSource {
     List<MovieMiniResultEntity> movies,
   );
   Future<List<PersonMiniResultEntity>> getTrendingPeople(int page);
+  Future<List<dynamic>> getPicksForYou();
 }

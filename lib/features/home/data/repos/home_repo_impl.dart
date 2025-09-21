@@ -83,4 +83,16 @@ class HomeRepoImpl extends HomeRepo {
       return left(Failure(message: StringsManager.somethingWentWrong));
     }
   }
+
+  @override
+  Future<Either<Failure, List>> getPicksForYou() async {
+    try {
+      var results = await homeRemoteDataSource.getPicksForYou();
+      return right(results);
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return left(Failure(message: StringsManager.somethingWentWrong));
+    }
+  }
 }

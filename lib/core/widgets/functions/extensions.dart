@@ -10,7 +10,9 @@ extension TrendingMovieX on MovieMiniResult {
     return MovieMiniResultEntity(
       id: id!,
       voteAverage: voteAverage,
-      releaseDate: DateTime.parse(releaseDate ?? '0000-00-00'),
+      releaseDate: releaseDate == null || releaseDate!.isEmpty
+          ? null
+          : DateTime.parse(releaseDate!),
       posterPath: posterPath,
       genres: genreIds,
     );
@@ -22,7 +24,9 @@ extension TrendingTvShowX on TvShowMiniResult {
     return TvShowMiniResultEntity(
       id: id!,
       voteAverage: voteAverage,
-      releaseDate: DateTime.parse(firstAirDate ?? '0000-00-00'),
+      releaseDate: firstAirDate == null || firstAirDate!.isEmpty
+          ? null
+          : DateTime.parse(firstAirDate!),
       posterPath: posterPath,
       genres: genreIds,
     );

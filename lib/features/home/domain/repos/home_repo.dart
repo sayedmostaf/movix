@@ -20,4 +20,5 @@ abstract class HomeRepo {
   Future<Either<Failure, List<PersonMiniResultEntity>>> getTrendingPeople(
     int page,
   );
+  Future<Either<Failure, List<dynamic>>> getPicksForYou();
 }
