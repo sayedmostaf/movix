@@ -15,9 +15,7 @@ class SeasonsGuideListView extends StatelessWidget {
           padding: EdgeInsets.only(right: 15),
           child: Column(
             children: [
-              Flexible(
-                child: ShowImage(index: index, images: showsImages),
-              ),
+              Flexible(child: ShowImage(imageUrl: '')),
               const SizedBox(height: 5),
               Text(
                 'Season ${index + 1}',

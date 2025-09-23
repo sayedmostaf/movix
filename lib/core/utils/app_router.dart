@@ -6,6 +6,7 @@ import 'package:movix/core/bindings/improve_your_feed_binding.dart';
 import 'package:movix/core/bindings/main_binding.dart';
 import 'package:movix/core/bindings/media_binding.dart';
 import 'package:movix/core/bindings/onboarding_binding.dart';
+import 'package:movix/core/bindings/section_binding.dart';
 import 'package:movix/core/bindings/show_details_binding.dart';
 import 'package:movix/core/bindings/show_person_details_binding.dart';
 import 'package:movix/core/bindings/splash_binding.dart';
@@ -72,7 +73,11 @@ class AppRoutes {
       page: () => const MainView(),
       binding: MainBinding(),
     ),
-    GetPage(name: kShowsSectionView, page: () => const ShowsSectionView()),
+    GetPage(
+      name: kShowsSectionView,
+      page: () => const SectionView(),
+      binding: SectionBinding(),
+    ),
     GetPage(
       name: kShowDetailsView,
       page: () => const ShowDetailsView(),
@@ -90,4 +95,4 @@ class AppRoutes {
     ),
     GetPage(name: kSettingsView, page: () => const SettingsView()),
   ];
-} 
+}

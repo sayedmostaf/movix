@@ -6,8 +6,8 @@ import 'package:movix/features/home/data/data_sources/static.dart';
 import 'package:movix/features/home/presentation/views/section_view/widgets/ratting_row.dart';
 
 class ShowDetails extends StatelessWidget {
-  const ShowDetails({super.key, required this.index});
-  final int index;
+  const ShowDetails({super.key, required this.show});
+  final dynamic show;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -21,28 +21,30 @@ class ShowDetails extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            showsTitle[index],
+            show.name,
             style: StylesManager.styleLatoRegular18(context),
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 5),
           Text(
-            showsYear[index],
+            show.releaseDate.year.toString(),
             style: StylesManager.styleLatoRegular16(
               context,
             ).copyWith(color: Colors.grey),
           ),
           const SizedBox(height: 5),
           buildGenreIdValuesRow(
-            ids: showsGenresIds[index],
+            ids: show.genres,
             idToValueMap: idsToGenres,
             context: context,
             textColor: Colors.grey,
-            mainAxisAlignment: MainAxisAlignment.start,
           ),
           const SizedBox(height: 5),
-          RattingRow(index: index),
+          RattingRow(
+            averageRating: show.voteAverage.toStringAsFixed(1),
+            ratingCount: show.voteCount.toString(),
+          ),
         ],
       ),
     );

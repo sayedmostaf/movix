@@ -6,35 +6,14 @@ Widget buildGenreIdValuesRow({
   required Map<int, String> idToValueMap,
   required BuildContext context,
   Color? textColor,
-  MainAxisAlignment? mainAxisAlignment,
 }) {
-  List<Widget> widgets = [];
-  for (int i = 0; i < ids.length; i++) {
-    int id = ids[i];
-    if (idToValueMap.keys.contains(id)) {
-      widgets.add(
-        Text(
-          idToValueMap[id]!,
-          style: StylesManager.styleLatoRegular16(
-            context,
-          ).copyWith(color: textColor),
-        ),
-      );
-      if (i < ids.length - 1) {
-        widgets.add(
-          Text(
-            ' • ',
-            style: StylesManager.styleLatoRegular16(
-              context,
-            ).copyWith(color: textColor),
-          ),
-        );
-      }
-    }
-  }
-
-  return Row(
-    mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.center,
-    children: widgets,
+  List<String> genresNames = ids
+      .where((id) => idToValueMap.containsKey(id))
+      .map((id) => idToValueMap[id]!)
+      .toList();
+  String genresText = genresNames.join(' • ');
+  return Text(
+    genresText,
+    style: StylesManager.styleLatoRegular16(context).copyWith(color: textColor),
   );
 }

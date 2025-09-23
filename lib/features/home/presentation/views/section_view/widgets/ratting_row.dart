@@ -5,8 +5,13 @@ import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/features/home/data/data_sources/dummy_data.dart';
 
 class RattingRow extends StatelessWidget {
-  const RattingRow({super.key, required this.index});
-  final int index;
+  const RattingRow({
+    super.key,
+    required this.averageRating,
+    required this.ratingCount,
+  });
+  final String averageRating;
+  final String ratingCount;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -18,12 +23,12 @@ class RattingRow extends StatelessWidget {
         ),
         SizedBox(width: 10),
         Text(
-          showsRating[index],
+          averageRating,
           style: StylesManager.styleLatoRegular16(context),
         ),
         SizedBox(width: 10),
         Text(
-          '( ${showsRatingCount[index]} )',
+          '( $ratingCount )',
           style: StylesManager.styleLatoRegular16(
             context,
           ).copyWith(color: Colors.grey),

@@ -7,8 +7,9 @@ import 'package:movix/features/home/presentation/views/section_view/widgets/show
 import 'package:movix/features/home/presentation/views/section_view/widgets/show_image.dart';
 
 class CustomShowListViewItem extends StatelessWidget {
-  const CustomShowListViewItem({super.key, required this.index});
-  final int index;
+  const CustomShowListViewItem({super.key, required this.show});
+  final index = 0;
+  final dynamic show;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -21,9 +22,13 @@ class CustomShowListViewItem extends StatelessWidget {
         height: MediaQuery.of(context).size.height * 0.2,
         child: Row(
           children: [
-            ShowImage(index: index, images: showsImages),
+            ShowImage(
+              imageUrl: show.posterPath != null
+                  ? 'https://image.tmdb.org/t/p/original${show.posterPath}'
+                  : "",
+            ),
             SizedBox(width: 10),
-            ShowDetails(index: index),
+            ShowDetails(show: show),
           ],
         ),
       ),

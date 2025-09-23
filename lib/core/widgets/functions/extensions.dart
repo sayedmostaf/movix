@@ -21,6 +21,8 @@ extension TrendingMovieX on MovieMiniResult {
           : mediaType == 'tv'
           ? ShowType.TV
           : ShowType.Person,
+      name: title,
+      voteCount: voteCount,
     );
   }
 }
@@ -40,6 +42,8 @@ extension TrendingTvShowX on TvShowMiniResult {
           : mediaType == 'tv'
           ? ShowType.TV
           : ShowType.Person,
+      name: name,
+      voteCount: voteCount,
     );
   }
 }
@@ -55,6 +59,23 @@ extension TrendingPeopleX on PersonMiniResult {
           : mediaType == 'tv'
           ? ShowType.TV
           : ShowType.Person,
+      role: knownForDepartment,
+      mostKnownForName: knownFor != null && knownFor!.isNotEmpty
+          ? knownFor![0].name == null
+                ? knownFor![0].title ?? ''
+                : knownFor![0].name ?? ''
+          : '',
+      mostKnownForDate: knownFor != null && knownFor!.isNotEmpty
+          ? knownFor![0].name == null
+                ? knownFor![0].releaseDate == null ||
+                          knownFor![0].releaseDate!.isEmpty
+                      ? null
+                      : DateTime.parse(knownFor![0].releaseDate!)
+                : knownFor![0].firstAirDate == null ||
+                      knownFor![0].firstAirDate!.isEmpty
+                ? null
+                : DateTime.parse(knownFor![0].firstAirDate!)
+          : null,
     );
   }
 }

@@ -6,6 +6,8 @@ class TvShowMiniResultEntity {
   final DateTime? releaseDate;
   final String? posterPath;
   final List<int>? genres;
+  final String? name;
+  final int? voteCount;
   final ShowType? showType;
 
   TvShowMiniResultEntity({
@@ -15,5 +17,7 @@ class TvShowMiniResultEntity {
     this.posterPath,
     this.genres,
     this.showType,
+    this.name,
+    this.voteCount,
   });
 }

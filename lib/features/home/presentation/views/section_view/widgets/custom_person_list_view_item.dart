@@ -2,26 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/styles_manager.dart';
-import 'package:movix/core/widgets/functions/enums.dart';
 import 'package:movix/features/home/data/data_sources/dummy_data.dart';
+import 'package:movix/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:movix/features/home/presentation/views/section_view/widgets/show_image.dart';
 
 class CustomPersonListViewItem extends StatelessWidget {
-  const CustomPersonListViewItem({super.key, required this.index});
-  final int index;
+  const CustomPersonListViewItem({super.key, required this.person});
+  final PersonMiniResultEntity person;
   @override
   Widget build(BuildContext context) {
     return Material(
       child: InkWell(
         borderRadius: BorderRadius.circular(5),
-        onTap: () => Get.toNamed(
-          AppRoutes.kPersonDetailsView,
-        ),
+        onTap: () => Get.toNamed(AppRoutes.kPersonDetailsView),
         child: SizedBox(
           height: MediaQuery.of(context).size.height * 0.2,
           child: Row(
             children: [
-              ShowImage(index: index, images: peoplesImages),
+              ShowImage(
+                imageUrl: person.profilePath != null
+                    ? 'https://image.tmdb.org/t/p/original${person.profilePath}'
+                    : "",
+              ),
               const SizedBox(width: 10),
               SizedBox(
                 width:
@@ -34,14 +36,14 @@ class CustomPersonListViewItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      peoplesNames[index],
+                      person.name ?? "",
                       style: StylesManager.styleLatoRegular18(context),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      'Actor, Breaking Bad (2008)',
+                      '${person.role == null ? "" : "${person.role},"} ${person.mostKnownForName} ${person.mostKnownForDate == null ? "" : "( ${person.mostKnownForDate!.year.toString()} )"}',
                       style: StylesManager.styleLatoRegular16(
                         context,
                       ).copyWith(color: Colors.grey),

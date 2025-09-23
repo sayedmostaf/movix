@@ -7,6 +7,8 @@ class MovieMiniResultEntity {
   final String? posterPath;
   final List<int>? genres;
   final ShowType? showType;
+  final String?name;
+  final int? voteCount;
 
   MovieMiniResultEntity({
     required this.id,
@@ -15,5 +17,7 @@ class MovieMiniResultEntity {
     this.posterPath,
     this.genres,
     this.showType,
+    this.name,
+    this.voteCount,
   });
 }
