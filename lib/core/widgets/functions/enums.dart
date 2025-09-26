@@ -7,4 +7,5 @@ enum SectionType {
   TrendingTvShows,
   PicksForYou,
   PeopleOfTheWeek,
+  None,
 }

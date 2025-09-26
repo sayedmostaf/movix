@@ -6,10 +6,12 @@ import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/functions/enums.dart';
+import 'package:movix/core/widgets/functions/show_full_screen_image.dart';
+import 'package:movix/features/home/domain/entities/image_entity.dart';
 
 class ImagesSection extends StatelessWidget {
-  const ImagesSection({super.key});
-
+  const ImagesSection({super.key, required this.images});
+  final List<ImageEntity> images;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -22,7 +24,7 @@ class ImagesSection extends StatelessWidget {
             ),
             const SizedBox(width: 10),
             Text(
-              '105',
+              '${images.length}',
               style: StylesManager.styleLatoBold20(
                 context,
               ).copyWith(color: Colors.grey),
@@ -31,7 +33,7 @@ class ImagesSection extends StatelessWidget {
             GestureDetector(
               onTap: () => Get.toNamed(
                 AppRoutes.kMediaView,
-                arguments: {'mediaType': MediaType.Images},
+                arguments: {'mediaType': MediaType.Images, 'mediaList': images},
               ),
               child: Text(
                 StringsManager.showAll,
@@ -48,22 +50,25 @@ class ImagesSection extends StatelessWidget {
           child: ListView.builder(
             itemBuilder: (context, index) => Padding(
               padding: const EdgeInsets.only(right: 15),
-              child: AspectRatio(
-                aspectRatio: 1.7,
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: const DecorationImage(
-                      image: CachedNetworkImageProvider(
-                        'https://image.tmdb.org/t/p/original/9faGSFi5jam6pDWGNd0p8JcJgXQ.jpg',
+              child: GestureDetector(
+                onTap: () => showFullScreenImage(context, images[index]),
+                child: AspectRatio(
+                  aspectRatio: images[index].aspectRatio!,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: CachedNetworkImageProvider(
+                          'https://image.tmdb.org/t/p/original${images[index].filePath}',
+                        ),
+                        fit: BoxFit.fill,
                       ),
-                      fit: BoxFit.fill,
+                      borderRadius: BorderRadius.circular(5),
                     ),
-                    borderRadius: BorderRadius.circular(5),
                   ),
                 ),
               ),
             ),
-            itemCount: 5,
+            itemCount: images.length > 10 ? 10 : images.length,
             scrollDirection: Axis.horizontal,
           ),
         ),

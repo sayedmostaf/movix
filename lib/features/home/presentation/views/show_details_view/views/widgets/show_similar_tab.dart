@@ -50,7 +50,16 @@ class ShowSimilarTab extends StatelessWidget {
             itemBuilder: (context, index) => Padding(
               padding: EdgeInsets.only(right: 15),
               child: ShowCard(
-                show: MovieMiniResultEntity(id: 123),
+                show: MovieMiniResultEntity(
+                  id: 123,
+                  voteAverage: null,
+                  voteCount: null,
+                  posterPath: null,
+                  genres: null,
+                  showType: null,
+                  name: null,
+                  releaseDate: null,
+                ),
               ),
             ),
             itemCount: showsImages.length,

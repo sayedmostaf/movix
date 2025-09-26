@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movix/features/home/presentation/controllers/person_details_controller.dart';
+import 'package:movix/features/home/presentation/controllers/person_details_controller/person_details_controller.dart';
 import 'package:movix/features/home/presentation/views/show_details_view/views/widgets/tab_bar_item.dart';
 
 class CustomPersonTabBar extends StatelessWidget {

@@ -12,12 +12,12 @@ class TvShowMiniResultEntity {
 
   TvShowMiniResultEntity({
     required this.id,
-    this.voteAverage,
-    this.releaseDate,
-    this.posterPath,
-    this.genres,
-    this.showType,
-    this.name,
-    this.voteCount,
+    required this.voteAverage,
+    required this.releaseDate,
+    required this.posterPath,
+    required this.genres,
+    required this.showType,
+    required this.name,
+    required this.voteCount,
   });
 }

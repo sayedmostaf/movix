@@ -14,13 +14,19 @@ class SectionControllers extends GetxController {
   RxBool loading = true.obs;
   RxBool loadingMore = false.obs;
   late final ScrollController scrollController;
+  late String sectionName;
+  late ShowType showType;
+  late SectionType sectionType;
 
   @override
   void onInit() {
     super.onInit();
     scrollController = ScrollController()..addListener(_onScroll);
-    final sectionType = Get.arguments['sectionType'] as SectionType;
+    sectionType = Get.arguments['sectionType'] as SectionType;
+    sectionName = Get.arguments['title'];
+    showType = Get.arguments['showType'];
     usecase = sectionTypeUsecase[sectionType]?.call();
+
     getPassedShow();
   }
 
@@ -29,6 +35,7 @@ class SectionControllers extends GetxController {
     SectionType.TrendingTvShows: () => Get.find<GetTrendingTvShowsUseCase>(),
     SectionType.PicksForYou: () => Get.find<GetPicksForYouUseCase>(),
     SectionType.PeopleOfTheWeek: () => Get.find<GetTrendingPeopleUseCase>(),
+    SectionType.None: () => null,
   };
   @override
   void onClose() {
@@ -65,7 +72,8 @@ class SectionControllers extends GetxController {
   void _onScroll() {
     if (!loading.value &&
         scrollController.position.pixels >=
-            scrollController.position.maxScrollExtent) {
+            scrollController.position.maxScrollExtent &&
+        sectionType != SectionType.None) {
       getData();
     }
   }

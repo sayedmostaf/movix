@@ -14,7 +14,10 @@ class CustomPersonListViewItem extends StatelessWidget {
     return Material(
       child: InkWell(
         borderRadius: BorderRadius.circular(5),
-        onTap: () => Get.toNamed(AppRoutes.kPersonDetailsView),
+        onTap: () => Get.toNamed(
+          AppRoutes.kPersonDetailsView,
+          arguments: {'id': person.id},
+        ),
         child: SizedBox(
           height: MediaQuery.of(context).size.height * 0.2,
           child: Row(

@@ -30,6 +30,7 @@ class ProfileViewBody extends StatelessWidget {
                   'title': StringsManager.favouriteMovies,
                   'showType': ShowType.Movie,
                 },
+                preventDuplicates: false,
               ),
               items: [],
             ),
@@ -44,12 +45,13 @@ class ProfileViewBody extends StatelessWidget {
                   'title': StringsManager.favouriteTvShows,
                   'showType': ShowType.TV,
                 },
+                preventDuplicates: false,
               ),
               items: [],
             ),
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 20)),
-           SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: PeopleSection(
               sectionTitle: StringsManager.favouriteCelebrities,
               people: [],

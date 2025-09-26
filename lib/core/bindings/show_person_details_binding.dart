@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:movix/features/home/presentation/controllers/person_details_controller.dart';
+import 'package:movix/features/home/presentation/controllers/person_details_controller/person_details_controller.dart';
 
 class ShowPersonDetailsBinding extends Bindings {
   @override
