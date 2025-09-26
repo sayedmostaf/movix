@@ -7,10 +7,10 @@ List<TvShowMiniResultEntity>? parseTvCastAndCrewToTvShowMiniResult(
   List<TvCast>? cast,
   List<TvCrew>? crew,
 ) {
-  List<TvShowMiniResultEntity> shows = [];
+  Map<int, TvShowMiniResultEntity> uniqueTvshows = {};
   for (var show in cast!) {
-    shows.add(
-      TvShowMiniResultEntity(
+    if (!uniqueTvshows.containsKey(show.id)) {
+      uniqueTvshows[show.id!] = TvShowMiniResultEntity(
         id: show.id!,
         voteAverage: show.voteAverage,
         releaseDate: show.firstAirDate == null || show.firstAirDate!.isEmpty
@@ -21,12 +21,12 @@ List<TvShowMiniResultEntity>? parseTvCastAndCrewToTvShowMiniResult(
         showType: ShowType.TV,
         name: show.name,
         voteCount: show.voteCount,
-      ),
-    );
+      );
+    }
   }
   for (var show in crew!) {
-    shows.add(
-      TvShowMiniResultEntity(
+    if (!uniqueTvshows.containsKey(show.id)) {
+      uniqueTvshows[show.id!] = TvShowMiniResultEntity(
         id: show.id!,
         voteAverage: show.voteAverage,
         releaseDate: show.firstAirDate == null || show.firstAirDate!.isEmpty
@@ -37,8 +37,8 @@ List<TvShowMiniResultEntity>? parseTvCastAndCrewToTvShowMiniResult(
         showType: ShowType.TV,
         name: show.name,
         voteCount: show.voteCount,
-      ),
-    );
+      );
+    }
   }
-  return shows;
+  return uniqueTvshows.values.toList();
 }

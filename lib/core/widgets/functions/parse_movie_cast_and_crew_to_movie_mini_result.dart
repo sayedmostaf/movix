@@ -7,10 +7,11 @@ List<MovieMiniResultEntity>? parseMovieCastAndCrewToMovieMiniResult(
   List<MovieCast>? cast,
   List<MovieCrew>? crew,
 ) {
-  List<MovieMiniResultEntity> movies = [];
+  Map<int, MovieMiniResultEntity> uniqueMovies = {};
+
   for (var movie in cast!) {
-    movies.add(
-      MovieMiniResultEntity(
+    if (!uniqueMovies.containsKey(movie.id)) {
+      uniqueMovies[movie.id!] = MovieMiniResultEntity(
         id: movie.id!,
         voteAverage: movie.voteAverage,
         releaseDate: movie.releaseDate == null || movie.releaseDate!.isEmpty
@@ -21,12 +22,12 @@ List<MovieMiniResultEntity>? parseMovieCastAndCrewToMovieMiniResult(
         showType: ShowType.Movie,
         name: movie.title,
         voteCount: movie.voteCount,
-      ),
-    );
+      );
+    }
   }
-  for (var movie in crew!) {
-    movies.add(
-      MovieMiniResultEntity(
+  for (var movie in crew ?? []) {
+    if (!uniqueMovies.containsKey(movie.id)) {
+      uniqueMovies[movie.id!] = MovieMiniResultEntity(
         id: movie.id!,
         voteAverage: movie.voteAverage,
         releaseDate: movie.releaseDate == null || movie.releaseDate!.isEmpty
@@ -37,8 +38,8 @@ List<MovieMiniResultEntity>? parseMovieCastAndCrewToMovieMiniResult(
         showType: ShowType.Movie,
         name: movie.title,
         voteCount: movie.voteCount,
-      ),
-    );
+      );
+    }
   }
-  return movies;
+  return uniqueMovies.values.toList();
 }

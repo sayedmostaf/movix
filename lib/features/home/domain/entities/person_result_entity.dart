@@ -17,15 +17,66 @@ class PersonResultEntity {
 
   PersonResultEntity({
     required this.id,
-    required this.name,
-    required this.profileUrl,
-    required this.role,
-    required this.biography,
-    required this.birthdayLocation,
-    required this.birthDate,
-    required this.deathDate,
-    required this.images,
-    required this.relatedMovies,
-    required this.relatedTvShows,
+    this.name,
+    this.profileUrl,
+    this.role,
+    this.biography,
+    this.birthdayLocation,
+    this.birthDate,
+    this.deathDate,
+    this.images,
+    this.relatedMovies,
+    this.relatedTvShows,
   });
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'profileUrl': profileUrl,
+      'role': role,
+      'biography': biography,
+      'birthLocation': birthdayLocation,
+      'birthDate': birthDate?.toIso8601String(),
+      'deathDate': deathDate?.toIso8601String(),
+      'images': images?.map((image) => image.toJson()).toList(),
+      'relatedMovies': relatedMovies?.map((movie) => movie.toJson()).toList(),
+      'relatedTvShows': relatedTvShows
+          ?.map((tvShow) => tvShow.toJson())
+          .toList(),
+    };
+  }
+
+  factory PersonResultEntity.fromJson(Map<String, dynamic> json) {
+    return PersonResultEntity(
+      id: json['id'],
+      name: json['name'],
+      profileUrl: json['profileUrl'],
+      role: json['role'],
+      biography: json['biography'],
+      birthdayLocation: json['birthLocation'],
+      birthDate: json['birthDate'] == null
+          ? null
+          : DateTime.parse(json['birthDate']),
+      deathDate: json['deathDate'] == null
+          ? null
+          : DateTime.parse(json['deathDate']),
+      images: json['images'] != null
+          ? (json['images'] as List)
+                .map((imageJson) => ImageEntity.fromJson(imageJson))
+                .toList()
+          : null,
+      relatedMovies: json['relatedMovies'] != null
+          ? (json['relatedMovies'] as List)
+                .map((movieJson) => MovieMiniResultEntity.fromJson(movieJson))
+                .toList()
+          : null,
+      relatedTvShows: json['relatedTvShows'] != null
+          ? (json['relatedTvShows'] as List)
+                .map(
+                  (tvShowJson) => TvShowMiniResultEntity.fromJson(tvShowJson),
+                )
+                .toList()
+          : null,
+    );
+  }
 }

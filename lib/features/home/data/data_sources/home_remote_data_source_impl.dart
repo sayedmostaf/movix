@@ -169,4 +169,35 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
     PersonResultEntity person = PersonResult.fromJson(data).toEntity();
     return person;
   }
+
+  @override
+  Future<void> addFavouritePerson(PersonResultEntity person) async {
+    await firebaseFirestore
+        .collection('users')
+        .doc(firebaseAuth.currentUser!.uid)
+        .collection('favourite_people')
+        .doc(person.id.toString())
+        .set(person.toJson());
+  }
+
+  @override
+  Future<bool> checkFavouritePerson(int id) async {
+    final doc = await firebaseFirestore
+        .collection('users')
+        .doc(firebaseAuth.currentUser!.uid)
+        .collection('favourite_people')
+        .doc(id.toString())
+        .get();
+    return doc.exists;
+  }
+
+  @override
+  Future<void> deleteFavouritePerson(int id) async {
+    await firebaseFirestore
+        .collection('users')
+        .doc(firebaseAuth.currentUser!.uid)
+        .collection('favourite_people')
+        .doc(id.toString())
+        .delete();
+  }
 }

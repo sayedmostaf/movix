@@ -23,4 +23,7 @@ abstract class HomeRepo {
   );
   Future<Either<Failure, List<dynamic>>> getPicksForYou();
   Future<Either<Failure, PersonResultEntity>> getPersonDetails(int id);
+  Future<Either<Failure, void>> addFavouritePerson(PersonResultEntity person);
+  Future<Either<Failure, void>> deleteFavouritePerson(int id);
+  Future<Either<Failure, bool>> checkFavouritePerson(int id);
 }
