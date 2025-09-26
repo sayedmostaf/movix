@@ -88,6 +88,7 @@ class AppRoutes {
       name: kPersonDetailsView,
       page: () => const PersonDetailsView(),
       binding: ShowPersonDetailsBinding(),
+      preventDuplicates: false,
     ),
     GetPage(
       name: kMediaView,

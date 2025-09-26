@@ -27,17 +27,15 @@ class PersonDetailsBinding extends Bindings {
       fenix: true,
     );
     Get.lazyPut(() => PersonDetailsController(), fenix: true);
-    Get.lazyPut(
+    Get.create(
       () => GetPersonDetailsController(getPersonDetailsUseCase: Get.find()),
-      fenix: true,
     );
-    Get.lazyPut(
+    Get.create(
       () => FavouritePersonController(
         addFavouritePersonUseCase: Get.find(),
         deleteFavouritePersonUseCase: Get.find(),
         checkFavouritePersonUseCase: Get.find(),
       ),
-      fenix: true,
     );
   }
 }
