@@ -4,7 +4,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:movix/core/utils/assets_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
-import 'package:movix/features/home/data/data_sources/dummy_data.dart';
 
 class CircularImage extends StatelessWidget {
   const CircularImage({super.key, required this.imageUrl});
@@ -21,11 +20,7 @@ class CircularImage extends StatelessWidget {
             child: LottieBuilder.asset(Assets.assetsAnimationsMovieLoading),
           ),
           errorWidget: (context, url, error) => Center(
-            child: Icon(
-              FontAwesomeIcons.circleExclamation,
-              color: Colors.red,
-              size: getResponsiveFontSize(context, fontSize: 50),
-            ),
+            child: Image.asset(Assets.assetsImagesTv, height: 80, width: 80),
           ),
           fit: BoxFit.cover,
         ),

@@ -1,3 +1,4 @@
+import 'package:movix/core/widgets/functions/enums.dart';
 import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';
 import 'package:movix/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:movix/features/home/domain/entities/person_result_entity.dart';
@@ -16,4 +17,5 @@ abstract class HomeRemoteDataSource {
   Future<void> addFavouritePerson(PersonResultEntity person);
   Future<void> deleteFavouritePerson(int id);
   Future<bool> checkFavouritePerson(int id);
+  Future<dynamic> getShowDetails(int id, ShowType showType);
 }

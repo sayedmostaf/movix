@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/widgets/custom_app_bar.dart';
+import 'package:movix/features/home/domain/entities/review_entity.dart';
 import 'package:movix/features/home/presentation/views/show_details_view/views/widgets/review_card.dart';
 
 class ReviewsView extends StatelessWidget {
@@ -20,7 +21,17 @@ class ReviewsView extends StatelessWidget {
           SliverList.builder(
             itemBuilder: (context, index) => Padding(
               padding: EdgeInsets.only(bottom: 15),
-              child: ReviewCard(),
+              child: ReviewCard(
+                reviewEntity: ReviewEntity(
+                  id: '12',
+                  userName: null,
+                  voteAverage: null,
+                  reviewContent: null,
+                  reviewDate: null,
+                  userProfile: null,
+                  userMail: null,
+                ),
+              ),
             ),
             itemCount: 10,
           ),

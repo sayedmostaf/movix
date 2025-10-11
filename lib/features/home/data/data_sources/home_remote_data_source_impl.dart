@@ -1,17 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:movix/core/utils/api_service.dart';
+import 'package:movix/core/widgets/functions/enums.dart';
 import 'package:movix/core/widgets/functions/extensions.dart';
 import 'package:movix/features/auth/data/models/genre_model.dart';
 import 'package:movix/features/home/data/data_sources/home_remote_data_source.dart';
 import 'package:movix/features/home/data/models/movie_mini_result/movie_mini_result.dart';
+import 'package:movix/features/home/data/models/movie_result/movie_result.dart';
 import 'package:movix/features/home/data/models/movie_trailer/movie_trailer.dart';
 import 'package:movix/features/home/data/models/person_mini_result/person_mini_result.dart';
 import 'package:movix/features/home/data/models/person_result/person_result.dart';
+import 'package:movix/features/home/data/models/tv_result/tv_result.dart';
 import 'package:movix/features/home/data/models/tv_show_mini_result/tv_show_mini_result.dart';
 import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';
 import 'package:movix/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:movix/features/home/domain/entities/person_result_entity.dart';
+import 'package:movix/features/home/domain/entities/show_result_entity.dart';
 import 'package:movix/features/home/domain/entities/tv_show_mini_result_entity.dart';
 
 class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
@@ -199,5 +203,24 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
         .collection('favourite_people')
         .doc(id.toString())
         .delete();
+  }
+
+  @override
+  Future getShowDetails(int id, ShowType showType) async {
+    if (showType == ShowType.Movie) {
+      var data = await apiService.get(
+        endPoint:
+            '/movie/$id?append_to_response=credits%2Cimages%2Cvideos%2Creviews%2Csimilar',
+      );
+      ShowResultEntity movie = MovieResult.fromJson(data).toEntity();
+      return movie;
+    } else if (showType == ShowType.TV) {
+      var data = await apiService.get(
+        endPoint:
+            '/tv/$id?append_to_response=credits%2Cimages%2Cvideos%2Creviews%2Csimilar',
+      );
+      ShowResultEntity show = TvResult.fromJson(data).toEntity();
+      return show;
+    }
   }
 }

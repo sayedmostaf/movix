@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:movix/core/bindings/show_details_binding.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
+import 'package:movix/features/home/presentation/controllers/show_details_controller/show_details_controller.dart';
 import 'package:movix/features/home/presentation/views/show_details_view/views/widgets/images_section.dart';
 import 'package:movix/features/home/presentation/views/show_details_view/views/widgets/seasons_guide_list_view.dart';
 import 'package:movix/features/home/presentation/views/show_details_view/views/widgets/videos_section.dart';
@@ -10,18 +13,57 @@ class ShowDetailsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ShowDetailsController showDetailsController =
+        Get.find<ShowDetailsController>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Text(
-          StringsManager.seasonsGuide,
-          style: StylesManager.styleLatoBold20(context),
-        ),
-        const SizedBox(height: 10),
-        const SeasonsGuideListView(),
-        const SizedBox(height: 15),
-        ImagesSection(images: []),
+        if (showDetailsController.showResultEntity.seasons != null &&
+            showDetailsController.showResultEntity.seasons!.isNotEmpty)
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                StringsManager.seasonsGuide,
+                style: StylesManager.styleLatoBold20(context),
+              ),
+              const SizedBox(height: 10),
+              SeasonsGuideListView(
+                seasons: showDetailsController.showResultEntity.seasons ?? [],
+              ),
+              const SizedBox(height: 15),
+            ],
+          ),
+        if (showDetailsController.showResultEntity.imagesBackdrop != null &&
+            showDetailsController.showResultEntity.imagesBackdrop!.isNotEmpty)
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              ImagesSection(
+                images: showDetailsController.showResultEntity.imagesBackdrop!,
+                title: StringsManager.backdrops,
+              ),
+              const SizedBox(height: 15),
+            ],
+          ),
+        if (showDetailsController.showResultEntity.imagesPosters != null &&
+            showDetailsController.showResultEntity.imagesPosters!.isNotEmpty)
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              ImagesSection(
+                images: showDetailsController.showResultEntity.imagesPosters!,
+                title: StringsManager.posters,
+              ),
+              const SizedBox(height: 15),
+            ],
+          ),
+        if (showDetailsController.videosControllers.isNotEmpty)
+          const VideosSection(),
 
         VideosSection(),
         const SizedBox(height: 30),

@@ -6,8 +6,8 @@ part of 'person_result.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PersonResultImpl _$$PersonResultImplFromJson(Map<String, dynamic> json) =>
-    _$PersonResultImpl(
+_PersonResult _$PersonResultFromJson(Map<String, dynamic> json) =>
+    _PersonResult(
       adult: json['adult'] as bool?,
       alsoKnownAs: (json['also_known_as'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -15,9 +15,9 @@ _$PersonResultImpl _$$PersonResultImplFromJson(Map<String, dynamic> json) =>
       biography: json['biography'] as String?,
       birthday: json['birthday'] as String?,
       deathday: json['deathday'] as String?,
-      gender: json['gender'] as int?,
+      gender: (json['gender'] as num?)?.toInt(),
       homepage: json['homepage'] as String?,
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       imdbId: json['imdb_id'] as String?,
       knownForDepartment: json['known_for_department'] as String?,
       name: json['name'] as String?,
@@ -37,7 +37,7 @@ _$PersonResultImpl _$$PersonResultImplFromJson(Map<String, dynamic> json) =>
           : Images.fromJson(json['images'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$PersonResultImplToJson(_$PersonResultImpl instance) =>
+Map<String, dynamic> _$PersonResultToJson(_PersonResult instance) =>
     <String, dynamic>{
       'adult': instance.adult,
       'also_known_as': instance.alsoKnownAs,

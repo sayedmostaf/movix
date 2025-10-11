@@ -6,30 +6,29 @@ part of 'movie_crew.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$MovieCrewImpl _$$MovieCrewImplFromJson(Map<String, dynamic> json) =>
-    _$MovieCrewImpl(
-      adult: json['adult'] as bool?,
-      backdropPath: json['backdrop_path'] as String?,
-      genreIds: (json['genre_ids'] as List<dynamic>?)
-          ?.map((e) => e as int)
-          .toList(),
-      id: json['id'] as int?,
-      originalLanguage: json['original_language'] as String?,
-      originalTitle: json['original_title'] as String?,
-      overview: json['overview'] as String?,
-      popularity: (json['popularity'] as num?)?.toDouble(),
-      posterPath: json['poster_path'] as String?,
-      releaseDate: json['release_date'] as String?,
-      title: json['title'] as String?,
-      video: json['video'] as bool?,
-      voteAverage: (json['vote_average'] as num?)?.toDouble(),
-      voteCount: json['vote_count'] as int?,
-      creditId: json['credit_id'] as String?,
-      department: json['department'] as String?,
-      job: json['job'] as String?,
-    );
+_MovieCrew _$MovieCrewFromJson(Map<String, dynamic> json) => _MovieCrew(
+  adult: json['adult'] as bool?,
+  backdropPath: json['backdrop_path'] as String?,
+  genreIds: (json['genre_ids'] as List<dynamic>?)
+      ?.map((e) => (e as num).toInt())
+      .toList(),
+  id: (json['id'] as num?)?.toInt(),
+  originalLanguage: json['original_language'] as String?,
+  originalTitle: json['original_title'] as String?,
+  overview: json['overview'] as String?,
+  popularity: (json['popularity'] as num?)?.toDouble(),
+  posterPath: json['poster_path'] as String?,
+  releaseDate: json['release_date'] as String?,
+  title: json['title'] as String?,
+  video: json['video'] as bool?,
+  voteAverage: (json['vote_average'] as num?)?.toDouble(),
+  voteCount: (json['vote_count'] as num?)?.toInt(),
+  creditId: json['credit_id'] as String?,
+  department: json['department'] as String?,
+  job: json['job'] as String?,
+);
 
-Map<String, dynamic> _$$MovieCrewImplToJson(_$MovieCrewImpl instance) =>
+Map<String, dynamic> _$MovieCrewToJson(_MovieCrew instance) =>
     <String, dynamic>{
       'adult': instance.adult,
       'backdrop_path': instance.backdropPath,

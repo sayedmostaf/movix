@@ -115,7 +115,6 @@ class HomeViewBody extends StatelessWidget {
                                 'sectionType': SectionType.PicksForYou,
                                 'showsList': picksForYouController.shows,
                               },
-                              preventDuplicates: false,
                             ),
                             items: picksForYouController.shows,
                           ),

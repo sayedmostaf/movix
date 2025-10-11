@@ -4,7 +4,7 @@ part 'tv_cast.freezed.dart';
 part 'tv_cast.g.dart';
 
 @freezed
-class TvCast with _$TvCast {
+abstract class TvCast with _$TvCast {
 	factory TvCast({
 		bool? adult,
 		@JsonKey(name: 'backdrop_path') String? backdropPath,

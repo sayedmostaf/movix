@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,147 +9,277 @@ part of 'images.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-Images _$ImagesFromJson(Map<String, dynamic> json) {
-  return _Images.fromJson(json);
-}
 
 /// @nodoc
 mixin _$Images {
-  List<Profile>? get profiles => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ImagesCopyWith<Images> get copyWith => throw _privateConstructorUsedError;
+ List<Profile>? get profiles;
+/// Create a copy of Images
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ImagesCopyWith<Images> get copyWith => _$ImagesCopyWithImpl<Images>(this as Images, _$identity);
+
+  /// Serializes this Images to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Images&&const DeepCollectionEquality().equals(other.profiles, profiles));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(profiles));
+
+@override
+String toString() {
+  return 'Images(profiles: $profiles)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $ImagesCopyWith<$Res> {
-  factory $ImagesCopyWith(Images value, $Res Function(Images) then) =
-      _$ImagesCopyWithImpl<$Res, Images>;
-  @useResult
-  $Res call({List<Profile>? profiles});
-}
+abstract mixin class $ImagesCopyWith<$Res>  {
+  factory $ImagesCopyWith(Images value, $Res Function(Images) _then) = _$ImagesCopyWithImpl;
+@useResult
+$Res call({
+ List<Profile>? profiles
+});
 
+
+
+
+}
 /// @nodoc
-class _$ImagesCopyWithImpl<$Res, $Val extends Images>
+class _$ImagesCopyWithImpl<$Res>
     implements $ImagesCopyWith<$Res> {
-  _$ImagesCopyWithImpl(this._value, this._then);
+  _$ImagesCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final Images _self;
+  final $Res Function(Images) _then;
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? profiles = freezed,
-  }) {
-    return _then(_value.copyWith(
-      profiles: freezed == profiles
-          ? _value.profiles
-          : profiles // ignore: cast_nullable_to_non_nullable
-              as List<Profile>?,
-    ) as $Val);
-  }
+/// Create a copy of Images
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? profiles = freezed,}) {
+  return _then(_self.copyWith(
+profiles: freezed == profiles ? _self.profiles : profiles // ignore: cast_nullable_to_non_nullable
+as List<Profile>?,
+  ));
 }
 
-/// @nodoc
-abstract class _$$ImagesImplCopyWith<$Res> implements $ImagesCopyWith<$Res> {
-  factory _$$ImagesImplCopyWith(
-          _$ImagesImpl value, $Res Function(_$ImagesImpl) then) =
-      __$$ImagesImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({List<Profile>? profiles});
 }
 
-/// @nodoc
-class __$$ImagesImplCopyWithImpl<$Res>
-    extends _$ImagesCopyWithImpl<$Res, _$ImagesImpl>
-    implements _$$ImagesImplCopyWith<$Res> {
-  __$$ImagesImplCopyWithImpl(
-      _$ImagesImpl _value, $Res Function(_$ImagesImpl) _then)
-      : super(_value, _then);
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? profiles = freezed,
-  }) {
-    return _then(_$ImagesImpl(
-      profiles: freezed == profiles
-          ? _value._profiles
-          : profiles // ignore: cast_nullable_to_non_nullable
-              as List<Profile>?,
-    ));
-  }
+/// Adds pattern-matching-related methods to [Images].
+extension ImagesPatterns on Images {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _Images value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Images() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _Images value)  $default,){
+final _that = this;
+switch (_that) {
+case _Images():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _Images value)?  $default,){
+final _that = this;
+switch (_that) {
+case _Images() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<Profile>? profiles)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Images() when $default != null:
+return $default(_that.profiles);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<Profile>? profiles)  $default,) {final _that = this;
+switch (_that) {
+case _Images():
+return $default(_that.profiles);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<Profile>? profiles)?  $default,) {final _that = this;
+switch (_that) {
+case _Images() when $default != null:
+return $default(_that.profiles);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ImagesImpl implements _Images {
-  _$ImagesImpl({final List<Profile>? profiles}) : _profiles = profiles;
 
-  factory _$ImagesImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ImagesImplFromJson(json);
+class _Images implements Images {
+   _Images({final  List<Profile>? profiles}): _profiles = profiles;
+  factory _Images.fromJson(Map<String, dynamic> json) => _$ImagesFromJson(json);
 
-  final List<Profile>? _profiles;
-  @override
-  List<Profile>? get profiles {
-    final value = _profiles;
-    if (value == null) return null;
-    if (_profiles is EqualUnmodifiableListView) return _profiles;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  String toString() {
-    return 'Images(profiles: $profiles)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ImagesImpl &&
-            const DeepCollectionEquality().equals(other._profiles, _profiles));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_profiles));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ImagesImplCopyWith<_$ImagesImpl> get copyWith =>
-      __$$ImagesImplCopyWithImpl<_$ImagesImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ImagesImplToJson(
-      this,
-    );
-  }
+ final  List<Profile>? _profiles;
+@override List<Profile>? get profiles {
+  final value = _profiles;
+  if (value == null) return null;
+  if (_profiles is EqualUnmodifiableListView) return _profiles;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
 }
 
-abstract class _Images implements Images {
-  factory _Images({final List<Profile>? profiles}) = _$ImagesImpl;
 
-  factory _Images.fromJson(Map<String, dynamic> json) = _$ImagesImpl.fromJson;
+/// Create a copy of Images
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ImagesCopyWith<_Images> get copyWith => __$ImagesCopyWithImpl<_Images>(this, _$identity);
 
-  @override
-  List<Profile>? get profiles;
-  @override
-  @JsonKey(ignore: true)
-  _$$ImagesImplCopyWith<_$ImagesImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+Map<String, dynamic> toJson() {
+  return _$ImagesToJson(this, );
 }
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Images&&const DeepCollectionEquality().equals(other._profiles, _profiles));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_profiles));
+
+@override
+String toString() {
+  return 'Images(profiles: $profiles)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ImagesCopyWith<$Res> implements $ImagesCopyWith<$Res> {
+  factory _$ImagesCopyWith(_Images value, $Res Function(_Images) _then) = __$ImagesCopyWithImpl;
+@override @useResult
+$Res call({
+ List<Profile>? profiles
+});
+
+
+
+
+}
+/// @nodoc
+class __$ImagesCopyWithImpl<$Res>
+    implements _$ImagesCopyWith<$Res> {
+  __$ImagesCopyWithImpl(this._self, this._then);
+
+  final _Images _self;
+  final $Res Function(_Images) _then;
+
+/// Create a copy of Images
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? profiles = freezed,}) {
+  return _then(_Images(
+profiles: freezed == profiles ? _self._profiles : profiles // ignore: cast_nullable_to_non_nullable
+as List<Profile>?,
+  ));
+}
+
+
+}
+
+// dart format on

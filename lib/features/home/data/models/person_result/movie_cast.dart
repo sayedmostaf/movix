@@ -4,7 +4,7 @@ part 'movie_cast.freezed.dart';
 part 'movie_cast.g.dart';
 
 @freezed
-class MovieCast with _$MovieCast {
+abstract class MovieCast with _$MovieCast {
   factory MovieCast({
     bool? adult,
     @JsonKey(name: 'backdrop_path') String? backdropPath,

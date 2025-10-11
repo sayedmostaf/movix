@@ -15,8 +15,10 @@ class ShowCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(5),
-      onTap: () =>
-          Get.toNamed(AppRoutes.kShowDetailsView, arguments: {'show': show}),
+      onTap: () => Get.toNamed(
+        AppRoutes.kShowDetailsView,
+        arguments: {'showType': show.showType, 'id': show.id},
+      ),
       child: ConstrainedBox(
         constraints: BoxConstraints(
           maxWidth: MediaQuery.of(context).size.width * 0.3,
@@ -37,10 +39,10 @@ class ShowCard extends StatelessWidget {
                       child: Lottie.asset(Assets.assetsAnimationsMovieLoading),
                     ),
                     errorWidget: (context, url, error) => Center(
-                      child: Icon(
-                        FontAwesomeIcons.circleExclamation,
-                        color: Colors.red,
-                        size: getResponsiveFontSize(context, fontSize: 50),
+                      child: Image.asset(
+                        Assets.assetsImagesTv,
+                        height: 80,
+                        width: 80,
                       ),
                     ),
                   ),

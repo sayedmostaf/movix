@@ -6,7 +6,7 @@ part 'person_mini_result.freezed.dart';
 part 'person_mini_result.g.dart';
 
 @freezed
-class PersonMiniResult with _$PersonMiniResult {
+abstract class PersonMiniResult with _$PersonMiniResult {
 	factory PersonMiniResult({
 		bool? adult,
 		int? id,

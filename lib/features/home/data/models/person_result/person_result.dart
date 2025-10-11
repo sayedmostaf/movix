@@ -8,7 +8,7 @@ part 'person_result.freezed.dart';
 part 'person_result.g.dart';
 
 @freezed
-class PersonResult with _$PersonResult {
+abstract class PersonResult with _$PersonResult {
 	factory PersonResult({
 		bool? adult,
 		@JsonKey(name: 'also_known_as') List<String>? alsoKnownAs,

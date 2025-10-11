@@ -4,7 +4,7 @@ part 'movie_mini_result.freezed.dart';
 part 'movie_mini_result.g.dart';
 
 @freezed
-class MovieMiniResult with _$MovieMiniResult {
+abstract class MovieMiniResult with _$MovieMiniResult {
   factory MovieMiniResult({
     bool? adult,
     @JsonKey(name: 'backdrop_path') String? backdropPath,

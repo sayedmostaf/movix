@@ -4,7 +4,7 @@ part 'profile.freezed.dart';
 part 'profile.g.dart';
 
 @freezed
-class Profile with _$Profile {
+abstract class Profile with _$Profile {
 	factory Profile({
 		@JsonKey(name: 'aspect_ratio') double? aspectRatio,
 		int? height,

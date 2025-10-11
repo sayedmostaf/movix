@@ -4,7 +4,7 @@ part 'tv_crew.freezed.dart';
 part 'tv_crew.g.dart';
 
 @freezed
-class TvCrew with _$TvCrew {
+abstract class TvCrew with _$TvCrew {
 	factory TvCrew({
 		bool? adult,
 		@JsonKey(name: 'backdrop_path') String? backdropPath,

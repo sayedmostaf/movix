@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movix/features/home/presentation/controllers/show_details_controller.dart';
+import 'package:movix/features/home/presentation/controllers/show_details_controller/show_details_controller.dart';
 import 'package:movix/features/home/presentation/views/show_details_view/views/widgets/tab_bar_item.dart';
 
 class CustomShowsTabBar extends StatelessWidget {

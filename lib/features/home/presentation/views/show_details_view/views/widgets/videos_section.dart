@@ -5,7 +5,7 @@ import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/functions/enums.dart';
-import 'package:movix/features/home/presentation/controllers/show_details_controller.dart';
+import 'package:movix/features/home/presentation/controllers/show_details_controller/show_details_controller.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideosSection extends StatelessWidget {
@@ -25,7 +25,7 @@ class VideosSection extends StatelessWidget {
             ),
             SizedBox(width: 10),
             Text(
-              '9',
+              showDetailsController.videosControllers.length.toString(),
               style: StylesManager.styleLatoBold20(
                 context,
               ).copyWith(color: Colors.grey),
@@ -49,44 +49,31 @@ class VideosSection extends StatelessWidget {
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.2,
           child: ListView.builder(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) => Padding(
-              padding: EdgeInsets.only(right: 15),
-              child: Column(
-                children: [
-                  Flexible(
-                    child: ClipRRect(
-                      borderRadius: BorderRadiusGeometry.circular(10),
-                      child: YoutubePlayer(
-                        controller:
-                            showDetailsController.videosControllers[index],
-                        showVideoProgressIndicator: true,
-                        progressIndicatorColor: ColorManager.primaryColor,
-                        width: MediaQuery.of(context).size.width - 100,
-                        bottomActions: [
-                          SizedBox(width: 14),
-                          CurrentPosition(),
-                          SizedBox(width: 8),
-                          ProgressBar(
-                            isExpanded: true,
-                            colors: ProgressBarColors(
-                              playedColor: ColorManager.primaryColor,
-                              handleColor: ColorManager.primaryColor,
-                            ),
-                          ),
-                          RemainingDuration(),
-                          PlaybackSpeedButton(),
-                        ],
+              padding: const EdgeInsets.only(right: 15),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: YoutubePlayer(
+                  controller: showDetailsController.videosControllers[index],
+                  showVideoProgressIndicator: true,
+                  progressIndicatorColor: ColorManager.primaryColor,
+                  width: MediaQuery.of(context).size.width - 100,
+                  bottomActions: [
+                    const SizedBox(width: 14.0),
+                    CurrentPosition(),
+                    const SizedBox(width: 8.0),
+                    ProgressBar(
+                      isExpanded: true,
+                      colors: const ProgressBarColors(
+                        playedColor: ColorManager.primaryColor,
+                        handleColor: ColorManager.primaryColor,
                       ),
-                    ),
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    'Trailer of the Movie',
-                    style: StylesManager.styleLatoRegular14(context),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
+                    ),  
+                    RemainingDuration(),
+                    const PlaybackSpeedButton(),
+                  ],
+                ),
               ),
             ),
             itemCount: showDetailsController.videosControllers.length,

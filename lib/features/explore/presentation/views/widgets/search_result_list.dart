@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/app_router.dart';
+import 'package:movix/core/widgets/functions/enums.dart';
 import 'package:movix/features/explore/presentation/views/widgets/search_result_item.dart';
 
 class SearchResultList extends StatelessWidget {
@@ -15,7 +16,10 @@ class SearchResultList extends StatelessWidget {
         (index) => Column(
           children: [
             InkWell(
-              onTap: () => Get.toNamed(AppRoutes.kShowDetailsView),
+              onTap: () => Get.toNamed(
+                AppRoutes.kShowDetailsView,
+                arguments: {'id': 123, 'showType': ShowType.Movie},
+              ),
               borderRadius: BorderRadius.circular(5),
               child: SearchResultItem(),
             ),

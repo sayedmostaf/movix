@@ -4,7 +4,7 @@ part 'known_for.freezed.dart';
 part 'known_for.g.dart';
 
 @freezed
-class KnownFor with _$KnownFor {
+abstract class KnownFor with _$KnownFor {
   factory KnownFor({
     bool? adult,
     @JsonKey(name: 'backdrop_path') String? backdropPath,

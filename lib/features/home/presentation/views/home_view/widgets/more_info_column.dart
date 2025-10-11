@@ -5,8 +5,6 @@ import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/functions/build_genre_id_values_row.dart';
-import 'package:movix/core/widgets/functions/enums.dart';
-import 'package:movix/features/home/data/data_sources/dummy_data.dart';
 import 'package:movix/features/home/data/data_sources/static.dart';
 import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';
 
@@ -31,7 +29,7 @@ class MoreInfoColumn extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () => Get.toNamed(
                 AppRoutes.kShowDetailsView,
-                arguments: {'show': movie},
+                arguments: {'showType': movie.showType, 'id': movie.id},
               ),
               style: ButtonStyle(
                 shape: MaterialStateProperty.all(

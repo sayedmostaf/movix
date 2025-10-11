@@ -5,7 +5,7 @@ class PersonMiniResultEntity {
   final String? name, profilePath;
   final ShowType? showType;
   final String? role;
-  final String mostKnownForName;
+  final String? mostKnownForName;
   final DateTime? mostKnownForDate;
 
   PersonMiniResultEntity({

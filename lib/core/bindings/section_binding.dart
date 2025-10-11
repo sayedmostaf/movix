@@ -4,6 +4,6 @@ import 'package:movix/features/home/presentation/controllers/section_controller/
 class SectionBinding extends Bindings {
   @override
   void dependencies() {
-    Get.create<SectionControllers>(() => SectionControllers());
+    Get.lazyPut<SectionControllers>(() => SectionControllers(), fenix: true);
   }
 }

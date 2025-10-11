@@ -13,18 +13,16 @@ import 'package:movix/core/widgets/functions/show_full_screen_image.dart';
 import 'package:movix/features/home/domain/entities/image_entity.dart';
 
 class ImagesSection extends StatelessWidget {
-  const ImagesSection({super.key, required this.images});
+  const ImagesSection({super.key, required this.images, required this.title});
   final List<ImageEntity> images;
+  final String title;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Row(
           children: [
-            Text(
-              StringsManager.images,
-              style: StylesManager.styleLatoBold20(context),
-            ),
+            Text(title, style: StylesManager.styleLatoBold20(context)),
             const SizedBox(width: 10),
             Text(
               '${images.length}',
@@ -69,10 +67,10 @@ class ImagesSection extends StatelessWidget {
                         ),
                       ),
                       errorWidget: (context, url, error) => Center(
-                        child: Icon(
-                          FontAwesomeIcons.circleExclamation,
-                          color: Colors.red,
-                          size: getResponsiveFontSize(context, fontSize: 50),
+                        child: Image.asset(
+                          Assets.assetsImagesTv,
+                          height: 80,
+                          width: 80,
                         ),
                       ),
                     ),

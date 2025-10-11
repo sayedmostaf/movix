@@ -7,7 +7,7 @@ part 'movie_credits.freezed.dart';
 part 'movie_credits.g.dart';
 
 @freezed
-class MovieCredits with _$MovieCredits {
+abstract class MovieCredits with _$MovieCredits {
 	factory MovieCredits({
 		@JsonKey(name: 'cast') List<MovieCast>? movieCast,
 		@JsonKey(name: 'crew') List<MovieCrew>? movieCrew,

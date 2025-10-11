@@ -6,14 +6,14 @@ part of 'movie_trailer.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$MovieTrailerImpl _$$MovieTrailerImplFromJson(Map<String, dynamic> json) =>
-    _$MovieTrailerImpl(
+_MovieTrailer _$MovieTrailerFromJson(Map<String, dynamic> json) =>
+    _MovieTrailer(
       iso6391: json['iso_639_1'] as String?,
       iso31661: json['iso_3166_1'] as String?,
       name: json['name'] as String?,
       key: json['key'] as String?,
       site: json['site'] as String?,
-      size: json['size'] as int?,
+      size: (json['size'] as num?)?.toInt(),
       type: json['type'] as String?,
       official: json['official'] as bool?,
       publishedAt: json['published_at'] == null
@@ -22,7 +22,7 @@ _$MovieTrailerImpl _$$MovieTrailerImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
     );
 
-Map<String, dynamic> _$$MovieTrailerImplToJson(_$MovieTrailerImpl instance) =>
+Map<String, dynamic> _$MovieTrailerToJson(_MovieTrailer instance) =>
     <String, dynamic>{
       'iso_639_1': instance.iso6391,
       'iso_3166_1': instance.iso31661,

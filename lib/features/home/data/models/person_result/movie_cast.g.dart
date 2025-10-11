@@ -6,29 +6,29 @@ part of 'movie_cast.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$MovieCastImpl _$$MovieCastImplFromJson(Map<String, dynamic> json) =>
-    _$MovieCastImpl(
-      adult: json['adult'] as bool?,
-      backdropPath: json['backdrop_path'] as String?,
-      genreIds:
-          (json['genre_ids'] as List<dynamic>?)?.map((e) => e as int).toList(),
-      id: json['id'] as int?,
-      originalLanguage: json['original_language'] as String?,
-      originalTitle: json['original_title'] as String?,
-      overview: json['overview'] as String?,
-      popularity: (json['popularity'] as num?)?.toDouble(),
-      posterPath: json['poster_path'] as String?,
-      releaseDate: json['release_date'] as String?,
-      title: json['title'] as String?,
-      video: json['video'] as bool?,
-      voteAverage: (json['vote_average'] as num?)?.toDouble(),
-      voteCount: json['vote_count'] as int?,
-      character: json['character'] as String?,
-      creditId: json['credit_id'] as String?,
-      order: json['order'] as int?,
-    );
+_MovieCast _$MovieCastFromJson(Map<String, dynamic> json) => _MovieCast(
+  adult: json['adult'] as bool?,
+  backdropPath: json['backdrop_path'] as String?,
+  genreIds: (json['genre_ids'] as List<dynamic>?)
+      ?.map((e) => (e as num).toInt())
+      .toList(),
+  id: (json['id'] as num?)?.toInt(),
+  originalLanguage: json['original_language'] as String?,
+  originalTitle: json['original_title'] as String?,
+  overview: json['overview'] as String?,
+  popularity: (json['popularity'] as num?)?.toDouble(),
+  posterPath: json['poster_path'] as String?,
+  releaseDate: json['release_date'] as String?,
+  title: json['title'] as String?,
+  video: json['video'] as bool?,
+  voteAverage: (json['vote_average'] as num?)?.toDouble(),
+  voteCount: (json['vote_count'] as num?)?.toInt(),
+  character: json['character'] as String?,
+  creditId: json['credit_id'] as String?,
+  order: (json['order'] as num?)?.toInt(),
+);
 
-Map<String, dynamic> _$$MovieCastImplToJson(_$MovieCastImpl instance) =>
+Map<String, dynamic> _$MovieCastToJson(_MovieCast instance) =>
     <String, dynamic>{
       'adult': instance.adult,
       'backdrop_path': instance.backdropPath,

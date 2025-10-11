@@ -4,7 +4,7 @@ part 'movie_crew.freezed.dart';
 part 'movie_crew.g.dart';
 
 @freezed
-class MovieCrew with _$MovieCrew {
+abstract class MovieCrew with _$MovieCrew {
 	factory MovieCrew({
 		bool? adult,
 		@JsonKey(name: 'backdrop_path') String? backdropPath,
