@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/strings_manager.dart';
-import 'package:movix/features/home/domain/usecases/add_favourite_person_usecase.dart';
-import 'package:movix/features/home/domain/usecases/check_favourite_person_usecase.dart';
-import 'package:movix/features/home/domain/usecases/delete_favourite_person_usecase.dart';
-import 'package:movix/features/home/presentation/controllers/person_details_controller/get_person_details_controller.dart';
+import 'package:movix/core/widgets/functions/enums.dart';
+import 'package:movix/features/home/domain/usecases/add_favourite_usecase.dart';
+import 'package:movix/features/home/domain/usecases/check_favourite_usecase.dart';
+import 'package:movix/features/home/domain/usecases/delete_favourite_usecase.dart';
 
-class FavouritePersonController extends GetxController {
+class FavouriteController extends GetxController {
   RxBool loading = false.obs;
   RxBool checkLoading = false.obs;
   bool favourite = false;
-  final AddFavouritePersonUseCase addFavouritePersonUseCase;
-  final DeleteFavouritePersonUseCase deleteFavouritePersonUseCase;
-  final CheckFavouritePersonUseCase checkFavouritePersonUseCase;
-  FavouritePersonController({
-    required this.addFavouritePersonUseCase,
+  final AddFavouriteUseCase addFavouriteUseCase;
+  final DeleteFavouriteUseCase deleteFavouritePersonUseCase;
+  final CheckFavouriteUseCase checkFavouritePersonUseCase;
+  late String addFavouriteSuccess;
+  late String deleteFavouriteSuccess;
+  FavouriteController({
+    required this.addFavouriteUseCase,
     required this.deleteFavouritePersonUseCase,
     required this.checkFavouritePersonUseCase,
   });
@@ -23,15 +25,23 @@ class FavouritePersonController extends GetxController {
   void onInit() {
     super.onInit();
     final int id = Get.arguments['id'];
-    checkFavouritePerson(id);
+    final ShowType showType = Get.arguments['showType'];
+    addFavouriteSuccess = showType == ShowType.Person
+        ? StringsManager.personAddedToFavourite
+        : showType == ShowType.Movie
+        ? StringsManager.movieAddedToFavourite
+        : StringsManager.tvShowAddedToFavourite;
+    deleteFavouriteSuccess = showType == ShowType.Person
+        ? StringsManager.personRemovedFromFavourite
+        : showType == ShowType.Movie
+        ? StringsManager.movieRemovedFromFavourite
+        : StringsManager.tvShowRemovedFromFavourite;
+    checkFavourite(id, showType);
   }
 
-  void addFavouritePerson() async {
+  void addFavourite(dynamic show, ShowType showType) async {
     loading.value = true;
-    final getPersonDetailsController = Get.find<GetPersonDetailsController>();
-    var result = await addFavouritePersonUseCase.execute(
-      getPersonDetailsController.personResultEntity,
-    );
+    var result = await addFavouriteUseCase.execute((show, showType));
     result.fold(
       (failure) {
         favourite = false;
@@ -45,7 +55,7 @@ class FavouritePersonController extends GetxController {
         favourite = true;
         Get.snackbar(
           StringsManager.operationSuccess,
-          StringsManager.personAddedToFavourite,
+          addFavouriteSuccess,
           backgroundColor: Colors.green.withOpacity(0.5),
         );
       },
@@ -54,12 +64,9 @@ class FavouritePersonController extends GetxController {
     loading.value = false;
   }
 
-  void deleteFavouritePerson() async {
+  void deleteFavourite(int id, ShowType showType) async {
     loading.value = true;
-    final getPersonDetailsController = Get.find<GetPersonDetailsController>();
-    var result = await deleteFavouritePersonUseCase.execute(
-      getPersonDetailsController.personResultEntity.id,
-    );
+    var result = await deleteFavouritePersonUseCase.execute((id, showType));
     result.fold(
       (failure) {
         favourite = true;
@@ -73,7 +80,7 @@ class FavouritePersonController extends GetxController {
         favourite = false;
         Get.snackbar(
           StringsManager.operationSuccess,
-          StringsManager.personRemovedFromFavourite,
+          deleteFavouriteSuccess,
           backgroundColor: Colors.green.withOpacity(0.5),
         );
       },
@@ -82,9 +89,9 @@ class FavouritePersonController extends GetxController {
     loading.value = false;
   }
 
-  void checkFavouritePerson(int id) async {
+  void checkFavourite(int id, ShowType showType) async {
     checkLoading.value = true;
-    var result = await checkFavouritePersonUseCase.execute(id);
+    var result = await checkFavouritePersonUseCase.execute((id, showType));
     result.fold(
       (failure) {
         favourite = false;
@@ -102,11 +109,11 @@ class FavouritePersonController extends GetxController {
     checkLoading.value = false;
   }
 
-  void Function()? favouriteOnPressed() {
+  void Function()? favouriteOnPressed(dynamic show, ShowType showType) {
     if (favourite) {
-      deleteFavouritePerson();
+      deleteFavourite(show.id, showType);
     } else {
-      addFavouritePerson();
+      addFavourite(show, showType);
     }
     return null;
   }

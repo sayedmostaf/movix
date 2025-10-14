@@ -12,10 +12,10 @@ abstract class HomeRemoteDataSource {
     List<MovieMiniResultEntity> movies,
   );
   Future<List<PersonMiniResultEntity>> getTrendingPeople(int page);
-  Future<List<dynamic>> getPicksForYou();
+  Future<List<dynamic>> getPicksForYou(int page);
   Future<PersonResultEntity> getPersonDetails(int id);
-  Future<void> addFavouritePerson(PersonResultEntity person);
-  Future<void> deleteFavouritePerson(int id);
-  Future<bool> checkFavouritePerson(int id);
+  Future<void> addFavourite(dynamic show, ShowType showType);
+  Future<void> deleteFavourite(int id, ShowType showType);
+  Future<bool> checkFavourite(int id, ShowType showType);
   Future<dynamic> getShowDetails(int id, ShowType showType);
 }

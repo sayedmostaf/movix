@@ -5,7 +5,8 @@ import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/functions/build_cover_image.dart';
 import 'package:movix/core/widgets/functions/build_cover_overlay.dart';
-import 'package:movix/features/home/presentation/controllers/person_details_controller/favourite_person_controller.dart';
+import 'package:movix/core/widgets/functions/enums.dart';
+import 'package:movix/features/home/presentation/controllers/favourite_controller/favourite_controller.dart';
 import 'package:movix/features/home/presentation/controllers/person_details_controller/get_person_details_controller.dart';
 
 class PersonImageTitle extends StatelessWidget {
@@ -55,12 +56,15 @@ class PersonImageTitle extends StatelessWidget {
                   icon: Icon(FontAwesomeIcons.angleLeft),
                   color: ColorManager.primaryColor,
                 ),
-                GetBuilder<FavouritePersonController>(
-                  builder: (favouritePersonController) {
+                GetBuilder<FavouriteController>(
+                  builder: (favouriteController) {
                     return IconButton(
-                      onPressed: favouritePersonController.favouriteOnPressed,
+                      onPressed: favouriteController.favouriteOnPressed(
+                        getPersonDetailsController.personResultEntity,
+                        ShowType.Person,
+                      ),
                       icon: Icon(
-                        !favouritePersonController.favourite
+                        !favouriteController.favourite
                             ? FontAwesomeIcons.heart
                             : FontAwesomeIcons.solidHeart,
                         color: ColorManager.primaryColor,

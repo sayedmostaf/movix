@@ -36,7 +36,7 @@ class SectionControllers extends GetxController {
     SectionType.PicksForYou: () => Get.find<GetPicksForYouUseCase>(),
     SectionType.PeopleOfTheWeek: () => Get.find<GetTrendingPeopleUseCase>(),
     SectionType.None: () => null,
-  };
+  };  
   @override
   void onClose() {
     scrollController.removeListener(_onScroll);

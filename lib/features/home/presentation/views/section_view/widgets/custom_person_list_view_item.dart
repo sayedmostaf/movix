@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/styles_manager.dart';
+import 'package:movix/core/widgets/functions/enums.dart';
 import 'package:movix/features/home/data/data_sources/dummy_data.dart';
 import 'package:movix/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:movix/features/home/presentation/views/section_view/widgets/show_image.dart';
@@ -16,7 +17,7 @@ class CustomPersonListViewItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(5),
         onTap: () => Get.toNamed(
           AppRoutes.kPersonDetailsView,
-          arguments: {'id': person.id},
+          arguments: {'id': person.id, 'showType': ShowType.Person},
           preventDuplicates: false,
         ),
         child: SizedBox(

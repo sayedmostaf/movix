@@ -7,6 +7,9 @@ import 'package:movix/features/home/data/data_sources/home_remote_data_source.da
 import 'package:movix/features/home/data/data_sources/home_remote_data_source_impl.dart';
 import 'package:movix/features/home/data/repos/home_repo_impl.dart';
 import 'package:movix/features/home/domain/repos/home_repo.dart';
+import 'package:movix/features/home/domain/usecases/add_favourite_usecase.dart';
+import 'package:movix/features/home/domain/usecases/check_favourite_usecase.dart';
+import 'package:movix/features/home/domain/usecases/delete_favourite_usecase.dart';
 import 'package:movix/features/home/domain/usecases/get_now_playing_movies_trailer_usecase.dart';
 import 'package:movix/features/home/domain/usecases/get_now_playing_movies_usecase.dart';
 import 'package:movix/features/home/domain/usecases/get_picks_for_you_usecase.dart';
@@ -97,6 +100,18 @@ class MainBinding extends Bindings {
     );
     Get.lazyPut<PicksForYouController>(
       () => PicksForYouController(getPicksForYouUseCase: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut<AddFavouriteUseCase>(
+      () => AddFavouriteUseCase(homeRepo: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut<DeleteFavouriteUseCase>(
+      () => DeleteFavouriteUseCase(homeRepo: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut<CheckFavouriteUseCase>(
+      () => CheckFavouriteUseCase(homeRepo: Get.find()),
       fenix: true,
     );
   }

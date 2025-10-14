@@ -88,9 +88,9 @@ class HomeRepoImpl extends HomeRepo {
   }
 
   @override
-  Future<Either<Failure, List>> getPicksForYou() async {
+  Future<Either<Failure, List>> getPicksForYou(int page) async {
     try {
-      var results = await homeRemoteDataSource.getPicksForYou();
+      var results = await homeRemoteDataSource.getPicksForYou(page);
       return right(results);
     } on DioException catch (e) {
       return left(ServerFailure.fromDioException(e));
@@ -112,11 +112,12 @@ class HomeRepoImpl extends HomeRepo {
   }
 
   @override
-  Future<Either<Failure, void>> addFavouritePerson(
-    PersonResultEntity person,
+  Future<Either<Failure, void>> addFavourite(
+    dynamic show,
+    ShowType showType,
   ) async {
     try {
-      var results = await homeRemoteDataSource.addFavouritePerson(person);
+      var results = await homeRemoteDataSource.addFavourite(show, showType);
       return right(results);
     } on DioException catch (e) {
       return left(ServerFailure.fromDioException(e));
@@ -126,9 +127,12 @@ class HomeRepoImpl extends HomeRepo {
   }
 
   @override
-  Future<Either<Failure, bool>> checkFavouritePerson(int id) async {
+  Future<Either<Failure, bool>> checkFavourite(
+    int id,
+    ShowType showType,
+  ) async {
     try {
-      var results = await homeRemoteDataSource.checkFavouritePerson(id);
+      var results = await homeRemoteDataSource.checkFavourite(id, showType);
       return right(results);
     } on DioException catch (e) {
       return left(ServerFailure.fromDioException(e));
@@ -138,9 +142,12 @@ class HomeRepoImpl extends HomeRepo {
   }
 
   @override
-  Future<Either<Failure, void>> deleteFavouritePerson(int id) async {
+  Future<Either<Failure, void>> deleteFavourite(
+    int id,
+    ShowType showType,
+  ) async {
     try {
-      var results = await homeRemoteDataSource.deleteFavouritePerson(id);
+      var results = await homeRemoteDataSource.deleteFavourite(id, showType);
       return right(results);
     } on DioException catch (e) {
       return left(ServerFailure.fromDioException(e));

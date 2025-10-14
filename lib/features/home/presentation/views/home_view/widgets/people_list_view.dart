@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/circular_image.dart';
+import 'package:movix/core/widgets/functions/enums.dart';
 import 'package:movix/features/home/data/data_sources/dummy_data.dart';
 import 'package:movix/features/home/domain/entities/person_mini_result_entity.dart';
 
@@ -22,7 +23,7 @@ class PeopleListView extends StatelessWidget {
             borderRadius: BorderRadius.circular(5),
             onTap: () => Get.toNamed(
               AppRoutes.kPersonDetailsView,
-              arguments: {'id': people[index].id},
+              arguments: {'id': people[index].id, 'showType': ShowType.Person},
               preventDuplicates: false,
             ),
             child: Column(

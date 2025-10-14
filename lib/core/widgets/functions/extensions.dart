@@ -156,6 +156,7 @@ extension MovieResultX on MovieResult {
           ? null
           : DateTime.parse(releaseDate!),
       duration: formatTime(runtime ?? 0),
+      showType: ShowType.Movie,
     );
   }
 }
@@ -183,6 +184,7 @@ extension TVResultX on TvResult {
           ? null
           : DateTime.parse(firstAirDate!),
       duration: '${numberOfEpisodes ?? 0} eps',
+      showType: ShowType.TV,
     );
   }
 }

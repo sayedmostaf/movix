@@ -5,7 +5,9 @@ import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/functions/build_cover_image.dart';
 import 'package:movix/core/widgets/functions/build_cover_overlay.dart';
+import 'package:movix/core/widgets/functions/enums.dart';
 import 'package:movix/features/home/data/data_sources/dummy_data.dart';
+import 'package:movix/features/home/presentation/controllers/favourite_controller/favourite_controller.dart';
 import 'package:movix/features/home/presentation/controllers/show_details_controller/show_details_controller.dart';
 
 class ShowImageTitle extends StatelessWidget {
@@ -55,12 +57,24 @@ class ShowImageTitle extends StatelessWidget {
                     color: ColorManager.primaryColor,
                   ),
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    FontAwesomeIcons.heart,
-                    color: ColorManager.primaryColor,
-                  ),
+                GetBuilder<FavouriteController>(
+                  builder: (favouriteController) {
+                    return IconButton(
+                      onPressed: () {
+                        favouriteController.favouriteOnPressed(
+                          showDetailsController.showResultEntity,
+                          showDetailsController.showResultEntity.showType ??
+                              ShowType.Movie,
+                        );
+                      },
+                      icon: Icon(
+                        favouriteController.favourite
+                            ? FontAwesomeIcons.solidHeart
+                            : FontAwesomeIcons.heart,
+                        color: ColorManager.primaryColor,
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
