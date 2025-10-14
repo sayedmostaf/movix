@@ -30,7 +30,7 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
   @override
   Future<List<MovieMiniResultEntity>> getTrendingMovies(int page) async {
     var data = await apiService.get(
-      endPoint: '/trending/movie/day?language=en-US&page=$page',
+      endPoint: '/trending/movie/day?language=en-US',
     );
     List<MovieMiniResultEntity> items = [];
     for (var item in data['results']) {
@@ -122,13 +122,14 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
         .join('%7C');
     var tvShowsData = await apiService.get(
       endPoint:
-          '/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=$page&sort_by=vote_average.desc&vote_count.gte=3000${categorizedGenres.$2.isEmpty ? "" : "&with_genres=$genresParameterTvShow"}&page=$page',
+          '/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=$page&sort_by=vote_average.desc&vote_count.gte=3000${categorizedGenres.$2.isEmpty ? "" : "&with_genres=$genresParameterTvShow"}',
     );
     for (var item in tvShowsData['results']) {
       tvShows.add(TvShowMiniResult.fromJson(item).toEntity());
     }
     result.addAll(movies);
     result.addAll(tvShows);
+    result.shuffle();
     return result;
   }
 

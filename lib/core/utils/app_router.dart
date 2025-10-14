@@ -22,6 +22,9 @@ import 'package:movix/features/main/presentation/view/main_view.dart';
 import 'package:movix/features/onboarding/presentation/views/on_boarding_view.dart';
 import 'package:movix/features/profile/presentation/views/settings_view/settings_view.dart';
 import 'package:movix/features/splash/presentation/views/splash_view.dart';
+import 'package:flutter/material.dart';
+
+import 'package:get/get_navigation/src/routes/transitions_type.dart';
 
 class AppRoutes {
   static const kSplashView = '/';
@@ -42,57 +45,99 @@ class AppRoutes {
       name: kSplashView,
       page: () => const SplashView(),
       binding: SplashBinding(),
+      transition: Transition.fadeIn,
+      curve: Curves.easeInOut,
+      transitionDuration: const Duration(milliseconds: 500),
     ),
     GetPage(
       name: kOnBoardingView,
       page: () => const OnBoardingView(),
       binding: OnboardingBinding(),
+      transition: Transition.fadeIn,
+      curve: Curves.easeInOut,
+      transitionDuration: const Duration(milliseconds: 500),
     ),
     GetPage(
       name: kAuthView,
       page: () => const AuthView(),
       binding: AuthBinding(),
+      transition: Transition.fadeIn,
+      curve: Curves.easeInOut,
+      transitionDuration: const Duration(milliseconds: 500),
     ),
     GetPage(
       name: kForgetPasswordView,
       page: () => const ForgetPasswordView(),
       binding: ForgetPasswordBinding(),
+      transition: Transition.fadeIn,
+      curve: Curves.easeInOut,
+      transitionDuration: const Duration(milliseconds: 500),
     ),
     GetPage(
       name: kEmailVerifyView,
       page: () => const EmailVerifyView(),
       binding: EmailVerifyBinding(),
+      transition: Transition.fadeIn,
+      curve: Curves.easeInOut,
+      transitionDuration: const Duration(milliseconds: 500),
     ),
     GetPage(
       name: kImproveYourFeedsView,
       page: () => const ImproveYourFeedsView(),
       binding: ImproveYourFeedBinding(),
+      transition: Transition.fadeIn,
+      curve: Curves.easeInOut,
+      transitionDuration: const Duration(milliseconds: 500),
     ),
     GetPage(
       name: kMainView,
       page: () => const MainView(),
       binding: MainBinding(),
+      transition: Transition.fadeIn,
+      curve: Curves.easeInOut,
+      transitionDuration: const Duration(milliseconds: 500),
     ),
     GetPage(
       name: kShowsSectionView,
       page: () => const ShowsSectionView(),
       binding: SectionBinding(),
+      transition: Transition.fadeIn,
+      curve: Curves.easeInOut,
+      transitionDuration: const Duration(milliseconds: 500),
+      preventDuplicates: false,
     ),
     GetPage(
       name: kShowDetailsView,
       page: () => const ShowDetailsView(),
       binding: ShowDetailsBinding(),
+      transition: Transition.fadeIn,
+      curve: Curves.easeInOut,
+      transitionDuration: const Duration(milliseconds: 500),
+      preventDuplicates: false,
     ),
     GetPage(
       name: kPersonDetailsView,
       page: () => const PersonDetailsView(),
       binding: ShowPersonDetailsBinding(),
+      transition: Transition.fadeIn,
+      curve: Curves.easeInOut,
+      transitionDuration: const Duration(milliseconds: 500),
+      preventDuplicates: false,
     ),
     GetPage(
       name: kMediaView,
       page: () => const MediaView(),
       binding: MediaBinding(),
+      transition: Transition.fadeIn,
+      curve: Curves.easeInOut,
+      transitionDuration: const Duration(milliseconds: 500),
     ),
-    GetPage(name: kSettingsView, page: () => const SettingsView()),
+    GetPage(
+      name: kSettingsView,
+      page: () => const SettingsView(),
+      transition: Transition.fadeIn,
+      curve: Curves.easeInOut,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
   ];
 }

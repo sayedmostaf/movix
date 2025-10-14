@@ -19,6 +19,7 @@ class SearchResultList extends StatelessWidget {
               onTap: () => Get.toNamed(
                 AppRoutes.kShowDetailsView,
                 arguments: {'id': 123, 'showType': ShowType.Movie},
+                preventDuplicates: false,
               ),
               borderRadius: BorderRadius.circular(5),
               child: SearchResultItem(),

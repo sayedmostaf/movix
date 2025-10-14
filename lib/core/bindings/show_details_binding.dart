@@ -4,13 +4,18 @@ import 'package:movix/features/home/presentation/controllers/favourite_controlle
 import 'package:movix/features/home/presentation/controllers/show_details_controller/show_details_controller.dart';
 
 class ShowDetailsBinding extends Bindings {
+  final String uniqueTag =
+      "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}";
   @override
   void dependencies() {
     Get.lazyPut<GetShowDetailsUseCase>(
       () => GetShowDetailsUseCase(homeRepo: Get.find()),
       fenix: true,
     );
-    Get.lazyPut(() => ShowDetailsController(getShowDetailsUseCase: Get.find()));
+    Get.lazyPut(
+      tag: uniqueTag,
+      () => ShowDetailsController(getShowDetailsUseCase: Get.find()),
+    );
     Get.lazyPut(
       () => FavouriteController(
         addFavouriteUseCase: Get.find(),

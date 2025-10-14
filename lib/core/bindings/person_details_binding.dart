@@ -8,13 +8,16 @@ import 'package:movix/features/home/presentation/controllers/person_details_cont
 import 'package:movix/features/home/presentation/controllers/person_details_controller/person_details_controller.dart';
 
 class PersonDetailsBinding extends Bindings {
+  final String uniqueTag =
+      "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}";
   @override
   void dependencies() {
     Get.lazyPut<GetPersonDetailsUseCase>(
       () => GetPersonDetailsUseCase(homeRepo: Get.find()),
       fenix: true,
+      tag: uniqueTag,
     );
-    Get.lazyPut(() => PersonDetailsController(), fenix: true);
+    Get.lazyPut(() => PersonDetailsController(), fenix: true, tag: uniqueTag);
     Get.lazyPut(
       () => GetPersonDetailsController(getPersonDetailsUseCase: Get.find()),
       fenix: true,

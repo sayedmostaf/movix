@@ -12,14 +12,20 @@ class PersonOverviewTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GetPersonDetailsController getPersonDetailsController =
-        Get.find<GetPersonDetailsController>();
+    final GetPersonDetailsController
+    getPersonDetailsController = Get.find<GetPersonDetailsController>(
+      tag:
+          "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
+    );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        if (getPersonDetailsController.personResultEntity.biography != null &&
-            getPersonDetailsController.personResultEntity.biography!.isNotEmpty)
+        if (getPersonDetailsController.personResultEntity?.biography != null &&
+            getPersonDetailsController
+                .personResultEntity!
+                .biography!
+                .isNotEmpty)
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -30,7 +36,7 @@ class PersonOverviewTab extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               ExpandableText(
-                getPersonDetailsController.personResultEntity.biography ?? '',
+                getPersonDetailsController.personResultEntity?.biography ?? '',
                 expandText: 'show more',
                 collapseText: 'show less',
                 expandOnTextTap: true,
@@ -45,8 +51,8 @@ class PersonOverviewTab extends StatelessWidget {
               const SizedBox(height: 15),
             ],
           ),
-        if (getPersonDetailsController.personResultEntity.birthDate != null ||
-            getPersonDetailsController.personResultEntity.birthdayLocation !=
+        if (getPersonDetailsController.personResultEntity?.birthDate != null ||
+            getPersonDetailsController.personResultEntity?.birthdayLocation !=
                 null)
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -57,20 +63,24 @@ class PersonOverviewTab extends StatelessWidget {
                 style: StylesManager.styleLatoBold20(context),
               ),
               const SizedBox(height: 10),
-              if (getPersonDetailsController.personResultEntity.birthDate !=
+              if (getPersonDetailsController.personResultEntity?.birthDate !=
                   null)
                 Text(
                   DateFormat('MMMM d, yyyy').format(
-                    getPersonDetailsController.personResultEntity.birthDate!,
+                    getPersonDetailsController.personResultEntity!.birthDate!,
                   ),
                   style: StylesManager.styleLatoRegular16(
                     context,
                   ).copyWith(color: Colors.grey),
                 ),
-              if (getPersonDetailsController.personResultEntity.birthdayLocation !=
+              if (getPersonDetailsController
+                      .personResultEntity
+                      ?.birthdayLocation !=
                   null)
                 Text(
-                  getPersonDetailsController.personResultEntity.birthdayLocation!,
+                  getPersonDetailsController
+                      .personResultEntity!
+                      .birthdayLocation!,
                   style: StylesManager.styleLatoRegular16(
                     context,
                   ).copyWith(color: Colors.grey),
@@ -78,7 +88,7 @@ class PersonOverviewTab extends StatelessWidget {
               const SizedBox(height: 15),
             ],
           ),
-        if (getPersonDetailsController.personResultEntity.deathDate != null)
+        if (getPersonDetailsController.personResultEntity?.deathDate != null)
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -90,7 +100,7 @@ class PersonOverviewTab extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 DateFormat('MMMM d, yyyy').format(
-                  getPersonDetailsController.personResultEntity.deathDate!,
+                  getPersonDetailsController.personResultEntity!.deathDate!,
                 ),
                 style: StylesManager.styleLatoRegular16(
                   context,

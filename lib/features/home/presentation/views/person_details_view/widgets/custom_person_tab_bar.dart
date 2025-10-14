@@ -9,6 +9,8 @@ class CustomPersonTabBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<PersonDetailsController>(
+      tag:
+          "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
       builder: (personDetailsController) => ListView.builder(
         itemBuilder: (context, index) => GestureDetector(
           onTap: () => personDetailsController.changeTabs(index),

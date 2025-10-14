@@ -15,14 +15,17 @@ class ShowImageTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ShowDetailsController showDetailsController =
-        Get.find<ShowDetailsController>();
+    final ShowDetailsController
+    showDetailsController = Get.find<ShowDetailsController>(
+      tag:
+          "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
+    );
     return SizedBox(
       height: 40 * MediaQuery.of(context).size.width / 27,
       child: Stack(
         children: [
           buildCoverImage(
-            'https://image.tmdb.org/t/p/original${showDetailsController.showResultEntity.posterUrl}',
+            'https://image.tmdb.org/t/p/original${showDetailsController.showResultEntity?.posterUrl}',
           ),
           buildCoverOverlay(context),
           Positioned(
@@ -32,12 +35,12 @@ class ShowImageTitle extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  showDetailsController.showResultEntity.name ?? '',
+                  showDetailsController.showResultEntity?.name ?? '',
                   style: StylesManager.styleLatoBold25(context),
                 ),
                 SizedBox(height: 5),
                 Text(
-                  '${showDetailsController.showResultEntity.releaseDate?.year ?? ''}${showDetailsController.showResultEntity.releaseDate == null || showDetailsController.showResultEntity.duration == null ? "" : " | "}${showDetailsController.showResultEntity.duration ?? ''}',
+                  '${showDetailsController.showResultEntity?.releaseDate?.year ?? ''}${showDetailsController.showResultEntity?.releaseDate == null || showDetailsController.showResultEntity?.duration == null ? "" : " | "}${showDetailsController.showResultEntity?.duration ?? ''}',
                   style: StylesManager.styleLatoRegular16(context),
                 ),
               ],
@@ -63,7 +66,7 @@ class ShowImageTitle extends StatelessWidget {
                       onPressed: () {
                         favouriteController.favouriteOnPressed(
                           showDetailsController.showResultEntity,
-                          showDetailsController.showResultEntity.showType ??
+                          showDetailsController.showResultEntity?.showType ??
                               ShowType.Movie,
                         );
                       },

@@ -14,8 +14,11 @@ class AddToListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ShowDetailsController showDetailsController =
-        Get.find<ShowDetailsController>();
+    final ShowDetailsController
+    showDetailsController = Get.find<ShowDetailsController>(
+      tag:
+          "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
+    );
     return Column(
       children: [
         Row(
@@ -25,7 +28,7 @@ class AddToListWidget extends StatelessWidget {
               icon: FontAwesomeIcons.solidStar,
               title: StringsManager.rating,
               value:
-                  showDetailsController.showResultEntity.voteAverage
+                  showDetailsController.showResultEntity?.voteAverage
                       ?.toStringAsFixed(1) ??
                   '',
               iconColor: ColorManager.goldColor,
@@ -34,7 +37,7 @@ class AddToListWidget extends StatelessWidget {
               icon: FontAwesomeIcons.bolt,
               title: StringsManager.popularity,
               value:
-                  showDetailsController.showResultEntity.popularity
+                  showDetailsController.showResultEntity?.popularity
                       ?.toStringAsFixed(1) ??
                   '',
               iconColor: Colors.red,

@@ -16,28 +16,54 @@ class ShowSimilarTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ShowDetailsController showDetailsController =
-        Get.find<ShowDetailsController>();
-    return showDetailsController.showResultEntity.similarShows != null &&
-            showDetailsController.showResultEntity.similarShows!.isNotEmpty
+    final ShowDetailsController
+    showDetailsController = Get.find<ShowDetailsController>(
+      tag:
+          "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
+    );
+    return showDetailsController.showResultEntity?.similarShows != null &&
+            showDetailsController.showResultEntity!.similarShows!.isNotEmpty
         ? Column(
             children: [
-              ShowSection(
-                sectionTitle: StringsManager.moreLikeThis,
-                showAllOnTap: () => Get.toNamed(
-                  AppRoutes.kShowsSectionView,
-                  arguments: {
-                    'title': StringsManager.moreLikeThis,
-                    'showType': ShowType.Movie,
-                    'sectionType': SectionType.None,
-                    'showsList':
-                        showDetailsController.showResultEntity.similarShows ??
-                        [],
-                  },
-                ),
-                items:
-                    showDetailsController.showResultEntity.similarShows ?? [],
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        StringsManager.moreLikeThis,
+                        style: StylesManager.styleLatoBold20(context),
+                      ),
+                      Spacer(),
+                    ],
+                  ),
+                  SizedBox(height: 15),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width / .3 / .6,
+                    child: ListView.builder(
+                      physics: BouncingScrollPhysics(),
+                      itemBuilder: (context, index) => Padding(
+                        padding: EdgeInsets.only(right: 15),
+                        child: ShowCard(
+                          show:
+                              showDetailsController
+                                  .showResultEntity
+                                  ?.similarShows?[index] ??
+                              [],
+                        ),
+                      ),
+                      itemCount:
+                          showDetailsController
+                              .showResultEntity
+                              ?.similarShows
+                              ?.length ??
+                          0,
+                      scrollDirection: Axis.horizontal,
+                    ),
+                  ),
+                ],
               ),
+
               const SizedBox(height: 30),
             ],
           )

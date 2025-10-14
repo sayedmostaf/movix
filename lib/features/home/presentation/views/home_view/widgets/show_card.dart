@@ -18,6 +18,7 @@ class ShowCard extends StatelessWidget {
       onTap: () => Get.toNamed(
         AppRoutes.kShowDetailsView,
         arguments: {'showType': show.showType, 'id': show.id},
+        preventDuplicates: false,
       ),
       child: ConstrainedBox(
         constraints: BoxConstraints(

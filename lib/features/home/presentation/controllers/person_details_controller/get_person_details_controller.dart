@@ -6,7 +6,7 @@ import 'package:movix/features/home/domain/usecases/get_person_details_usecase.d
 
 class GetPersonDetailsController extends GetxController {
   final GetPersonDetailsUseCase getPersonDetailsUseCase;
-  late PersonResultEntity personResultEntity;
+  late PersonResultEntity? personResultEntity;
   RxBool loading = true.obs;
 
   GetPersonDetailsController({required this.getPersonDetailsUseCase});

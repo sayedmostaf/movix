@@ -13,10 +13,13 @@ class ShowReviewsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ShowDetailsController showDetailsController =
-        Get.find<ShowDetailsController>();
-    return showDetailsController.showResultEntity.review != null &&
-            showDetailsController.showResultEntity.review!.isNotEmpty
+    final ShowDetailsController
+    showDetailsController = Get.find<ShowDetailsController>(
+      tag:
+          "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
+    );
+    return showDetailsController.showResultEntity?.review != null &&
+            showDetailsController.showResultEntity!.review!.isNotEmpty
         ? Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -29,8 +32,8 @@ class ShowReviewsTab extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   Text(
-                    showDetailsController.showResultEntity.review?.length
-                            .toString() ??  
+                    showDetailsController.showResultEntity?.review?.length
+                            .toString() ??
                         '',
                     style: StylesManager.styleLatoBold20(
                       context,
@@ -54,14 +57,14 @@ class ShowReviewsTab extends StatelessWidget {
               const SizedBox(height: 15),
               Column(
                 children: List.generate(
-                  showDetailsController.showResultEntity.review!.length > 5
+                  showDetailsController.showResultEntity!.review!.length > 5
                       ? 5
-                      : showDetailsController.showResultEntity.review!.length,
+                      : showDetailsController.showResultEntity!.review!.length,
                   (index) => Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: ReviewCard(
                       reviewEntity:
-                          showDetailsController.showResultEntity.review![index],
+                          showDetailsController.showResultEntity!.review![index],
                     ),
                   ),
                 ),

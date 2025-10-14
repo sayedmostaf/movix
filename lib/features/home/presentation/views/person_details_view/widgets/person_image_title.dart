@@ -14,14 +14,17 @@ class PersonImageTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GetPersonDetailsController getPersonDetailsController =
-        Get.find<GetPersonDetailsController>();
+    final GetPersonDetailsController
+    getPersonDetailsController = Get.find<GetPersonDetailsController>(
+      tag:
+          "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
+    );
     return SizedBox(
       height: 40 * MediaQuery.of(context).size.width / 27,
       child: Stack(
         children: [
           buildCoverImage(
-            'https://image.tmdb.org/t/p/original${getPersonDetailsController.personResultEntity.profileUrl}',
+            'https://image.tmdb.org/t/p/original${getPersonDetailsController.personResultEntity?.profileUrl}',
           ),
           buildCoverOverlay(context),
           Positioned(
@@ -31,12 +34,12 @@ class PersonImageTitle extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  getPersonDetailsController.personResultEntity.name ?? "",
+                  getPersonDetailsController.personResultEntity?.name ?? "",
                   style: StylesManager.styleLatoBold25(context),
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  getPersonDetailsController.personResultEntity.role ?? "",
+                  getPersonDetailsController.personResultEntity?.role ?? "",
                   style: StylesManager.styleLatoRegular16(
                     context,
                   ).copyWith(color: ColorManager.primaryColor),

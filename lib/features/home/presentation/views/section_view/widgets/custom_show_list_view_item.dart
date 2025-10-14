@@ -17,6 +17,7 @@ class CustomShowListViewItem extends StatelessWidget {
       onTap: () => Get.toNamed(
         AppRoutes.kShowDetailsView,
         arguments: {'showType': show.showType, 'id': show.id},
+        preventDuplicates: false,
       ),
       child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.2,

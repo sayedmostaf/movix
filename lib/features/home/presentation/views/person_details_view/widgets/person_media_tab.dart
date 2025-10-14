@@ -12,25 +12,28 @@ class PersonMediaTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GetPersonDetailsController getPersonDetailsController =
-        Get.find<GetPersonDetailsController>();
+    final GetPersonDetailsController
+    getPersonDetailsController = Get.find<GetPersonDetailsController>(
+      tag:
+          "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
+    );
     return Column(
       children: [
-        if (getPersonDetailsController.personResultEntity.images != null &&
-            getPersonDetailsController.personResultEntity.images!.isNotEmpty)
+        if (getPersonDetailsController.personResultEntity?.images != null &&
+            getPersonDetailsController.personResultEntity!.images!.isNotEmpty)
           Column(
             children: [
               ImagesSection(
-                images: getPersonDetailsController.personResultEntity.images!,
+                images: getPersonDetailsController.personResultEntity!.images!,
                 title: StringsManager.images,
               ),
               const SizedBox(height: 15),
             ],
           ),
-        if (getPersonDetailsController.personResultEntity.relatedMovies !=
+        if (getPersonDetailsController.personResultEntity?.relatedMovies !=
                 null &&
             getPersonDetailsController
-                .personResultEntity
+                .personResultEntity!
                 .relatedMovies!
                 .isNotEmpty)
           Column(
@@ -45,32 +48,32 @@ class PersonMediaTab extends StatelessWidget {
                     'sectionType': SectionType.None,
                     'showsList': getPersonDetailsController
                         .personResultEntity
-                        .relatedMovies!,
+                        ?.relatedMovies!,
                   },
                   preventDuplicates: false,
                 ),
                 items:
                     getPersonDetailsController
-                            .personResultEntity
+                            .personResultEntity!
                             .relatedMovies!
                             .length >
                         20
                     ? getPersonDetailsController
-                          .personResultEntity
+                          .personResultEntity!
                           .relatedMovies!
                           .take(20)
                           .toList()
                     : getPersonDetailsController
-                          .personResultEntity
+                          .personResultEntity!
                           .relatedMovies!,
               ),
               const SizedBox(height: 15),
             ],
           ),
-        if (getPersonDetailsController.personResultEntity.relatedTvShows !=
+        if (getPersonDetailsController.personResultEntity?.relatedTvShows !=
                 null &&
             getPersonDetailsController
-                .personResultEntity
+                .personResultEntity!
                 .relatedTvShows!
                 .isNotEmpty)
           Column(
@@ -85,23 +88,23 @@ class PersonMediaTab extends StatelessWidget {
                     'sectionType': SectionType.None,
                     'showsList': getPersonDetailsController
                         .personResultEntity
-                        .relatedTvShows!,
+                        ?.relatedTvShows!,
                   },
                   preventDuplicates: false,
                 ),
                 items:
                     getPersonDetailsController
-                            .personResultEntity
+                            .personResultEntity!
                             .relatedTvShows!
                             .length >
                         20
                     ? getPersonDetailsController
-                          .personResultEntity
+                          .personResultEntity!
                           .relatedTvShows!
                           .take(20)
                           .toList()
                     : getPersonDetailsController
-                          .personResultEntity
+                          .personResultEntity!
                           .relatedTvShows!,
               ),
               const SizedBox(height: 30),
