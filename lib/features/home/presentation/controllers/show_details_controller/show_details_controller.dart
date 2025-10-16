@@ -81,6 +81,10 @@ class ShowDetailsController extends GetxController {
     update();
   }
 
+  get getYoutubeKeysCount {
+    return showResultEntity?.youtubeKeys?.length ?? 0;
+  }
+
   @override
   void onClose() {
     for (var video in videosControllers) {

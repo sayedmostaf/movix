@@ -14,6 +14,7 @@ import 'package:movix/features/home/data/models/movie_mini_result/movie_mini_res
 import 'package:movix/features/home/data/models/movie_result/movie_backdrop.dart';
 import 'package:movix/features/home/data/models/movie_result/movie_poster.dart';
 import 'package:movix/features/home/data/models/movie_result/movie_result.dart';
+import 'package:movix/features/home/data/models/movie_result/movie_reviews_result.dart';
 import 'package:movix/features/home/data/models/person_mini_result/person_mini_result.dart';
 import 'package:movix/features/home/data/models/person_result/images.dart';
 import 'package:movix/features/home/data/models/person_result/person_result.dart';
@@ -24,6 +25,7 @@ import 'package:movix/features/home/domain/entities/image_entity.dart';
 import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';
 import 'package:movix/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:movix/features/home/domain/entities/person_result_entity.dart';
+import 'package:movix/features/home/domain/entities/review_entity.dart';
 import 'package:movix/features/home/domain/entities/season_result_entity.dart';
 import 'package:movix/features/home/domain/entities/show_result_entity.dart';
 import 'package:movix/features/home/domain/entities/tv_show_mini_result_entity.dart';
@@ -160,6 +162,7 @@ extension MovieResultX on MovieResult {
           : DateTime.parse(releaseDate!),
       duration: formatTime(runtime ?? 0),
       showType: ShowType.Movie,
+      totalReviewsNumber: movieReviews?.totalResults,
     );
   }
 }
@@ -188,6 +191,7 @@ extension TVResultX on TvResult {
           : DateTime.parse(firstAirDate!),
       duration: '${numberOfEpisodes ?? 0} eps',
       showType: ShowType.TV,
+      totalReviewsNumber: tvReviews?.totalResults,
     );
   }
 }
@@ -215,6 +219,20 @@ extension SeasonResultX on SeasonResult {
       seasonVoteAverage: voteAverage,
       seasonOverview: overview,
       episodes: parseEpisodes(episodes ?? []),
+    );
+  }
+}
+
+extension MovieReviewResultX on MovieReviewsResult {
+  ReviewEntity toEntity() {
+    return ReviewEntity(
+      id: id ?? '',
+      userName: authorDetails?.name,
+      voteAverage: authorDetails?.rating?.toDouble(),
+      reviewContent: content,
+      reviewDate: createdAt,
+      userProfile: authorDetails?.avatarPath,
+      userMail: authorDetails?.username,
     );
   }
 }

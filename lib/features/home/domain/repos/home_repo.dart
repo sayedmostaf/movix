@@ -4,6 +4,7 @@ import 'package:movix/core/widgets/functions/enums.dart';
 import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';
 import 'package:movix/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:movix/features/home/domain/entities/person_result_entity.dart';
+import 'package:movix/features/home/domain/entities/review_entity.dart';
 import 'package:movix/features/home/domain/entities/season_result_entity.dart';
 import 'package:movix/features/home/domain/entities/show_result_entity.dart';
 import 'package:movix/features/home/domain/entities/tv_show_mini_result_entity.dart';
@@ -36,5 +37,10 @@ abstract class HomeRepo {
   Future<Either<Failure, SeasonResultEntity>> getSeasonDetails(
     int showId,
     int seasonNumber,
+  );
+  Future<Either<Failure, List<ReviewEntity>>> getReviews(
+    int page,
+    int showId,
+    ShowType showType,
   );
 }

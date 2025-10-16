@@ -32,7 +32,7 @@ class ShowReviewsTab extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   Text(
-                    showDetailsController.showResultEntity?.review?.length
+                    showDetailsController.showResultEntity?.totalReviewsNumber
                             .toString() ??
                         '',
                     style: StylesManager.styleLatoBold20(
@@ -43,7 +43,14 @@ class ShowReviewsTab extends StatelessWidget {
                   GestureDetector(
                     onTap: () => Get.toNamed(
                       AppRoutes.kMediaView,
-                      arguments: {'mediaType': MediaType.Reviews},
+                      arguments: {
+                        'mediaType': MediaType.Reviews,
+                        'mediaList':
+                            showDetailsController.showResultEntity!.review!,
+                        'showId': showDetailsController.showResultEntity!.id,
+                        'showType':
+                            showDetailsController.showResultEntity!.showType,
+                      },
                     ),
                     child: Text(
                       StringsManager.showAll,
@@ -63,8 +70,9 @@ class ShowReviewsTab extends StatelessWidget {
                   (index) => Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: ReviewCard(
-                      reviewEntity:
-                          showDetailsController.showResultEntity!.review![index],
+                      reviewEntity: showDetailsController
+                          .showResultEntity!
+                          .review![index],
                     ),
                   ),
                 ),

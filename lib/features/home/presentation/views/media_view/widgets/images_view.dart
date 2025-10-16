@@ -2,60 +2,95 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
+import 'package:movix/core/utils/assets_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/widgets/custom_app_bar.dart';
+import 'package:movix/core/widgets/functions/show_full_screen_image.dart';
+import 'package:movix/features/home/presentation/controllers/media_controllers/media_controller.dart';
 
 class ImagesView extends StatelessWidget {
   const ImagesView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final MediaController mediaController = Get.find<MediaController>();
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: CustomScrollView(
+        controller: mediaController.scrollController,
         slivers: [
           const SliverToBoxAdapter(child: SizedBox(height: 50)),
           const SliverToBoxAdapter(
             child: CustomAppBar(sectionName: StringsManager.images),
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 30)),
-          SliverGrid(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 1.0,
-              crossAxisSpacing: 15,
-              mainAxisSpacing: 15,
-            ),
-            delegate: SliverChildBuilderDelegate((
-              BuildContext context,
-              int index,
-            ) {
-              return GestureDetector(
-                onTap: () => Get.dialog(
-                  Dialog(
-                    backgroundColor: Colors.transparent,
-                    child: CachedNetworkImage(
-                      imageUrl:
-                          'https://image.tmdb.org/t/p/original/ApitDfnYDwFNOPfyVuhW5ElWzhe.jpg',
-                    ),
-                  ),
-                  barrierDismissible: true,
-                ),
-                child: Container(
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: CachedNetworkImageProvider(
-                        'https://image.tmdb.org/t/p/original/ePXuKdXZuJx8hHMNr2yM4jY2L7Z.jpg',
+          SliverToBoxAdapter(
+            child: GetBuilder<MediaController>(
+              builder: (mediaController) {
+                return Wrap(
+                  spacing: 5,
+                  runSpacing: 5,
+                  children: List.generate(
+                    mediaController.mediaList.length,
+                    (index) => GestureDetector(
+                      onTap: () => showFullScreenImage(
+                        context,
+                        mediaController.mediaList[index],
                       ),
-                      fit: BoxFit.cover,
+                      child: SizedBox(
+                        width:
+                            (MediaQuery.of(context).size.width - 40 - 10) / 2,
+                        child: AspectRatio(
+                          aspectRatio:
+                              mediaController.mediaList[index].aspectRatio > 1
+                              ? 1.7
+                              : 0.667,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: CachedNetworkImage(
+                              imageUrl:
+                                  'https://image.tmdb.org/t/p/original/${mediaController.mediaList[index].filePath}',
+                              placeholder: (context, url) => Center(
+                                child: Lottie.asset(
+                                  Assets.assetsAnimationsMovieLoading,
+                                ),
+                              ),
+                              errorWidget: (context, url, error) => Center(
+                                child: Image.asset(
+                                  Assets.assetsImagesTv,
+                                  height: 80,
+                                  width: 80,
+                                ),
+                              ),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
                   ),
-                ),
-              );
-            }, childCount: 11),
+                );
+              },
+            ),
           ),
-          SliverToBoxAdapter(child: SizedBox(height: 30)),
+          SliverToBoxAdapter(
+            child: Obx(() {
+              if (mediaController.loadingMore.isTrue) {
+                return Center(
+                  child: Lottie.asset(
+                    Assets.assetsAnimationsMovieLoading,
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    height: MediaQuery.of(context).size.width * .5,
+                  ),
+                );
+              } else {
+                return SizedBox.shrink();
+              }
+            }),
+          ),
+          SliverToBoxAdapter(child: SizedBox(height: 15)),
         ],
       ),
     );

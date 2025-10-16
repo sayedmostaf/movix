@@ -28,7 +28,7 @@ class VideosSection extends StatelessWidget {
             ),
             SizedBox(width: 10),
             Text(
-              showDetailsController.videosControllers.length.toString(),
+              showDetailsController.getYoutubeKeysCount.toString(),
               style: StylesManager.styleLatoBold20(
                 context,
               ).copyWith(color: Colors.grey),
@@ -37,7 +37,11 @@ class VideosSection extends StatelessWidget {
             GestureDetector(
               onTap: () => Get.toNamed(
                 AppRoutes.kMediaView,
-                arguments: {'mediaType': MediaType.Videos},
+                arguments: {
+                  'mediaType': MediaType.Videos,
+                  'mediaList':
+                      showDetailsController.showResultEntity!.youtubeKeys,
+                },
               ),
               child: Text(
                 StringsManager.showAll,

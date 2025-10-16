@@ -25,6 +25,7 @@ class ShowResultEntity {
   final List<String>? youtubeKeys;
   final List<ReviewEntity>? review;
   final List<dynamic>? similarShows;
+  final int? totalReviewsNumber;
 
   ShowResultEntity({
     required this.id,
@@ -44,6 +45,7 @@ class ShowResultEntity {
     required this.releaseDate,
     required this.duration,
     required this.showType,
+    required this.totalReviewsNumber,
   });
   Map<String, dynamic> toJson() {
     return {
@@ -117,6 +119,7 @@ class ShowResultEntity {
           ?.map((x) => ReviewEntity.fromJson(x))
           .toList(),
       similarShows: _deserializeSimilarShows(json['similarShows'], showType),
+      totalReviewsNumber: json['totalReviewsNumber'],
     );
   }
 
