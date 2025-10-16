@@ -3,12 +3,13 @@ import 'package:movix/features/lists/domain/entities/show_mini_result_entity.dar
 
 part 'list_entity.g.dart';
 
-
 @JsonSerializable()
 class ListEntity {
   final String? title;
-  final List<ShowMiniResultEntity>?shows;
-   ListEntity({required this.title, required this.shows});
+  final String id;
+
+  final List<ShowMiniResultEntity>? shows;
+  ListEntity({required this.id, required this.title, required this.shows});
   factory ListEntity.fromJson(Map<String, dynamic> json) =>
       _$ListEntityFromJson(json);
 

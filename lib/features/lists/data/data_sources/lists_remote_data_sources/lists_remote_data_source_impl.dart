@@ -27,4 +27,14 @@ class ListsRemoteDataSourceImpl implements ListsRemoteDataSource {
     }
     return lists;
   }
+
+  @override
+  Future<void> createNewList(ListEntity list) async {
+    await firebaseFirestore
+        .collection('users')
+        .doc(firebaseAuth.currentUser!.uid)
+        .collection('lists')
+        .doc(list.id)
+        .set(list.toJson());
+  }
 }

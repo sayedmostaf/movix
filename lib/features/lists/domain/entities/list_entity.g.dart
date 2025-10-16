@@ -7,6 +7,7 @@ part of 'list_entity.dart';
 // **************************************************************************
 
 ListEntity _$ListEntityFromJson(Map<String, dynamic> json) => ListEntity(
+  id: json['id'] as String,
   title: json['title'] as String?,
   shows: (json['shows'] as List<dynamic>?)
       ?.map((e) => ShowMiniResultEntity.fromJson(e as Map<String, dynamic>))
@@ -14,4 +15,8 @@ ListEntity _$ListEntityFromJson(Map<String, dynamic> json) => ListEntity(
 );
 
 Map<String, dynamic> _$ListEntityToJson(ListEntity instance) =>
-    <String, dynamic>{'title': instance.title, 'shows': instance.shows};
+    <String, dynamic>{
+      'title': instance.title,
+      'id': instance.id,
+      'shows': instance.shows,
+    };

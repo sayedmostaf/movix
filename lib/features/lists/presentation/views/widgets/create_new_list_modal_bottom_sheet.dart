@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
+import 'package:movix/features/lists/presentation/controllers/create_new_list_controller.dart';
 
 class CreateNewListModalBottomSheet extends StatelessWidget {
   const CreateNewListModalBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final createNewListController = Get.find<CreateNewListController>();
     return BottomSheet(
       builder: (BuildContext context) => Padding(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
@@ -28,6 +30,7 @@ class CreateNewListModalBottomSheet extends StatelessWidget {
             ),
             const SizedBox(height: 5),
             TextField(
+              controller: createNewListController.controller,
               decoration: InputDecoration(
                 fillColor: Color.lerp(
                   ColorManager.primaryColor,
@@ -52,7 +55,7 @@ class CreateNewListModalBottomSheet extends StatelessWidget {
             SizedBox(
               height: 50,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: createNewListController.onPressedCreate,
                 child: Text(
                   StringsManager.create,
                   style: StylesManager.styleLatoBold20(

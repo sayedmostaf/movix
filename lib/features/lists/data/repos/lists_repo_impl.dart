@@ -20,4 +20,16 @@ class ListsRepoImpl extends ListsRepo {
       return Left(Failure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> createNewList(ListEntity list) async {
+    try {
+      await listsRemoteDataSource.createNewList(list);
+      return right(null);
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return Left(Failure(message: e.toString()));
+    }
+  }
 }

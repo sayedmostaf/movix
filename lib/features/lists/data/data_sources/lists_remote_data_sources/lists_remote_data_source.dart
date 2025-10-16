@@ -2,4 +2,5 @@ import 'package:movix/features/lists/domain/entities/list_entity.dart';
 
 abstract class ListsRemoteDataSource {
   Future<List<ListEntity>> getUserLists();
+  Future<void> createNewList(ListEntity list);
 }
