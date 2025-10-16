@@ -23,6 +23,12 @@ import 'package:movix/features/home/presentation/controllers/home_controllers/pi
 import 'package:movix/features/home/presentation/controllers/home_controllers/trending_movies_controller.dart';
 import 'package:movix/features/home/presentation/controllers/home_controllers/trending_people_controller.dart';
 import 'package:movix/features/home/presentation/controllers/home_controllers/trending_tv_shows_controller.dart';
+import 'package:movix/features/lists/data/data_sources/lists_remote_data_sources/lists_remote_data_source.dart';
+import 'package:movix/features/lists/data/data_sources/lists_remote_data_sources/lists_remote_data_source_impl.dart';
+import 'package:movix/features/lists/data/repos/lists_repo_impl.dart';
+import 'package:movix/features/lists/domain/repos/lists_repo.dart';
+import 'package:movix/features/lists/domain/usecases/get_user_lists_usecase.dart';
+import 'package:movix/features/lists/presentation/controllers/get_user_lists_controller.dart';
 import 'package:movix/features/main/presentation/controllers/bottom_navigation_bar_controller.dart';
 
 class MainBinding extends Bindings {
@@ -112,6 +118,25 @@ class MainBinding extends Bindings {
     );
     Get.lazyPut<CheckFavouriteUseCase>(
       () => CheckFavouriteUseCase(homeRepo: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut<ListsRemoteDataSource>(
+      () => ListsRemoteDataSourceImpl(
+        firebaseAuth: Get.find(),
+        firebaseFirestore: Get.find(),
+      ),
+      fenix: true,
+    );
+    Get.lazyPut<ListsRepo>(
+      () => ListsRepoImpl(listsRemoteDataSource: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut<GetUserListsUseCase>(
+      () => GetUserListsUseCase(listsRepo: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut<GetUserListsController>(
+      () => GetUserListsController(getUserListsUseCase: Get.find()),
       fenix: true,
     );
   }

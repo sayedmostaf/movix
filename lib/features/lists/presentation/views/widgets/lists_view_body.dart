@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
+import 'package:movix/features/lists/presentation/controllers/get_user_lists_controller.dart';
 import 'package:movix/features/lists/presentation/views/widgets/create_new_list_button.dart';
 import 'package:movix/features/lists/presentation/views/widgets/lists_item.dart';
 
@@ -33,12 +35,19 @@ class ListsViewBody extends StatelessWidget {
                 ),
               ),
               const SliverToBoxAdapter(child: SizedBox(height: 10)),
-              SliverList.builder(
-                itemBuilder: (context, index) => Padding(
-                  padding: EdgeInsets.only(bottom: 15),
-                  child: ListsItem(),
-                ),
-                itemCount: 5,
+              GetBuilder<GetUserListsController>(
+                builder: (getUserListsController) {
+                  return SliverList.builder(
+                    itemBuilder: (context, index) => Padding(
+                      padding: EdgeInsets.only(bottom: 15),
+                      child: ListsItem(
+                        index: index,
+                        listEntity: getUserListsController.lists[index],
+                      ),
+                    ),
+                    itemCount: getUserListsController.lists.length,
+                  );
+                },
               ),
               const SliverToBoxAdapter(child: SizedBox(height: 70)),
             ],

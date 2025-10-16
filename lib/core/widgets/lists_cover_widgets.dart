@@ -1,5 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:movix/core/utils/assets_manager.dart';
+import 'package:movix/core/utils/color_manager.dart';
 
 class ListsCoverWidget extends StatelessWidget {
   const ListsCoverWidget({
@@ -8,7 +11,7 @@ class ListsCoverWidget extends StatelessWidget {
     required this.banners,
   });
   final double widgetWidth;
-  final List<String> banners;
+  final List<String?> banners;
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +33,23 @@ class ListsCoverWidget extends StatelessWidget {
                     boxShadow: const [
                       BoxShadow(blurRadius: 10, spreadRadius: 5),
                     ],
-                    image: DecorationImage(
-                      image: CachedNetworkImageProvider(banners[index]),
-                      fit: BoxFit.cover,
-                    ),
+                    border: Border.all(color: ColorManager.primaryColor),
+
                     borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: CachedNetworkImage(
+                    imageUrl:
+                        'https://image.tmdb.org/t/p/original${banners[index]}',
+                    placeholder: (context, url) => Center(
+                      child: Lottie.asset(Assets.assetsAnimationsMovieLoading),
+                    ),
+                    errorWidget: (context, url, error) => Center(
+                      child: Image.asset(
+                        Assets.assetsImagesTv,
+                        height: 80,
+                        width: 80,
+                      ),
+                    ),
                   ),
                 ),
               ),

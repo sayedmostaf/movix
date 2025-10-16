@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:movix/features/home/presentation/views/home_view/widgets/home_view_shimmer.dart';
+import 'package:movix/features/lists/presentation/controllers/get_user_lists_controller.dart';
 import 'package:movix/features/lists/presentation/views/widgets/lists_view_body.dart';
 
 class ListsView extends StatelessWidget {
@@ -6,6 +9,16 @@ class ListsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: ListsViewBody());
+    final GetUserListsController getUserListsController =
+        Get.find<GetUserListsController>();
+    return Scaffold(
+      body: Obx(() {
+        if (getUserListsController.loading.isTrue) {
+          return HomeViewShimmer();
+        } else {
+          return ListsViewBody();
+        }
+      }),
+    );
   }
 }
