@@ -6,6 +6,7 @@ import 'package:movix/core/bindings/improve_your_feed_binding.dart';
 import 'package:movix/core/bindings/main_binding.dart';
 import 'package:movix/core/bindings/media_binding.dart';
 import 'package:movix/core/bindings/onboarding_binding.dart';
+import 'package:movix/core/bindings/season_details_binding.dart';
 import 'package:movix/core/bindings/section_binding.dart';
 import 'package:movix/core/bindings/show_details_binding.dart';
 import 'package:movix/core/bindings/show_person_details_binding.dart';
@@ -146,6 +147,7 @@ class AppRoutes {
       page: () => const SeasonDetailsView(),
       transition: Transition.fadeIn,
       curve: Curves.easeInOut,
+      binding: SeasonDetailsBinding(),
       transitionDuration: const Duration(milliseconds: 500),
     ),
   ];

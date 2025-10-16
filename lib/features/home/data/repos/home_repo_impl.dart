@@ -8,6 +8,7 @@ import 'package:movix/features/home/data/data_sources/home_remote_data_source.da
 import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';
 import 'package:movix/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:movix/features/home/domain/entities/person_result_entity.dart';
+import 'package:movix/features/home/domain/entities/season_result_entity.dart';
 import 'package:movix/features/home/domain/entities/show_result_entity.dart';
 import 'package:movix/features/home/domain/entities/tv_show_mini_result_entity.dart';
 import 'package:movix/features/home/domain/repos/home_repo.dart';
@@ -163,6 +164,24 @@ class HomeRepoImpl extends HomeRepo {
   ) async {
     try {
       var results = await homeRemoteDataSource.getShowDetails(id, showType);
+      return right(results);
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return left(Failure(message: StringsManager.somethingWentWrong));
+    }
+  }
+
+  @override
+  Future<Either<Failure, SeasonResultEntity>> getSeasonDetails(
+    int showId,
+    int seasonNumber,
+  ) async {
+    try {
+      var results = await homeRemoteDataSource.getSeasonDetails(
+        showId,
+        seasonNumber,
+      );
       return right(results);
     } on DioException catch (e) {
       return left(ServerFailure.fromDioException(e));
