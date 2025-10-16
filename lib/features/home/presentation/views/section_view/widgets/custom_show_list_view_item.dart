@@ -16,7 +16,7 @@ class CustomShowListViewItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(5),
       onTap: () => Get.toNamed(
         AppRoutes.kShowDetailsView,
-        arguments: {'showType': show.showType, 'id': show.id},
+        arguments: {'id': show.id, 'showType': show.showType},
         preventDuplicates: false,
       ),
       child: SizedBox(

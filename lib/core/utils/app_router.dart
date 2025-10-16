@@ -16,6 +16,7 @@ import 'package:movix/features/auth/presentation/views/forget_password_view/forg
 import 'package:movix/features/auth/presentation/views/improve_your_feeds_view/improve_your_feeds_view.dart';
 import 'package:movix/features/home/presentation/views/media_view/media_view.dart';
 import 'package:movix/features/home/presentation/views/person_details_view/person_details_view.dart';
+import 'package:movix/features/home/presentation/views/season_details_view/season_details_view.dart';
 import 'package:movix/features/home/presentation/views/section_view/section_view.dart';
 import 'package:movix/features/home/presentation/views/show_details_view/views/show_details_view.dart';
 import 'package:movix/features/main/presentation/view/main_view.dart';
@@ -39,6 +40,7 @@ class AppRoutes {
   static const kPersonDetailsView = '/personDetails';
   static const kMediaView = '/media';
   static const kSettingsView = '/settings';
+  static const kSeasonDetailsView = '/seasonDetails';
 
   static List<GetPage<dynamic>>? getPages = [
     GetPage(
@@ -135,6 +137,13 @@ class AppRoutes {
     GetPage(
       name: kSettingsView,
       page: () => const SettingsView(),
+      transition: Transition.fadeIn,
+      curve: Curves.easeInOut,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: kSeasonDetailsView,
+      page: () => const SeasonDetailsView(),
       transition: Transition.fadeIn,
       curve: Curves.easeInOut,
       transitionDuration: const Duration(milliseconds: 500),

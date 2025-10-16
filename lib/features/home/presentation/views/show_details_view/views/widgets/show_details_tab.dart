@@ -35,6 +35,7 @@ class ShowDetailsTab extends StatelessWidget {
               const SizedBox(height: 10),
               SeasonsGuideListView(
                 seasons: showDetailsController.showResultEntity?.seasons ?? [],
+                id: showDetailsController.showResultEntity!.id,
               ),
               const SizedBox(height: 15),
             ],

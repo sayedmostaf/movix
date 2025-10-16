@@ -29,7 +29,7 @@ class MoreInfoColumn extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () => Get.toNamed(
                 AppRoutes.kShowDetailsView,
-                arguments: {'showType': movie.showType, 'id': movie.id},
+                arguments: {'id': movie.id, 'showType': movie.showType},
                 preventDuplicates: false,
               ),
               style: ButtonStyle(

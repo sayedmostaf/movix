@@ -4,17 +4,17 @@ import 'package:movix/features/home/presentation/controllers/favourite_controlle
 import 'package:movix/features/home/presentation/controllers/show_details_controller/show_details_controller.dart';
 
 class ShowDetailsBinding extends Bindings {
-  final String uniqueTag =
-      "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}";
   @override
   void dependencies() {
+    final String uniqueTag =
+        "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}";
     Get.lazyPut<GetShowDetailsUseCase>(
       () => GetShowDetailsUseCase(homeRepo: Get.find()),
       fenix: true,
     );
     Get.lazyPut(
-      tag: uniqueTag,
       () => ShowDetailsController(getShowDetailsUseCase: Get.find()),
+      tag: uniqueTag,
     );
     Get.lazyPut(
       () => FavouriteController(
@@ -23,6 +23,7 @@ class ShowDetailsBinding extends Bindings {
         checkFavouritePersonUseCase: Get.find(),
       ),
       fenix: true,
+      tag: uniqueTag,
     );
   }
 }

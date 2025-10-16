@@ -16,8 +16,11 @@ class PersonDetailsView extends StatelessWidget {
       tag:
           "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
     );
-    final FavouriteController favouriteController =
-        Get.find<FavouriteController>();
+    final FavouriteController
+    favouriteController = Get.find<FavouriteController>(
+      tag:
+          "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
+    );
     return Scaffold(
       body: Stack(
         children: [

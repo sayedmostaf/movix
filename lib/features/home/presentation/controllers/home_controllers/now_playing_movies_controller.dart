@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';

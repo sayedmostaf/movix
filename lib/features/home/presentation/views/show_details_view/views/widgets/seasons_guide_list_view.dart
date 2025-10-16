@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/styles_manager.dart';
-import 'package:movix/features/home/data/data_sources/dummy_data.dart';
 import 'package:movix/features/home/domain/entities/season_entity.dart';
 import 'package:movix/features/home/presentation/views/section_view/widgets/show_image.dart';
 
 class SeasonsGuideListView extends StatelessWidget {
-  const SeasonsGuideListView({super.key, required this.seasons});
+  const SeasonsGuideListView({
+    super.key,
+    required this.seasons,
+    required this.id,
+  });
   final List<SeasonEntity> seasons;
+  final int id;
 
   @override
   Widget build(BuildContext context) {
@@ -15,20 +21,31 @@ class SeasonsGuideListView extends StatelessWidget {
       child: ListView.builder(
         itemBuilder: (context, index) => Padding(
           padding: EdgeInsets.only(right: 15),
-          child: Column(
-            children: [
-              Flexible(
-                child: ShowImage(
-                  imageUrl:
-                      'https://image.tmdb.org/t/p/original${seasons[index].seasonPoster}',
+          child: InkWell(
+            borderRadius: BorderRadius.circular(5),
+            onTap: () => Get.toNamed(
+              AppRoutes.kSeasonDetailsView,
+              arguments: {
+                'id': id,
+                'seasonNumber': seasons[index].seasonNumber,
+              },
+              preventDuplicates: false,
+            ),
+            child: Column(
+              children: [
+                Flexible(
+                  child: ShowImage(
+                    imageUrl:
+                        'https://image.tmdb.org/t/p/original${seasons[index].seasonPoster}',
+                  ),
                 ),
-              ),
-              const SizedBox(height: 5),
-              Text(
-                'Season ${seasons[index].seasonNumber}',
-                style: StylesManager.styleLatoRegular14(context),
-              ),
-            ],
+                const SizedBox(height: 5),
+                Text(
+                  'Season ${seasons[index].seasonNumber}',
+                  style: StylesManager.styleLatoRegular14(context),
+                ),
+              ],
+            ),
           ),
         ),
         itemCount: seasons.length,

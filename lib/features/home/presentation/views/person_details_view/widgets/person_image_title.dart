@@ -60,6 +60,8 @@ class PersonImageTitle extends StatelessWidget {
                   color: ColorManager.primaryColor,
                 ),
                 GetBuilder<FavouriteController>(
+                  tag:
+                      "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
                   builder: (favouriteController) {
                     return IconButton(
                       onPressed: favouriteController.favouriteOnPressed(
