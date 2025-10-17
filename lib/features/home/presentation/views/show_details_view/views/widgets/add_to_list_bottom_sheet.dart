@@ -6,6 +6,7 @@ import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/features/home/domain/entities/show_result_entity.dart';
 import 'package:movix/features/home/presentation/views/show_details_view/views/widgets/list_item.dart';
 import 'package:movix/features/lists/presentation/controllers/get_user_lists_controller.dart';
+import 'package:movix/features/lists/presentation/views/widgets/create_new_list_button.dart';
 import 'package:movix/features/lists/presentation/views/widgets/lists_item.dart';
 
 class AddToListBottomSheet extends StatelessWidget {
@@ -47,6 +48,8 @@ class AddToListBottomSheet extends StatelessWidget {
                 );
               }
             }),
+            SizedBox(height: 10,),
+            CreateNewListButton(),
           ],
         ),
       ),

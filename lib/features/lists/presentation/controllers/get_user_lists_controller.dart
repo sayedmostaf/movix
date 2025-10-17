@@ -9,8 +9,8 @@ import 'package:movix/features/lists/domain/usecases/get_user_lists_usecase.dart
 class GetUserListsController extends GetxController {
   final GetUserListsUseCase getUserListsUseCase;
   RxBool loading = false.obs;
-  List<ListEntity> lists = [];
-  List<List<String?>> banners = [];
+  RxList lists = [].obs;
+  RxList banners = [].obs;
   GetUserListsController({required this.getUserListsUseCase});
   @override
   void onInit() {
@@ -19,7 +19,8 @@ class GetUserListsController extends GetxController {
   }
 
   void getuserLists() async {
-    lists = [];
+    lists.value = [];
+    banners.value = [];
     loading.value = true;
     var result = await getUserListsUseCase.execute();
     result.fold(

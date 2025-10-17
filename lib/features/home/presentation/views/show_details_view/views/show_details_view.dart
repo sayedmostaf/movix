@@ -22,8 +22,6 @@ class ShowDetailsView extends StatelessWidget {
       tag:
           "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
     );
-    final AddRemoveShowToListController addRemoveShowToListController =
-        Get.find<AddRemoveShowToListController>();
     return Scaffold(
       body: Stack(
         children: [
@@ -37,13 +35,6 @@ class ShowDetailsView extends StatelessWidget {
           }),
           Obx(() {
             if (favouriteController.loading.isTrue) {
-              return LoadingOverlay();
-            } else {
-              return SizedBox.shrink();
-            }
-          }),
-          Obx(() {
-            if (addRemoveShowToListController.loading.isTrue) {
               return LoadingOverlay();
             } else {
               return SizedBox.shrink();

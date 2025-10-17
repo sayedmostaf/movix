@@ -9,7 +9,6 @@ import 'package:uuid/uuid.dart';
 
 class CreateNewListController extends GetxController {
   final CreateNewListUseCase createNewListUseCase;
-  RxBool loading = false.obs;
   TextEditingController? controller;
   CreateNewListController({required this.createNewListUseCase});
   @override
@@ -25,7 +24,6 @@ class CreateNewListController extends GetxController {
   }
 
   void createNewList(ListEntity list) async {
-    loading.value = true;
     var result = await createNewListUseCase.execute(list);
     result.fold(
       (failure) => Get.snackbar(
@@ -40,10 +38,9 @@ class CreateNewListController extends GetxController {
           backgroundColor: Colors.green.withOpacity(0.5),
         );
         final getUserListsController = Get.find<GetUserListsController>();
-        getUserListsController.getuserLists();
+        getUserListsController.lists.add(list);
       },
     );
-    loading.value = false;
   }
 
   void Function()? onPressedCreate() {
