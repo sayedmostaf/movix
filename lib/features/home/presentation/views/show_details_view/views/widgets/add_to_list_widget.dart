@@ -47,21 +47,7 @@ class AddToListWidget extends StatelessWidget {
         SizedBox(height: 15),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20),
-          child: true
-              ? const ListsDropDown()
-              // ignore: dead_code
-              : ListButton(
-                  content: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      const Icon(FontAwesomeIcons.check),
-                      Text(
-                        '${StringsManager.addedTo} List 1',
-                        style: StylesManager.styleLatoRegular18(context),
-                      ),
-                    ],
-                  ),
-                ),
+          child: const ListsDropDown(),
         ),
       ],
     );

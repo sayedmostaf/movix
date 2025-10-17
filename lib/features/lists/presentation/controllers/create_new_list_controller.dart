@@ -50,6 +50,7 @@ class CreateNewListController extends GetxController {
     if (controller!.text != null && controller!.text.length >= 3) {
       final listTitle = controller!.text;
       createNewList(ListEntity(id: Uuid().v4(), title: listTitle, shows: []));
+      Get.back();
     } else {
       Get.snackbar(
         StringsManager.operationFailed,

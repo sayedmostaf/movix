@@ -5,6 +5,7 @@ import 'package:movix/features/home/domain/entities/person_result_entity.dart';
 import 'package:movix/features/home/domain/entities/review_entity.dart';
 import 'package:movix/features/home/domain/entities/season_result_entity.dart';
 import 'package:movix/features/home/domain/entities/tv_show_mini_result_entity.dart';
+import 'package:movix/features/lists/domain/entities/show_mini_result_entity.dart';
 
 abstract class HomeRemoteDataSource {
   Future<List<MovieMiniResultEntity>> getTrendingMovies(int page);
@@ -26,4 +27,6 @@ abstract class HomeRemoteDataSource {
     int showId,
     ShowType showType,
   );
+  Future<void> addShowToList(String listId, ShowMiniResultEntity show);
+  Future<void> removeShowFromList(String listId, int showId);
 }

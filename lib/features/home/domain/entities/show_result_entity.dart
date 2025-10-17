@@ -17,6 +17,7 @@ class ShowResultEntity {
   final String? overview;
   final String? duration;
   final ShowType? showType;
+  final int? voteCount;
 
   final List<PersonMiniResultEntity>? castAndCrew;
   final List<ImageEntity>? imagesBackdrop;
@@ -28,6 +29,7 @@ class ShowResultEntity {
   final int? totalReviewsNumber;
 
   ShowResultEntity({
+    required this.voteCount,
     required this.id,
     required this.name,
     required this.posterUrl,
@@ -66,6 +68,8 @@ class ShowResultEntity {
       'youtubeKeys': youtubeKeys,
       'review': review?.map((x) => x.toJson()).toList(),
       'similarShows': _serializeSimilarShows(),
+      'voteCount': voteCount,
+      'totalReviewsNumber': totalReviewsNumber,
     };
   }
 
@@ -120,6 +124,7 @@ class ShowResultEntity {
           .toList(),
       similarShows: _deserializeSimilarShows(json['similarShows'], showType),
       totalReviewsNumber: json['totalReviewsNumber'],
+      voteCount: json['voteCount'],
     );
   }
 

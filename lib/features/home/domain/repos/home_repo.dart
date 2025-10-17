@@ -8,6 +8,7 @@ import 'package:movix/features/home/domain/entities/review_entity.dart';
 import 'package:movix/features/home/domain/entities/season_result_entity.dart';
 import 'package:movix/features/home/domain/entities/show_result_entity.dart';
 import 'package:movix/features/home/domain/entities/tv_show_mini_result_entity.dart';
+import 'package:movix/features/lists/domain/entities/show_mini_result_entity.dart';
 
 abstract class HomeRepo {
   Future<Either<Failure, List<MovieMiniResultEntity>>> getTrendingMovies(
@@ -43,4 +44,9 @@ abstract class HomeRepo {
     int showId,
     ShowType showType,
   );
+  Future<Either<Failure, void>> addShowToList(
+    String listId,
+    ShowMiniResultEntity show,
+  );
+  Future<Either<Failure, void>> removeShowFromList(String listId, int showId);
 }

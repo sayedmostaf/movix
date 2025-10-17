@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:movix/core/utils/color_manager.dart';
+import 'package:get/get.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
+import 'package:movix/features/home/presentation/controllers/show_details_controller/show_details_controller.dart';
+import 'package:movix/features/home/presentation/views/show_details_view/views/widgets/add_to_list_bottom_sheet.dart';
 import 'package:movix/features/home/presentation/views/show_details_view/views/widgets/list_button.dart';
 
 class ListsDropDown extends StatelessWidget {
@@ -10,45 +12,26 @@ class ListsDropDown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: Theme.of(context).copyWith(
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
+    final ShowDetailsController
+    showDetailsController = Get.find<ShowDetailsController>(
+      tag:
+          "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
+    );
+    return GestureDetector(
+      onTap: () => Get.bottomSheet(
+        AddToListBottomSheet(show: showDetailsController.showResultEntity),
       ),
-      child: PopupMenuButton(
-        color: Color.lerp(ColorManager.primaryColor, Colors.black, 0.9),
-        offset: Offset.fromDirection(1.25, 40),
-        itemBuilder: (context) => [
-          PopupMenuItem<String>(
-            value: 'List 1',
-            child: Text(
-              'List 1',
+      child: ListButton(
+        content: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            const Icon(FontAwesomeIcons.plus),
+            Text(
+              StringsManager.addToMyList,
               style: StylesManager.styleLatoRegular18(context),
             ),
-          ),
-          PopupMenuItem<String>(
-            value: 'List 2',
-            child: Text(
-              'List 2',
-              style: StylesManager.styleLatoRegular18(context),
-            ),
-          ),
-        ],
-        onSelected: (selected) {
-          print(selected);
-        },
-        child: ListButton(
-          content: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Icon(FontAwesomeIcons.plus),
-              Text(
-                StringsManager.addToMyList,
-                style: StylesManager.styleLatoRegular18(context),
-              ),
-              Icon(FontAwesomeIcons.angleDown),
-            ],
-          ),
+            const Icon(FontAwesomeIcons.angleDown),
+          ],
         ),
       ),
     );
