@@ -152,4 +152,5 @@ abstract class StringsManager {
   static const showHasBeenRemovedFromYourList =
       'Show has been Removed From Your List';
   static const delete = 'Delete';
+  static const listHasBeenDeleted = 'List has been Deleted';
 }

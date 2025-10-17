@@ -31,8 +31,10 @@ import 'package:movix/features/lists/data/data_sources/lists_remote_data_sources
 import 'package:movix/features/lists/data/repos/lists_repo_impl.dart';
 import 'package:movix/features/lists/domain/repos/lists_repo.dart';
 import 'package:movix/features/lists/domain/usecases/create_new_list_usecase.dart';
+import 'package:movix/features/lists/domain/usecases/delete_list_usecase.dart';
 import 'package:movix/features/lists/domain/usecases/get_user_lists_usecase.dart';
 import 'package:movix/features/lists/presentation/controllers/create_new_list_controller.dart';
+import 'package:movix/features/lists/presentation/controllers/delete_list_controller.dart';
 import 'package:movix/features/lists/presentation/controllers/get_user_lists_controller.dart';
 import 'package:movix/features/main/presentation/controllers/bottom_navigation_bar_controller.dart';
 
@@ -165,6 +167,14 @@ class MainBinding extends Bindings {
     );
     Get.lazyPut<RemoveShowFromListUseCase>(
       () => RemoveShowFromListUseCase(homeRepo: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut<DeleteListUseCase>(
+      () => DeleteListUseCase(listsRepo: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut(
+      () => DeleteListController(deleteListUseCase: Get.find()),
       fenix: true,
     );
   }

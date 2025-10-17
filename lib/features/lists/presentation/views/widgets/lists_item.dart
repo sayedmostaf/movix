@@ -9,6 +9,7 @@ import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/functions/enums.dart';
 import 'package:movix/core/widgets/lists_cover_widgets.dart';
+import 'package:movix/features/lists/presentation/controllers/delete_list_controller.dart';
 import 'package:movix/features/lists/presentation/controllers/get_user_lists_controller.dart';
 
 class ListsItem extends StatelessWidget {
@@ -16,6 +17,8 @@ class ListsItem extends StatelessWidget {
   final int index;
   @override
   Widget build(BuildContext context) {
+    final DeleteListController deleteListController =
+        Get.find<DeleteListController>();
     final GetUserListsController getUserListsController =
         Get.find<GetUserListsController>();
     return Stack(
@@ -117,7 +120,11 @@ class ListsItem extends StatelessWidget {
               ),
             ],
             onSelected: (selected) {
-              print(selected);
+              if (selected == 'delete') {
+                deleteListController.deleteList(
+                  getUserListsController.lists[index].id,
+                );
+              }
             },
             child: const Icon(FontAwesomeIcons.ellipsisVertical),
           ),

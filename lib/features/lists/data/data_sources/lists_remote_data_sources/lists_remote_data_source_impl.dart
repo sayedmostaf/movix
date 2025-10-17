@@ -37,4 +37,14 @@ class ListsRemoteDataSourceImpl implements ListsRemoteDataSource {
         .doc(list.id)
         .set(list.toJson());
   }
+
+  @override
+  Future<void> deleteList(String listId) async {
+    await firebaseFirestore
+        .collection('users')
+        .doc(firebaseAuth.currentUser!.uid)
+        .collection('lists')
+        .doc(listId)
+        .delete();
+  }
 }
