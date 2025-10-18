@@ -34,7 +34,7 @@ class AddRemoveShowToListController extends GetxController {
           StringsManager.showHasBeenAddedToYourList,
           backgroundColor: Colors.green.withOpacity(0.5),
         );
-        getUserListsController.getuserLists();
+        getUserListsController.getUserLists();
         update();
       },
     );
@@ -57,7 +57,7 @@ class AddRemoveShowToListController extends GetxController {
           StringsManager.showHasBeenRemovedFromYourList,
           backgroundColor: Colors.green.withOpacity(0.5),
         );
-        getUserListsController.getuserLists();
+        getUserListsController.getUserLists();
         update();
       },
     );

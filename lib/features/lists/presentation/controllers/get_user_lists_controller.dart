@@ -15,13 +15,10 @@ class GetUserListsController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getuserLists();
+    getUserListsFirst();
   }
 
-  void getuserLists() async {
-    lists.value = [];
-    banners.value = [];
-    loading.value = true;
+  void getUserLists() async {
     var result = await getUserListsUseCase.execute();
     result.fold(
       (failure) => Get.snackbar(
@@ -30,6 +27,8 @@ class GetUserListsController extends GetxController {
         backgroundColor: Colors.red.withOpacity(0.5),
       ),
       (listsList) {
+        lists.value = [];
+        banners.value = [];
         lists.addAll(listsList);
         for (var list in listsList) {
           List<String?> posters = [];
@@ -45,6 +44,11 @@ class GetUserListsController extends GetxController {
         update();
       },
     );
+  }
+
+  void getUserListsFirst() async {
+    loading.value = true;
+    getUserLists();
     loading.value = false;
   }
 }
