@@ -139,4 +139,40 @@ class ExploreRepoImpl extends ExploreRepo {
       return left(Failure(message: StringsManager.somethingWentWrong));
     }
   }
+
+  @override
+  Future<Either<Failure, List<MovieMiniResultEntity>>> getCategoryMovies(
+    int page,
+    String categoryId,
+  ) async {
+    try {
+      var results = await exploreRemoteDataSource.getCategoryMovies(
+        page,
+        categoryId,
+      );
+      return right(results);
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return left(Failure(message: StringsManager.somethingWentWrong));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<TvShowMiniResultEntity>>> getCategoryTvShows(
+    int page,
+    String categoryId,
+  ) async {
+    try {
+      var results = await exploreRemoteDataSource.getCategoryTvShows(
+        page,
+        categoryId,
+      );
+      return right(results);
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return left(Failure(message: StringsManager.somethingWentWrong));
+    }
+  }
 }

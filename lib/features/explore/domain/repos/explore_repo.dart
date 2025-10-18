@@ -34,4 +34,12 @@ abstract class ExploreRepo {
   Future<Either<Failure, List<PersonMiniResultEntity>>> getPopularCelebrities(
     int page,
   );
+  Future<Either<Failure, List<MovieMiniResultEntity>>> getCategoryMovies(
+    int page,
+    String categoryId,
+  );
+  Future<Either<Failure, List<TvShowMiniResultEntity>>> getCategoryTvShows(
+    int page,
+    String categoryId,
+  );
 }

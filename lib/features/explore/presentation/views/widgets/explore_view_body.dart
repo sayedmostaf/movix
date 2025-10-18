@@ -7,6 +7,7 @@ import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/custom_search_field.dart';
 import 'package:movix/features/explore/presentation/controllers/explore_view_controller.dart';
 import 'package:movix/features/explore/presentation/controllers/get_search_result_controller.dart';
+import 'package:movix/features/explore/presentation/views/widgets/explore_default_view_shimmer.dart';
 import 'package:movix/features/explore/presentation/views/widgets/movies_search_section.dart';
 import 'package:movix/features/explore/presentation/views/widgets/people_search_section.dart';
 import 'package:movix/features/explore/presentation/views/widgets/search_result_list.dart';
@@ -59,14 +60,7 @@ class ExploreViewBody extends StatelessWidget {
               child: Obx(() {
                 if (getSearchResultController.defaultWidget.isTrue) {
                   if (exploreViewController.loading.isTrue) {
-                    return Center(
-                      child: Container(
-                        color: Colors.red,
-                        height: 300,
-                        width: 300,
-                        child: const Text('Loading'),
-                      ),
-                    );
+                    return ExploreDefaultViewShimmer();
                   } else {
                     return const Column(
                       children: [
