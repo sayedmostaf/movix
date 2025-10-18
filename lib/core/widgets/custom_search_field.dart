@@ -1,16 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
+import 'package:movix/features/explore/presentation/controllers/get_search_result_controller.dart';
 
 class CustomSearchField extends StatelessWidget {
   const CustomSearchField({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final getSearchResultController = Get.find<GetSearchResultController>();
+
     return TextField(
+      onChanged: getSearchResultController.onChangedTextField,
+      controller: getSearchResultController.controller,
       decoration: InputDecoration(
+        suffixIcon: Obx(
+          () => InkWell(
+            onTap: getSearchResultController.showSuffixIcon.isTrue
+                ? () {
+                    getSearchResultController.controller!.clear();
+                    getSearchResultController.showSuffixIcon.value = false;
+                    getSearchResultController.defaultWidget.value = true;
+                  }
+                : null,
+            child: getSearchResultController.showSuffixIcon.isTrue
+                ? Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Icon(Icons.close, color: ColorManager.primaryColor),
+                  )
+                : SizedBox.shrink(),
+          ),
+        ),
         fillColor: ColorManager.greyColor,
         filled: true,
         border: const OutlineInputBorder(

@@ -3,6 +3,12 @@ import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/api_service.dart';
+import 'package:movix/features/explore/data/data_source/explore_remote_data_source/explore_remote_data_source.dart';
+import 'package:movix/features/explore/data/data_source/explore_remote_data_source/explore_remote_data_source_impl.dart';
+import 'package:movix/features/explore/data/repos/explore_repo_impl.dart';
+import 'package:movix/features/explore/domain/repos/explore_repo.dart';
+import 'package:movix/features/explore/domain/usecases/get_search_result_usecase.dart';
+import 'package:movix/features/explore/presentation/controllers/get_search_result_controller.dart';
 import 'package:movix/features/home/data/data_sources/home_remote_data_source.dart';
 import 'package:movix/features/home/data/data_sources/home_remote_data_source_impl.dart';
 import 'package:movix/features/home/data/repos/home_repo_impl.dart';
@@ -175,6 +181,22 @@ class MainBinding extends Bindings {
     );
     Get.lazyPut(
       () => DeleteListController(deleteListUseCase: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut<ExploreRemoteDataSource>(
+      () => ExploreRemoteDataSourceImpl(apiService: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut<ExploreRepo>(
+      () => ExploreRepoImpl(exploreRemoteDataSource: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut<GetSearchResultUseCase>(
+      () => GetSearchResultUseCase(exploreRepo: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut(
+      () => GetSearchResultController(getSearchResultUseCase: Get.find()),
       fenix: true,
     );
   }

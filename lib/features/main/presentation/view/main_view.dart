@@ -31,6 +31,7 @@ class MainView extends StatelessWidget {
         ),
       ),
       navBarStyle: NavBarStyle.style9,
+      resizeToAvoidBottomInset: true,
     );
   }
 
