@@ -22,6 +22,7 @@ class CustomSearchField extends StatelessWidget {
             onTap: getSearchResultController.showSuffixIcon.isTrue
                 ? () {
                     getSearchResultController.controller!.clear();
+                    getSearchResultController.savedQuery = '';
                     getSearchResultController.showSuffixIcon.value = false;
                     getSearchResultController.defaultWidget.value = true;
                   }

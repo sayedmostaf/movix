@@ -14,10 +14,13 @@ class GetSearchResultController extends GetxController {
   String savedQuery = '';
   GetSearchResultController({required this.getSearchResultUseCase});
   RxBool showSuffixIcon = false.obs;
+  late final ScrollController scrollController;
+  RxBool paginationLoading = false.obs;
 
   @override
   void onInit() {
     super.onInit();
+    scrollController = ScrollController()..addListener(_onScroll);
     controller = TextEditingController();
   }
 
@@ -46,12 +49,25 @@ class GetSearchResultController extends GetxController {
   }
 
   void onChangedTextField(String? value) {
+    savedQuery = value ?? '';
     if (value != null && value.isNotEmpty) {
       showSuffixIcon.value = true;
       searchFirstQuery(value);
     } else {
       defaultWidget.value = true;
       showSuffixIcon.value = false;
+    }
+  }
+
+  void _onScroll() {
+    if (!paginationLoading.value &&
+        scrollController.position.pixels >=
+            scrollController.position.maxScrollExtent &&
+        savedQuery.isNotEmpty) {
+      if (paginationLoading.value) return;
+      paginationLoading.value = true;
+      getSearchResult();
+      paginationLoading.value = false;
     }
   }
 }
