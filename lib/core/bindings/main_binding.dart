@@ -7,8 +7,15 @@ import 'package:movix/features/explore/data/data_source/explore_remote_data_sour
 import 'package:movix/features/explore/data/data_source/explore_remote_data_source/explore_remote_data_source_impl.dart';
 import 'package:movix/features/explore/data/repos/explore_repo_impl.dart';
 import 'package:movix/features/explore/domain/repos/explore_repo.dart';
+import 'package:movix/features/explore/domain/usecases/get_popular_movies_usecase.dart';
 import 'package:movix/features/explore/domain/usecases/get_search_result_usecase.dart';
+import 'package:movix/features/explore/domain/usecases/get_top_rated_movies_usecase.dart';
+import 'package:movix/features/explore/domain/usecases/get_up_coming_movies_usecase.dart';
+import 'package:movix/features/explore/presentation/controllers/explore_view_controller.dart';
 import 'package:movix/features/explore/presentation/controllers/get_search_result_controller.dart';
+import 'package:movix/features/explore/presentation/controllers/popular_movies_controller.dart';
+import 'package:movix/features/explore/presentation/controllers/top_rated_movies_controller.dart';
+import 'package:movix/features/explore/presentation/controllers/upcoming_movies_controller.dart';
 import 'package:movix/features/home/data/data_sources/home_remote_data_source.dart';
 import 'package:movix/features/home/data/data_sources/home_remote_data_source_impl.dart';
 import 'package:movix/features/home/data/repos/home_repo_impl.dart';
@@ -197,6 +204,31 @@ class MainBinding extends Bindings {
     );
     Get.lazyPut(
       () => GetSearchResultController(getSearchResultUseCase: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut<GetPopularMoviesUseCase>(
+      () => GetPopularMoviesUseCase(exploreRepo: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut<GetTopRatedMoviesUseCase>(
+      () => GetTopRatedMoviesUseCase(exploreRepo: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut<GetUpComingMoviesUseCase>(
+      () => GetUpComingMoviesUseCase(exploreRepo: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut(() => ExploreViewController(), fenix: true);
+    Get.lazyPut(
+      () => PopularMoviesController(getPopularMoviesUseCase: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut(
+      () => TopRatedMoviesController(getTopRatedMoviesUseCase: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut(
+      () => UpComingMoviesController(getUpComingMoviesUseCase: Get.find()),
       fenix: true,
     );
   }

@@ -5,6 +5,7 @@ import 'package:movix/core/utils/assets_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/custom_search_field.dart';
+import 'package:movix/features/explore/presentation/controllers/explore_view_controller.dart';
 import 'package:movix/features/explore/presentation/controllers/get_search_result_controller.dart';
 import 'package:movix/features/explore/presentation/views/widgets/movies_search_section.dart';
 import 'package:movix/features/explore/presentation/views/widgets/people_search_section.dart';
@@ -17,6 +18,8 @@ class ExploreViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final getSearchResultController = Get.find<GetSearchResultController>();
+    final exploreViewController = Get.find<ExploreViewController>();
+
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -39,11 +42,10 @@ class ExploreViewBody extends StatelessWidget {
                 ).copyWith(color: Colors.grey),
               ),
             ),
-            const SliverToBoxAdapter(child: SizedBox(height: 20)),
             const SliverAppBar(
-              flexibleSpace: PreferredSize(
-                preferredSize: Size.fromHeight(kToolbarHeight),
-                child: CustomSearchField(),
+              collapsedHeight: 100,
+              flexibleSpace: Column(
+                children: [SizedBox(height: 20), CustomSearchField()],
               ),
               pinned: true,
               floating: true,
@@ -54,26 +56,39 @@ class ExploreViewBody extends StatelessWidget {
             ),
             const SliverToBoxAdapter(child: SizedBox(height: 20)),
             SliverToBoxAdapter(
-              child: Obx(
-                () => getSearchResultController.defaultWidget.isTrue
-                    ? const Column(
-                        children: [
-                          MoviesSearchSection(),
-                          SizedBox(height: 30),
-                          TvShowSearchSection(),
-                          SizedBox(height: 30),
-                          PeopleSearchSection(),
-                          SizedBox(height: 30),
-                        ],
-                      )
-                    : GetBuilder<GetSearchResultController>(
-                        builder: (getSearchResultController) {
-                          return SearchResultList(
-                            shows: getSearchResultController.shows,
-                          );
-                        },
+              child: Obx(() {
+                if (getSearchResultController.defaultWidget.isTrue) {
+                  if (exploreViewController.loading.isTrue) {
+                    return Center(
+                      child: Container(
+                        color: Colors.red,
+                        height: 300,
+                        width: 300,
+                        child: const Text('Loading'),
                       ),
-              ),
+                    );
+                  } else {
+                    return const Column(
+                      children: [
+                        MoviesSearchSection(),
+                        SizedBox(height: 30),
+                        TvShowSearchSection(),
+                        SizedBox(height: 30),
+                        PeopleSearchSection(),
+                        SizedBox(height: 30),
+                      ],
+                    );
+                  }
+                } else {
+                  return GetBuilder<GetSearchResultController>(
+                    builder: (getSearchResultController) {
+                      return SearchResultList(
+                        shows: getSearchResultController.shows,
+                      );
+                    },
+                  );
+                }
+              }),
             ),
             SliverToBoxAdapter(
               child: Obx(() {
