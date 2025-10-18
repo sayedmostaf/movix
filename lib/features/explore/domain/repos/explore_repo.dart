@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:movix/core/errors/failure.dart';
 import 'package:movix/features/explore/domain/entities/search_result_entity.dart';
 import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';
+import 'package:movix/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:movix/features/home/domain/entities/tv_show_mini_result_entity.dart';
 
 abstract class ExploreRepo {
@@ -28,6 +29,9 @@ abstract class ExploreRepo {
     int page,
   );
   Future<Either<Failure, List<TvShowMiniResultEntity>>> getTopRatedTvShows(
+    int page,
+  );
+  Future<Either<Failure, List<PersonMiniResultEntity>>> getPopularCelebrities(
     int page,
   );
 }

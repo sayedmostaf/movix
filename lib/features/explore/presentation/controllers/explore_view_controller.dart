@@ -7,15 +7,18 @@ import 'package:movix/features/auth/data/data_sources/static.dart';
 import 'package:movix/features/auth/data/models/genre_model.dart';
 import 'package:movix/features/explore/presentation/controllers/airing_today_tv_shows_controller.dart';
 import 'package:movix/features/explore/presentation/controllers/on_the_air_tv_shows_controller.dart';
+import 'package:movix/features/explore/presentation/controllers/popular_celebrities_controller.dart';
 import 'package:movix/features/explore/presentation/controllers/popular_movies_controller.dart';
 import 'package:movix/features/explore/presentation/controllers/popular_tv_shows_controller.dart';
 import 'package:movix/features/explore/presentation/controllers/top_rated_movies_controller.dart';
 import 'package:movix/features/explore/presentation/controllers/top_rated_tv_shows_controller.dart';
 import 'package:movix/features/explore/presentation/controllers/upcoming_movies_controller.dart';
 import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';
+import 'package:movix/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:movix/features/home/domain/entities/tv_show_mini_result_entity.dart';
 import 'package:movix/features/home/presentation/controllers/home_controllers/now_playing_movies_controller.dart';
 import 'package:movix/features/home/presentation/controllers/home_controllers/trending_movies_controller.dart';
+import 'package:movix/features/home/presentation/controllers/home_controllers/trending_people_controller.dart';
 import 'package:movix/features/home/presentation/controllers/home_controllers/trending_tv_shows_controller.dart';
 
 class ExploreViewController extends GetxController {
@@ -25,6 +28,10 @@ class ExploreViewController extends GetxController {
     StringsManager.popularMovies,
     StringsManager.topRatedMovies,
     StringsManager.upComingMovies,
+  ];
+  final List<String> peoplesExploreTitles = [
+    StringsManager.popularCelebrities,
+    StringsManager.trendingCelebrities,
   ];
   final List<GenreModel> moviesGenres = genres
       .where((e) => e.type != GenreModelType.TV_Show)
@@ -38,6 +45,10 @@ class ExploreViewController extends GetxController {
     SectionType.PopularMovies,
     SectionType.TopRatedMovies,
     SectionType.UpComingMovies,
+  ];
+  final List<SectionType> peoplesExploreSectionTypes = [
+    SectionType.PopularCelebrities,
+    SectionType.PeopleOfTheWeek,
   ];
   final List<SectionType> tvShowsExploreSectionTypes = [
     SectionType.AiringTodayTvShows,
@@ -56,14 +67,34 @@ class ExploreViewController extends GetxController {
 
   final List<List<String>> moviesExploreBanners = [];
   final List<List<String>> tvShowsExploreBanners = [];
+  final List<List<String>> peoplesExploreBanners = [];
   final List<List<MovieMiniResultEntity>> moviesExplore = [];
   final List<List<TvShowMiniResultEntity>> tvShowsExplore = [];
+  final List<List<PersonMiniResultEntity>> peoplesExplore = [];
   RxBool loading = true.obs;
   @override
   void onInit() async {
     super.onInit();
-    await Future.wait([initMoviesSection(), initTvShowsSection()]);
+    await Future.wait([
+      initMoviesSection(),
+      initTvShowsSection(),
+      initCelebritiesSection(),
+    ]);
     loading.value = false;
+  }
+
+  Future<void> initCelebritiesSection() async {
+    final popularCelebritiesController =
+        Get.find<PopularCelebritiesController>();
+    final trendingPeopleController = Get.find<TrendingPeopleController>();
+    await popularCelebritiesController.getPopularCelebrities();
+    peoplesExploreBanners.add(
+      getProfiles(popularCelebritiesController.people.take(5).toList()),
+    );
+    peoplesExploreBanners.add(
+      getProfiles(trendingPeopleController.people.take(5).toList()),
+    );
+    peoplesExplore.add(popularCelebritiesController.people);
   }
 
   Future<void> initMoviesSection() async {
@@ -151,6 +182,20 @@ class ExploreViewController extends GetxController {
       precacheImage(
         CachedNetworkImageProvider(
           'https://image.tmdb.org/t/p/original${show.posterPath}',
+        ),
+        Get.context!,
+      );
+    }
+    return banners;
+  }
+
+  List<String> getProfiles(List shows) {
+    List<String> banners = [];
+    for (var show in shows) {
+      banners.add(show.profilePath);
+      precacheImage(
+        CachedNetworkImageProvider(
+          'https://image.tmdb.org/t/p/original${show.profilePath}',
         ),
         Get.context!,
       );

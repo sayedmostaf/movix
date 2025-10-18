@@ -15,10 +15,12 @@ import 'package:movix/features/explore/domain/useCases/get_airing_today_tv_shows
 import 'package:movix/features/explore/domain/useCases/get_on_the_air_tv_shows_useCase.dart';
 import 'package:movix/features/explore/domain/useCases/get_popular_tv_shows_useCase.dart';
 import 'package:movix/features/explore/domain/useCases/get_top_rated_tv_shows_useCase.dart';
+import 'package:movix/features/explore/domain/usecases/get_popular_celebrities_usecase.dart';
 import 'package:movix/features/explore/presentation/controllers/airing_today_tv_shows_controller.dart';
 import 'package:movix/features/explore/presentation/controllers/explore_view_controller.dart';
 import 'package:movix/features/explore/presentation/controllers/get_search_result_controller.dart';
 import 'package:movix/features/explore/presentation/controllers/on_the_air_tv_shows_controller.dart';
+import 'package:movix/features/explore/presentation/controllers/popular_celebrities_controller.dart';
 import 'package:movix/features/explore/presentation/controllers/popular_movies_controller.dart';
 import 'package:movix/features/explore/presentation/controllers/popular_tv_shows_controller.dart';
 import 'package:movix/features/explore/presentation/controllers/top_rated_movies_controller.dart';
@@ -271,6 +273,18 @@ class MainBinding extends Bindings {
     );
     Get.lazyPut(
       () => TopRatedTvShowsController(getTopRatedTvShowsUseCase: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut<GetPopularCelebritiesUseCase>(
+      () => GetPopularCelebritiesUseCase(
+        exploreRepo: Get.find(),
+      ),
+      fenix: true,
+    );
+    Get.lazyPut(
+      () => PopularCelebritiesController(
+        getPopularCelebritiesUseCase: Get.find(),
+      ),
       fenix: true,
     );
   }

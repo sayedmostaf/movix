@@ -6,7 +6,6 @@ import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/functions/enums.dart';
-import 'package:movix/features/explore/data/data_source/static.dart';
 import 'package:movix/features/explore/presentation/controllers/explore_view_controller.dart';
 import 'package:movix/features/explore/presentation/views/widgets/explore_genre_item.dart';
 import 'package:movix/features/explore/presentation/views/widgets/explore_item.dart';

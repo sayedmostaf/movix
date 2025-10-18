@@ -6,7 +6,7 @@ import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/functions/enums.dart';
-import 'package:movix/features/explore/data/data_source/static.dart';
+import 'package:movix/features/explore/presentation/controllers/explore_view_controller.dart';
 
 import 'explore_item.dart';
 
@@ -15,6 +15,8 @@ class PeopleSearchSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final exploreViewController = Get.find<ExploreViewController>();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -36,21 +38,27 @@ class PeopleSearchSection extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: List.generate(
-              peoplesExploreEvents.length,
+              exploreViewController.peoplesExploreBanners.length,
               (index) => Padding(
                 padding: const EdgeInsets.only(right: 15),
                 child: GestureDetector(
                   onTap: () => Get.toNamed(
                     AppRoutes.kShowsSectionView,
                     arguments: {
-                      'title': peoplesExploreTitles[index],
+                      'title':
+                          exploreViewController.peoplesExploreTitles[index],
                       'showType': ShowType.Person,
+                      'sectionType': exploreViewController
+                          .peoplesExploreSectionTypes[index],
+                      'showsList': exploreViewController.peoplesExplore[index],
                     },
                     preventDuplicates: false,
                   ),
                   child: ExploreItem(
-                    exploreItemTitle: peoplesExploreTitles[index],
-                    exploreItemBanners: peoplesExploreEvents[index],
+                    exploreItemTitle:
+                        exploreViewController.peoplesExploreTitles[index],
+                    exploreItemBanners:
+                        exploreViewController.peoplesExploreBanners[index],
                   ),
                 ),
               ),

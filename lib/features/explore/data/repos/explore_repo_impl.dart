@@ -7,6 +7,7 @@ import 'package:movix/features/explore/data/data_source/explore_remote_data_sour
 import 'package:movix/features/explore/domain/entities/search_result_entity.dart';
 import 'package:movix/features/explore/domain/repos/explore_repo.dart';
 import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';
+import 'package:movix/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:movix/features/home/domain/entities/tv_show_mini_result_entity.dart';
 
 class ExploreRepoImpl extends ExploreRepo {
@@ -117,6 +118,20 @@ class ExploreRepoImpl extends ExploreRepo {
   ) async {
     try {
       var results = await exploreRemoteDataSource.getTopRatedTvShows(page);
+      return right(results);
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return left(Failure(message: StringsManager.somethingWentWrong));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<PersonMiniResultEntity>>> getPopularCelebrities(
+    int page,
+  ) async {
+    try {
+      var results = await exploreRemoteDataSource.getPopularCelebrities(page);
       return right(results);
     } on DioException catch (e) {
       return left(ServerFailure.fromDioException(e));

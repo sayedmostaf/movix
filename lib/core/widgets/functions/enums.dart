@@ -17,5 +17,6 @@ enum SectionType {
   PopularTvShows,
   TopRatedTvShows,
   TvShowsCategory,
+  PopularCelebrities,
   None,
 }
