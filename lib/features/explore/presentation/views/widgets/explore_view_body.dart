@@ -59,7 +59,8 @@ class ExploreViewBody extends StatelessWidget {
             SliverToBoxAdapter(
               child: Obx(() {
                 if (getSearchResultController.defaultWidget.isTrue) {
-                  if (exploreViewController.loading.isTrue) {
+                  // TODO: fix this
+                  if (!exploreViewController.loading.isTrue) {
                     return ExploreDefaultViewShimmer();
                   } else {
                     return const Column(

@@ -62,6 +62,12 @@ import 'package:movix/features/lists/presentation/controllers/create_new_list_co
 import 'package:movix/features/lists/presentation/controllers/delete_list_controller.dart';
 import 'package:movix/features/lists/presentation/controllers/get_user_lists_controller.dart';
 import 'package:movix/features/main/presentation/controllers/bottom_navigation_bar_controller.dart';
+import 'package:movix/features/profile/data/data_source/profile_remote_data_source/profile_remote_data_source.dart';
+import 'package:movix/features/profile/data/data_source/profile_remote_data_source/profile_remote_data_source_impl.dart';
+import 'package:movix/features/profile/data/repos/profile_repo_impl.dart';
+import 'package:movix/features/profile/domain/repos/profile_repo.dart';
+import 'package:movix/features/profile/domain/usecases/get_user_info_usecase.dart';
+import 'package:movix/features/profile/presentation/controllers/profile_view_controllers/user_info_controller.dart';
 
 class MainBinding extends Bindings {
   @override
@@ -69,6 +75,13 @@ class MainBinding extends Bindings {
     Get.lazyPut<FirebaseAuth>(() => FirebaseAuth.instance, fenix: true);
     Get.lazyPut<FirebaseFirestore>(
       () => FirebaseFirestore.instance,
+      fenix: true,
+    );
+    Get.lazyPut<ProfileRemoteDataSource>(
+      () => ProfileRemoteDataSourceImpl(
+        firebaseAuth: Get.find(),
+        firebaseFirestore: Get.find(),
+      ),
       fenix: true,
     );
     Get.lazyPut<Dio>(() => Dio(), fenix: true);
@@ -293,6 +306,18 @@ class MainBinding extends Bindings {
     );
     Get.lazyPut<GetCategoryTvShowsUseCase>(
       () => GetCategoryTvShowsUseCase(exploreRepo: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut<ProfileRepo>(
+      () => ProfileRepoImpl(profileRemoteDataSource: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut<GetUserInfoUseCase>(
+      () => GetUserInfoUseCase(profileRepo: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut(
+      () => UserInfoController(getUserInfoUseCase: Get.find()),
       fenix: true,
     );
   }
