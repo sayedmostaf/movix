@@ -5,12 +5,18 @@ import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/widgets/functions/enums.dart';
 import 'package:movix/features/auth/data/data_sources/static.dart';
 import 'package:movix/features/auth/data/models/genre_model.dart';
+import 'package:movix/features/explore/presentation/controllers/airing_today_tv_shows_controller.dart';
+import 'package:movix/features/explore/presentation/controllers/on_the_air_tv_shows_controller.dart';
 import 'package:movix/features/explore/presentation/controllers/popular_movies_controller.dart';
+import 'package:movix/features/explore/presentation/controllers/popular_tv_shows_controller.dart';
 import 'package:movix/features/explore/presentation/controllers/top_rated_movies_controller.dart';
+import 'package:movix/features/explore/presentation/controllers/top_rated_tv_shows_controller.dart';
 import 'package:movix/features/explore/presentation/controllers/upcoming_movies_controller.dart';
 import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';
+import 'package:movix/features/home/domain/entities/tv_show_mini_result_entity.dart';
 import 'package:movix/features/home/presentation/controllers/home_controllers/now_playing_movies_controller.dart';
 import 'package:movix/features/home/presentation/controllers/home_controllers/trending_movies_controller.dart';
+import 'package:movix/features/home/presentation/controllers/home_controllers/trending_tv_shows_controller.dart';
 
 class ExploreViewController extends GetxController {
   final List<String> moviesExploreTitles = [
@@ -23,6 +29,9 @@ class ExploreViewController extends GetxController {
   final List<GenreModel> moviesGenres = genres
       .where((e) => e.type != GenreModelType.TV_Show)
       .toList();
+  final List<GenreModel> tvShowsGenres = genres
+      .where((e) => e.type != GenreModelType.Movie)
+      .toList();
   final List<SectionType> moviesExploreSectionTypes = [
     SectionType.NowPlayingMovies,
     SectionType.TrendingMovies,
@@ -30,14 +39,30 @@ class ExploreViewController extends GetxController {
     SectionType.TopRatedMovies,
     SectionType.UpComingMovies,
   ];
+  final List<SectionType> tvShowsExploreSectionTypes = [
+    SectionType.AiringTodayTvShows,
+    SectionType.OnTheAirTvShows,
+    SectionType.TrendingTvShows,
+    SectionType.PopularTvShows,
+    SectionType.TopRatedTvShows,
+  ];
+  final List<String> tvShowsExploreTitles = [
+    StringsManager.airingTodayShows,
+    StringsManager.onTheAirShows,
+    StringsManager.etrendingShows,
+    StringsManager.popularShows,
+    StringsManager.topRatedShows,
+  ];
 
   final List<List<String>> moviesExploreBanners = [];
+  final List<List<String>> tvShowsExploreBanners = [];
   final List<List<MovieMiniResultEntity>> moviesExplore = [];
+  final List<List<TvShowMiniResultEntity>> tvShowsExplore = [];
   RxBool loading = true.obs;
   @override
   void onInit() async {
     super.onInit();
-    await Future.wait([initMoviesSection()]);
+    await Future.wait([initMoviesSection(), initTvShowsSection()]);
     loading.value = false;
   }
 
@@ -76,6 +101,47 @@ class ExploreViewController extends GetxController {
       getBanners(upComingMoviesController.movies.take(5).toList()),
     );
     moviesExplore.add(upComingMoviesController.movies);
+  }
+
+  Future<void> initTvShowsSection() async {
+    final airingTodayTvShowsController =
+        Get.find<AiringTodayTvShowsController>();
+    final onTheAirTvShowsController = Get.find<OnTheAirTvShowsController>();
+    final trendingTvShowsController = Get.find<TrendingTvShowsController>();
+    final popularTvShowsController = Get.find<PopularTvShowsController>();
+    final topRatedTvShowsController = Get.find<TopRatedTvShowsController>();
+
+    await Future.wait([
+      airingTodayTvShowsController.getAiringTodayTvShows(),
+      onTheAirTvShowsController.getOnTheAirTvShows(),
+      popularTvShowsController.getPopularTvShows(),
+      topRatedTvShowsController.getTopRatedTvShows(),
+    ]);
+
+    tvShowsExploreBanners.add(
+      getBanners(airingTodayTvShowsController.shows.take(5).toList()),
+    );
+    tvShowsExplore.add(airingTodayTvShowsController.shows);
+
+    tvShowsExploreBanners.add(
+      getBanners(onTheAirTvShowsController.shows.take(5).toList()),
+    );
+    tvShowsExplore.add(onTheAirTvShowsController.shows);
+
+    tvShowsExploreBanners.add(
+      getBanners(trendingTvShowsController.tvShows.take(5).toList()),
+    );
+    tvShowsExplore.add(trendingTvShowsController.tvShows);
+
+    tvShowsExploreBanners.add(
+      getBanners(popularTvShowsController.shows.take(5).toList()),
+    );
+    tvShowsExplore.add(popularTvShowsController.shows);
+
+    tvShowsExploreBanners.add(
+      getBanners(topRatedTvShowsController.shows.take(5).toList()),
+    );
+    tvShowsExplore.add(topRatedTvShowsController.shows);
   }
 
   List<String> getBanners(List shows) {
