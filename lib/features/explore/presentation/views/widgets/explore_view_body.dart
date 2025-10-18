@@ -60,7 +60,7 @@ class ExploreViewBody extends StatelessWidget {
               child: Obx(() {
                 if (getSearchResultController.defaultWidget.isTrue) {
                   // TODO: fix this
-                  if (!exploreViewController.loading.isTrue) {
+                  if (exploreViewController.loading.isTrue) {
                     return ExploreDefaultViewShimmer();
                   } else {
                     return const Column(

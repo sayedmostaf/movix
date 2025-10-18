@@ -89,7 +89,7 @@ class ExploreViewController extends GetxController {
     final trendingPeopleController = Get.find<TrendingPeopleController>();
     await popularCelebritiesController.getPopularCelebrities();
     peoplesExploreBanners.add(
-      getProfiles(popularCelebritiesController.people.take(5).toList()),
+      getProfiles(popularCelebritiesController.people.skip(1).take(5).toList()),
     );
     peoplesExploreBanners.add(
       getProfiles(trendingPeopleController.people.take(5).toList()),
@@ -193,9 +193,11 @@ class ExploreViewController extends GetxController {
     List<String> banners = [];
     for (var show in shows) {
       banners.add(show.profilePath);
+      var profilePath = show.profilePath;
+      if (profilePath == null) continue;
       precacheImage(
         CachedNetworkImageProvider(
-          'https://image.tmdb.org/t/p/original${show.profilePath}',
+          'https://image.tmdb.org/t/p/original$profilePath',
         ),
         Get.context!,
       );
