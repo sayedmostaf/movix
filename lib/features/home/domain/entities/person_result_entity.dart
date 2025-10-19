@@ -1,5 +1,7 @@
+import 'package:movix/core/widgets/functions/enums.dart';
 import 'package:movix/features/home/domain/entities/image_entity.dart';
 import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';
+import 'package:movix/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:movix/features/home/domain/entities/tv_show_mini_result_entity.dart';
 
 class PersonResultEntity {
@@ -77,6 +79,17 @@ class PersonResultEntity {
                 )
                 .toList()
           : null,
+    );
+  }
+  PersonMiniResultEntity toPersonMiniResultEntity() {
+    return PersonMiniResultEntity(
+      id: id,
+      name: name,
+      profilePath: profileUrl,
+      showType: ShowType.Person,
+      role: role,
+      mostKnownForName: null,
+      mostKnownForDate: null,
     );
   }
 }

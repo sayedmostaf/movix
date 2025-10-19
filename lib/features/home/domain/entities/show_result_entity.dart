@@ -5,6 +5,7 @@ import 'package:movix/features/home/domain/entities/person_mini_result_entity.da
 import 'package:movix/features/home/domain/entities/review_entity.dart';
 import 'package:movix/features/home/domain/entities/season_entity.dart';
 import 'package:movix/features/home/domain/entities/tv_show_mini_result_entity.dart';
+import 'package:movix/features/lists/domain/entities/show_mini_result_entity.dart';
 
 class ShowResultEntity {
   final int id;
@@ -142,5 +143,18 @@ class ShowResultEntity {
       }
       return null;
     }).toList();
+  }
+
+  ShowMiniResultEntity toShowMiniResultEntity() {
+    return ShowMiniResultEntity(
+      id: id,
+      name: name,
+      posterPath: posterUrl,
+      releaseDate: releaseDate,
+      genres: genreIds,
+      voteAverage: voteAverage,
+      voteCount: voteCount,
+      showType: showType,
+    );
   }
 }

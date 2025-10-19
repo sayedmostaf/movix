@@ -241,20 +241,6 @@ extension MovieReviewResultX on MovieReviewsResult {
   }
 }
 
-extension ShowResultEntityX on ShowResultEntity {
-  ShowMiniResultEntity toShowMiniResultEntity() {
-    return ShowMiniResultEntity(
-      id: id,
-      name: name,
-      posterPath: posterUrl,
-      releaseDate: releaseDate,
-      genres: genreIds,
-      voteAverage: voteAverage,
-      voteCount: voteCount,
-      showType: showType,
-    );
-  }
-}
 
 extension TrendingMovieXX on MovieMiniResult {
   SearchResultEntity toSearchResultEntity() {
