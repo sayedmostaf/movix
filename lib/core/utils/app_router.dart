@@ -8,6 +8,7 @@ import 'package:movix/core/bindings/media_binding.dart';
 import 'package:movix/core/bindings/onboarding_binding.dart';
 import 'package:movix/core/bindings/season_details_binding.dart';
 import 'package:movix/core/bindings/section_binding.dart';
+import 'package:movix/core/bindings/settings_binding.dart';
 import 'package:movix/core/bindings/show_details_binding.dart';
 import 'package:movix/core/bindings/show_person_details_binding.dart';
 import 'package:movix/core/bindings/splash_binding.dart';
@@ -138,6 +139,7 @@ class AppRoutes {
     GetPage(
       name: kSettingsView,
       page: () => const SettingsView(),
+      binding: SettingsBinding(),
       transition: Transition.fadeIn,
       curve: Curves.easeInOut,
       transitionDuration: const Duration(milliseconds: 500),

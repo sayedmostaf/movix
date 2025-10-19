@@ -62,4 +62,9 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
     }).toList();
     return favouriteShows;
   }
+
+  @override
+  Future<void> changeUserName(String newName) async {
+    await firebaseAuth.currentUser?.updateDisplayName(newName);
+  }
 }

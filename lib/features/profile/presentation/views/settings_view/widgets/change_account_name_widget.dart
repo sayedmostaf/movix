@@ -4,12 +4,15 @@ import 'package:get/get.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
+import 'package:movix/features/profile/presentation/controllers/settings_view_controllers/change_user_name_controller.dart';
 
 class ChangeAccountNameWidget extends StatelessWidget {
   const ChangeAccountNameWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final ChangeUserNameController changeUserNameController =
+        Get.find<ChangeUserNameController>();
     return InkWell(
       onTap: () => Get.bottomSheet(
         BottomSheet(
@@ -30,6 +33,7 @@ class ChangeAccountNameWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
                 TextField(
+                  controller: changeUserNameController.controller,
                   decoration: InputDecoration(
                     fillColor: Color.lerp(
                       ColorManager.primaryColor,
@@ -54,7 +58,7 @@ class ChangeAccountNameWidget extends StatelessWidget {
                 SizedBox(
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: changeUserNameController.onSubmitPressed,
                     child: Text(
                       StringsManager.submit,
                       style: StylesManager.styleLatoBold20(
