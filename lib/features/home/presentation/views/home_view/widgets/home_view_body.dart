@@ -133,18 +133,21 @@ class HomeViewBody extends StatelessWidget {
                   ? SizedBox.shrink()
                   : Column(
                       children: [
-                        PeopleSection(
-                          sectionTitle: StringsManager.peopleOfTheWeek,
-                          people: trendingPeopleController.people,
-                          showAllOnTap: () => Get.toNamed(
-                            AppRoutes.kShowsSectionView,
-                            arguments: {
-                              'title': StringsManager.peopleOfTheWeek,
-                              'showType': ShowType.Person,
-                              'sectionType': SectionType.PeopleOfTheWeek,
-                              'showsList': trendingPeopleController.people,
-                            },
-                            preventDuplicates: false,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: PeopleSection(
+                            sectionTitle: StringsManager.peopleOfTheWeek,
+                            people: trendingPeopleController.people,
+                            showAllOnTap: () => Get.toNamed(
+                              AppRoutes.kShowsSectionView,
+                              arguments: {
+                                'title': StringsManager.peopleOfTheWeek,
+                                'showType': ShowType.Person,
+                                'sectionType': SectionType.PeopleOfTheWeek,
+                                'showsList': trendingPeopleController.people,
+                              },
+                              preventDuplicates: false,
+                            ),
                           ),
                         ),
                         const SizedBox(height: 30),

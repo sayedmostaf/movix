@@ -66,7 +66,13 @@ import 'package:movix/features/profile/data/data_source/profile_remote_data_sour
 import 'package:movix/features/profile/data/data_source/profile_remote_data_source/profile_remote_data_source_impl.dart';
 import 'package:movix/features/profile/data/repos/profile_repo_impl.dart';
 import 'package:movix/features/profile/domain/repos/profile_repo.dart';
+import 'package:movix/features/profile/domain/usecases/get_user_favourite_celebrities_usecase.dart';
+import 'package:movix/features/profile/domain/usecases/get_user_favourite_movies_usecase.dart';
+import 'package:movix/features/profile/domain/usecases/get_user_favourite_tv_shows_usecase.dart';
 import 'package:movix/features/profile/domain/usecases/get_user_info_usecase.dart';
+import 'package:movix/features/profile/presentation/controllers/profile_view_controllers/favourite_celebrities_controller.dart';
+import 'package:movix/features/profile/presentation/controllers/profile_view_controllers/favourite_movies_controller.dart';
+import 'package:movix/features/profile/presentation/controllers/profile_view_controllers/favourite_tv_shows_controller.dart';
 import 'package:movix/features/profile/presentation/controllers/profile_view_controllers/user_info_controller.dart';
 
 class MainBinding extends Bindings {
@@ -318,6 +324,34 @@ class MainBinding extends Bindings {
     );
     Get.lazyPut(
       () => UserInfoController(getUserInfoUseCase: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut<GetUserFavouriteMoviesUseCase>(
+      () => GetUserFavouriteMoviesUseCase(profileRepo: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut<GetUserFavouriteTvShowsUseCase>(
+      () => GetUserFavouriteTvShowsUseCase(profileRepo: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut<GetUserFavouriteCelebritiesUseCase>(
+      () => GetUserFavouriteCelebritiesUseCase(profileRepo: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut(
+      () => FavouriteMoviesController(getUserFavouriteShowsUseCase: Get.find()),
+      fenix: true,
+    );
+    Get.lazyPut(
+      () => FavouriteTvShowsController(
+        getUserFavouriteTvShowsUseCase: Get.find(),
+      ),
+      fenix: true,
+    );
+    Get.lazyPut(
+      () => FavouriteCelebritiesController(
+        getUserFavouriteCelebritiesUseCase: Get.find(),
+      ),
       fenix: true,
     );
   }

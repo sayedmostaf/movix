@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:movix/core/utils/strings_manager.dart';
+import 'package:movix/features/home/domain/entities/person_mini_result_entity.dart';
+import 'package:movix/features/lists/domain/entities/show_mini_result_entity.dart';
 import 'package:movix/features/profile/data/data_source/profile_remote_data_source/profile_remote_data_source.dart';
 import 'package:movix/features/profile/domain/entities/user_info_entity.dart';
 
@@ -20,5 +22,44 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
         : currentUser.displayName!;
     final String? userImage = currentUser?.photoURL;
     return UserInfoEntity(name: userName, profileUrl: userImage);
+  }
+
+  @override
+  Future<List<PersonMiniResultEntity>> getUserFavouriteCelebrities() async {
+    final querySnapshot = await firebaseFirestore
+        .collection('users')
+        .doc(firebaseAuth.currentUser!.uid)
+        .collection('favourite_people')
+        .get();
+    final favouritePeople = querySnapshot.docs.map((doc) {
+      return PersonMiniResultEntity.fromJson(doc.data());
+    }).toList();
+    return favouritePeople;
+  }
+
+  @override
+  Future<List<ShowMiniResultEntity>> getUserFavouriteMovies() async {
+    final querySnapshot = await firebaseFirestore
+        .collection('users')
+        .doc(firebaseAuth.currentUser!.uid)
+        .collection('favourite_movies')
+        .get();
+    final favouriteShows = querySnapshot.docs.map((doc) {
+      return ShowMiniResultEntity.fromJson(doc.data());
+    }).toList();
+    return favouriteShows;
+  }
+
+  @override
+  Future<List<ShowMiniResultEntity>> getUserFavouriteTvShows() async {
+    final querySnapshot = await firebaseFirestore
+        .collection('users')
+        .doc(firebaseAuth.currentUser!.uid)
+        .collection('favourite_tv_shows')
+        .get();
+    final favouriteShows = querySnapshot.docs.map((doc) {
+      return ShowMiniResultEntity.fromJson(doc.data());
+    }).toList();
+    return favouriteShows;
   }
 }
