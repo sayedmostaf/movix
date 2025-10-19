@@ -73,4 +73,16 @@ class ProfileRepoImpl extends ProfileRepo {
       return left(Failure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> signOut() async {
+    try {
+      var result = await profileRemoteDataSource.signOut();
+      return right(result);
+    } on FirebaseAuthException catch (e) {
+      return left(FirebaseAuthFailure.fromFirebaseAuthException(e));
+    } catch (e) {
+      return left(Failure(message: e.toString()));
+    }
+  }
 }

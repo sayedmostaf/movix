@@ -5,46 +5,18 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
+import 'package:movix/features/profile/presentation/controllers/settings_view_controllers/sign_out_controller.dart';
 
 class SignOutButton extends StatelessWidget {
   const SignOutButton({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final signOutController = Get.find<SignOutController>();
     return SizedBox(
       height: 50,
       child: ElevatedButton(
-        onPressed: () async {
-          // Create an instance of FirebaseAuth, GoogleSignIn, and FacebookAuth
-          final FirebaseAuth auth = FirebaseAuth.instance;
-          final GoogleSignIn googleSignIn = GoogleSignIn();
-
-          User? currentUser = auth.currentUser;
-
-          // Check if the user is not null
-          if (currentUser != null) {
-            // Determine if the user is signed in with Google
-            bool isGoogleUser = currentUser.providerData.any(
-              (userInfo) => userInfo.providerId == 'google.com',
-            );
-            // Determine if the user is signed in anonymously
-            bool isAnonymous = currentUser.isAnonymous;
-
-            if (isGoogleUser) {
-              // User is signed in with Google, so sign out from Google
-              await googleSignIn.signOut();
-            }
-            if (isAnonymous) {
-              await currentUser.delete();
-            }
-            // For both Google and Facebook users, as well as other authentication methods:
-            // Sign out from Firebase Auth
-            await auth.signOut();
-
-            // Navigate to AuthView after sign-out or account deletion
-            Get.offAllNamed(AppRoutes.kAuthView);
-          }
-        },
+        onPressed: signOutController.signOutUser,
         style: ButtonStyle(
           backgroundColor: const MaterialStatePropertyAll(Colors.red),
           overlayColor: MaterialStatePropertyAll(

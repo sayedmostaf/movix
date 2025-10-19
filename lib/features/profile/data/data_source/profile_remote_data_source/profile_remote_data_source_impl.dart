@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:movix/features/lists/domain/entities/show_mini_result_entity.dart';
@@ -66,5 +67,22 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
   @override
   Future<void> changeUserName(String newName) async {
     await firebaseAuth.currentUser?.updateDisplayName(newName);
+  }
+
+  @override
+  Future<void> signOut() async {
+    if (firebaseAuth.currentUser != null) {
+      bool isGoogleUser = firebaseAuth.currentUser!.providerData.any(
+        (userInfo) => userInfo.providerId == 'google.com',
+      );
+      bool isAnonymous = firebaseAuth.currentUser!.isAnonymous;
+      if (isGoogleUser) {
+        final GoogleSignIn googleSignIn = GoogleSignIn();
+        await googleSignIn.signOut();
+      } else if (isAnonymous) {
+        await firebaseAuth.currentUser!.delete();
+      }
+    }
+    await firebaseAuth.signOut();
   }
 }
