@@ -1,9 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
+import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/assets_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
+import 'package:movix/core/widgets/functions/enums.dart';
 import 'package:movix/features/home/domain/entities/episode_entity.dart';
 import 'package:movix/features/home/presentation/views/section_view/widgets/ratting_row.dart';
 
@@ -20,7 +23,18 @@ class EpisodeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(10),
-      onTap: () {},
+      onTap: () {
+        final String url =
+            'https://vidsrc.to/embed/tv/${Get.arguments['id']}/${Get.arguments['seasonNumber']}/$episodeNumber';
+        Get.offNamed(
+          AppRoutes.kShowView,
+          arguments: {
+            'url': url,
+            'id': Get.arguments['id'],
+            'showType': ShowType.TV,
+          },
+        );
+      },
       child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.11,
         child: Row(

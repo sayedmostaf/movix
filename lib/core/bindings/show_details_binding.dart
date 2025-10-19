@@ -15,6 +15,7 @@ class ShowDetailsBinding extends Bindings {
     Get.lazyPut(
       () => ShowDetailsController(getShowDetailsUseCase: Get.find()),
       tag: uniqueTag,
+      fenix: true,
     );
     Get.lazyPut(
       () => FavouriteController(
