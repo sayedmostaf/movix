@@ -10,11 +10,11 @@ class AiringTodayTvShowsController extends GetxController {
   List<TvShowMiniResultEntity> shows = [];
   RxBool loading = false.obs;
 
+  bool error = false;
   AiringTodayTvShowsController({required this.getAiringTodayTvShowsUseCase});
 
   Future getAiringTodayTvShows() async {
     loading.value = true;
-    bool error = false;
     var result = await getAiringTodayTvShowsUseCase.execute(1);
     result.fold(
       (failure) {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/strings_manager.dart';
+import 'package:movix/core/widgets/custom_empty_widget.dart';
 import 'package:movix/core/widgets/functions/enums.dart';
 import 'package:movix/features/home/presentation/controllers/person_details_controller/get_person_details_controller.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/show_section.dart';
@@ -109,6 +110,27 @@ class PersonMediaTab extends StatelessWidget {
               ),
               const SizedBox(height: 30),
             ],
+          ),
+        if ((getPersonDetailsController.personResultEntity?.images == null ||
+                getPersonDetailsController
+                    .personResultEntity!
+                    .images!
+                    .isEmpty) &&
+            (getPersonDetailsController.personResultEntity?.relatedMovies ==
+                    null ||
+                getPersonDetailsController
+                    .personResultEntity!
+                    .relatedMovies!
+                    .isEmpty) &&
+            (getPersonDetailsController.personResultEntity?.relatedTvShows ==
+                    null ||
+                getPersonDetailsController
+                    .personResultEntity!
+                    .relatedTvShows!
+                    .isEmpty))
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 20),
+            child: CustomEmptyWidget(),
           ),
       ],
     );

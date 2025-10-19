@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movix/core/bindings/show_details_binding.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
+import 'package:movix/core/widgets/custom_empty_widget.dart';
 import 'package:movix/features/home/presentation/controllers/show_details_controller/show_details_controller.dart';
 import 'package:movix/features/home/presentation/views/show_details_view/views/widgets/images_section.dart';
 import 'package:movix/features/home/presentation/views/show_details_view/views/widgets/seasons_guide_list_view.dart';
@@ -69,7 +69,23 @@ class ShowDetailsTab extends StatelessWidget {
         if (showDetailsController.videosControllers.isNotEmpty)
           const VideosSection(),
 
-        VideosSection(),
+        if ((showDetailsController.showResultEntity?.seasons == null ||
+                showDetailsController.showResultEntity!.seasons!.isEmpty) &&
+            (showDetailsController.showResultEntity?.imagesBackdrop == null ||
+                showDetailsController
+                    .showResultEntity!
+                    .imagesBackdrop!
+                    .isEmpty) &&
+            (showDetailsController.showResultEntity?.imagesPosters == null ||
+                showDetailsController
+                    .showResultEntity!
+                    .imagesPosters!
+                    .isEmpty) &&
+            (showDetailsController.videosControllers.isEmpty))
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 20),
+            child: CustomEmptyWidget(),
+          ),
         const SizedBox(height: 30),
       ],
     );

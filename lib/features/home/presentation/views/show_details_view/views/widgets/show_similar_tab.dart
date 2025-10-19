@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movix/core/utils/app_router.dart';
-import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
-import 'package:movix/core/widgets/functions/enums.dart';
-import 'package:movix/features/home/data/data_sources/dummy_data.dart';
-import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';
+import 'package:movix/core/widgets/custom_empty_widget.dart';
 import 'package:movix/features/home/presentation/controllers/show_details_controller/show_details_controller.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/show_card.dart';
-import 'package:movix/features/home/presentation/views/home_view/widgets/show_section.dart';
 
 class ShowSimilarTab extends StatelessWidget {
   const ShowSimilarTab({super.key});
@@ -67,6 +62,9 @@ class ShowSimilarTab extends StatelessWidget {
               const SizedBox(height: 30),
             ],
           )
-        : const SizedBox();
+        : Padding(
+            padding: EdgeInsets.symmetric(vertical: 20),
+            child: CustomEmptyWidget(),
+          );
   }
 }

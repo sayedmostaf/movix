@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/strings_manager.dart';
+import 'package:movix/core/widgets/custom_empty_widget.dart';
 import 'package:movix/core/widgets/functions/enums.dart';
 import 'package:movix/core/widgets/people_section.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/show_section.dart';
@@ -118,6 +119,31 @@ class ProfileViewBody extends StatelessWidget {
                 }
               },
             ),
+          ),
+          GetBuilder<FavouriteMoviesController>(
+            builder: (favouriteMoviesController) {
+              return GetBuilder<FavouriteTvShowsController>(
+                builder: (favouriteTvShowsController) {
+                  return GetBuilder<FavouriteCelebritiesController>(
+                    builder: (favouriteCelebritiesController) {
+                      if (favouriteMoviesController.favouriteMovies.isEmpty &&
+                          favouriteTvShowsController.favouriteTvShows.isEmpty &&
+                          favouriteCelebritiesController
+                              .favouriteCelebrities
+                              .isEmpty) {
+                        return const SliverFillRemaining(
+                          fillOverscroll: false,
+                          hasScrollBody: false,
+                          child: CustomEmptyWidget(),
+                        );
+                      } else {
+                        return const SliverToBoxAdapter();
+                      }
+                    },
+                  );
+                },
+              );
+            },
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 30)),
         ],

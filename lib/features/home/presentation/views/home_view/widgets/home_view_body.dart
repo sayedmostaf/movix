@@ -58,7 +58,21 @@ class HomeViewBody extends StatelessWidget {
                               trendingTvShowsController.tvShows.isEmpty &&
                               picksForYouController.shows.isEmpty &&
                               trendingPeopleController.people.isEmpty) {
-                            return const SizedBox.shrink();
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 20),
+                                  child: Text(
+                                    StringsManager.featuredToday,
+                                    style: StylesManager.styleLatoBold34(
+                                      context,
+                                    ),
+                                  ),
+                                ),
+                                CustomEmptyWidget(),
+                              ],
+                            );
                           } else {
                             return Padding(
                               padding: const EdgeInsets.symmetric(

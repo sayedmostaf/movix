@@ -4,6 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:movix/core/utils/assets_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
+import 'package:movix/core/widgets/custom_empty_widget.dart';
 import 'package:movix/core/widgets/custom_error_widget.dart';
 import 'package:movix/core/widgets/custom_search_field.dart';
 import 'package:movix/features/explore/presentation/controllers/explore_view_controller.dart';
@@ -90,11 +91,16 @@ class ExploreViewBody extends StatelessWidget {
                         child: Center(child: CustomErrorWidget()),
                       );
                     }
-                    return SliverToBoxAdapter(
-                      child: SearchResultList(
-                        shows: getSearchResultController.shows,
-                      ),
-                    );
+                    return getSearchResultController.shows.isEmpty
+                        ? SliverFillRemaining(
+                            hasScrollBody: false,
+                            child: Center(child: CustomEmptyWidget()),
+                          )
+                        : SliverToBoxAdapter(
+                            child: SearchResultList(
+                              shows: getSearchResultController.shows,
+                            ),
+                          );
                   },
                 );
               }

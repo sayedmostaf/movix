@@ -4,6 +4,7 @@ import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
+import 'package:movix/core/widgets/custom_empty_widget.dart';
 import 'package:movix/core/widgets/functions/enums.dart';
 import 'package:movix/features/home/presentation/controllers/show_details_controller/show_details_controller.dart';
 import 'package:movix/features/home/presentation/views/show_details_view/views/widgets/review_card.dart';
@@ -80,6 +81,9 @@ class ShowReviewsTab extends StatelessWidget {
               const SizedBox(height: 30),
             ],
           )
-        : const SizedBox();
+        : Padding(
+            padding: EdgeInsets.symmetric(vertical: 20),
+            child: CustomEmptyWidget(),
+          );
   }
 }

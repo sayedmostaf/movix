@@ -5,9 +5,9 @@ import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
+import 'package:movix/core/widgets/custom_empty_widget.dart';
 import 'package:movix/core/widgets/functions/build_genre_id_values_row.dart';
 import 'package:movix/core/widgets/functions/enums.dart';
-import 'package:movix/features/home/data/data_sources/dummy_data.dart';
 import 'package:movix/features/home/data/data_sources/static.dart';
 import 'package:movix/features/home/presentation/controllers/show_details_controller/show_details_controller.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/people_list_view.dart';
@@ -26,7 +26,8 @@ class ShowOverviewTab extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        if (showDetailsController.showResultEntity?.overview != null ||
+        if ((showDetailsController.showResultEntity?.overview != null &&
+                showDetailsController.showResultEntity!.overview!.isNotEmpty) ||
             (showDetailsController.showResultEntity?.genreIds != null &&
                 showDetailsController.showResultEntity!.genreIds!.isNotEmpty))
           Column(
@@ -37,7 +38,8 @@ class ShowOverviewTab extends StatelessWidget {
                 StringsManager.overview,
                 style: StylesManager.styleLatoBold20(context),
               ),
-              if (showDetailsController.showResultEntity?.overview != null)
+              if (showDetailsController.showResultEntity?.overview != null &&
+                  showDetailsController.showResultEntity!.overview!.isNotEmpty)
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -121,6 +123,16 @@ class ShowOverviewTab extends StatelessWidget {
                     [],
               ),
             ],
+          ),
+        if ((showDetailsController.showResultEntity?.overview == null ||
+                showDetailsController.showResultEntity!.overview!.isEmpty) &&
+            (showDetailsController.showResultEntity?.genreIds == null ||
+                showDetailsController.showResultEntity!.genreIds!.isEmpty) &&
+            (showDetailsController.showResultEntity?.castAndCrew == null ||
+                showDetailsController.showResultEntity!.castAndCrew!.isEmpty))
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 20),
+            child: CustomEmptyWidget(),
           ),
         const SizedBox(height: 30),
       ],

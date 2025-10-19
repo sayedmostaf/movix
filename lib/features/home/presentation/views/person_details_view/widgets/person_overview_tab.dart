@@ -5,6 +5,7 @@ import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:expandable_text/expandable_text.dart';
+import 'package:movix/core/widgets/custom_empty_widget.dart';
 import 'package:movix/features/home/presentation/controllers/person_details_controller/get_person_details_controller.dart';
 
 class PersonOverviewTab extends StatelessWidget {
@@ -108,6 +109,23 @@ class PersonOverviewTab extends StatelessWidget {
               ),
               const SizedBox(height: 30),
             ],
+          ),
+        if ((getPersonDetailsController.personResultEntity?.biography == null ||
+                getPersonDetailsController
+                    .personResultEntity!
+                    .biography!
+                    .isEmpty) &&
+            getPersonDetailsController.personResultEntity?.birthDate == null &&
+            (getPersonDetailsController.personResultEntity?.birthdayLocation ==
+                    null ||
+                getPersonDetailsController
+                    .personResultEntity!
+                    .birthdayLocation!
+                    .isEmpty) &&
+            getPersonDetailsController.personResultEntity?.deathDate == null)
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 20),
+            child: CustomEmptyWidget(),
           ),
       ],
     );
