@@ -9,6 +9,7 @@ import 'package:movix/core/bindings/onboarding_binding.dart';
 import 'package:movix/core/bindings/season_details_binding.dart';
 import 'package:movix/core/bindings/section_binding.dart';
 import 'package:movix/core/bindings/settings_binding.dart';
+import 'package:movix/core/bindings/show_binding.dart';
 import 'package:movix/core/bindings/show_details_binding.dart';
 import 'package:movix/core/bindings/show_person_details_binding.dart';
 import 'package:movix/core/bindings/splash_binding.dart';
@@ -21,6 +22,7 @@ import 'package:movix/features/home/presentation/views/person_details_view/perso
 import 'package:movix/features/home/presentation/views/season_details_view/season_details_view.dart';
 import 'package:movix/features/home/presentation/views/section_view/section_view.dart';
 import 'package:movix/features/home/presentation/views/show_details_view/views/show_details_view.dart';
+import 'package:movix/features/home/presentation/views/show_view/show_view.dart';
 import 'package:movix/features/main/presentation/view/main_view.dart';
 import 'package:movix/features/onboarding/presentation/views/on_boarding_view.dart';
 import 'package:movix/features/profile/presentation/views/settings_view/settings_view.dart';
@@ -43,6 +45,7 @@ class AppRoutes {
   static const kMediaView = '/media';
   static const kSettingsView = '/settings';
   static const kSeasonDetailsView = '/seasonDetails';
+  static const kShowView = '/show';
 
   static List<GetPage<dynamic>>? getPages = [
     GetPage(
@@ -151,6 +154,14 @@ class AppRoutes {
       curve: Curves.easeInOut,
       binding: SeasonDetailsBinding(),
       transitionDuration: const Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: kShowView,
+      page: () => const ShowView(),
+      transition: Transition.fadeIn,
+      curve: Curves.easeInOut,
+      transitionDuration: const Duration(milliseconds: 500),
+      binding: ShowBinding(),
     ),
   ];
 }
