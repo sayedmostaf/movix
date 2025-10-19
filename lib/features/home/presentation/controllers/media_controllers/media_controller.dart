@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/widgets/functions/enums.dart';
-import 'package:movix/features/home/data/data_sources/dummy_data.dart';
 import 'package:movix/features/home/domain/usecases/get_review_usecase.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 

@@ -10,4 +10,9 @@ class HomeController extends GetxController
   void Function()? toggleSearch() {
     bottomNavigationBarController.controller.jumpToTab(2);
   }
+
+  void Function()? goToLists() {
+    bottomNavigationBarController.controller.jumpToTab(1);
+    return null;
+  }
 }

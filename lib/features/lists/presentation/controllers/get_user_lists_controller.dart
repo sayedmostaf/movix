@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/strings_manager.dart';
+import 'package:movix/features/lists/domain/entities/list_entity.dart';
+import 'package:movix/features/lists/domain/entities/show_mini_result_entity.dart';
 import 'package:movix/features/lists/domain/usecases/get_user_lists_usecase.dart';
 
 class GetUserListsController extends GetxController {
@@ -11,6 +13,7 @@ class GetUserListsController extends GetxController {
   RxList lists = [].obs;
   RxList banners = [].obs;
   bool error = false;
+  List<ShowMiniResultEntity> shows = [];
   GetUserListsController({required this.getUserListsUseCase});
   @override
   void onInit() {
@@ -33,9 +36,11 @@ class GetUserListsController extends GetxController {
       (listsList) {
         lists.value = [];
         banners.value = [];
+        shows = [];
         lists.addAll(listsList);
-        for (var list in listsList) {
+        for (ListEntity list in listsList) {
           List<String?> posters = [];
+          shows.addAll(list.shows ?? []);
           for (
             int index = 0;
             index < min(5, (list.shows?.length ?? 0));
@@ -45,6 +50,7 @@ class GetUserListsController extends GetxController {
           }
           banners.add(posters);
         }
+        shows.shuffle();
         update();
       },
     );

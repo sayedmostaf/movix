@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/functions/build_genre_id_values_row.dart';
-import 'package:movix/features/home/data/data_sources/dummy_data.dart';
+
 import 'package:movix/features/home/data/data_sources/static.dart';
 import 'package:movix/features/home/presentation/views/section_view/widgets/ratting_row.dart';
 

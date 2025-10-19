@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/widgets/functions/build_cover_image.dart';
 import 'package:movix/core/widgets/functions/build_cover_overlay.dart';
-import 'package:movix/features/home/data/data_sources/dummy_data.dart';
 import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';
 import 'package:movix/features/home/presentation/controllers/home_controllers/home_controller.dart';
 import 'package:movix/features/home/presentation/controllers/home_controllers/now_playing_movies_controller.dart';

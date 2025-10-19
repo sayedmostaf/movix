@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:movix/core/utils/assets_manager.dart';
 import 'package:movix/core/widgets/custom_app_bar.dart';
-import 'package:movix/features/home/data/data_sources/dummy_data.dart';
+
 import 'package:movix/features/home/presentation/controllers/section_controller/section_controllers.dart';
 import 'package:movix/features/home/presentation/views/section_view/widgets/custom_show_list_view_item.dart';
 
