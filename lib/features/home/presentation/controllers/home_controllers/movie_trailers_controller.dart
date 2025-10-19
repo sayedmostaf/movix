@@ -10,16 +10,22 @@ class MovieTrailersController extends GetxController {
   MovieTrailersController({required this.getNowPlayingMoviesTrailerUseCase});
   RxBool loading = true.obs;
   List<String> youtubeKeys = [];
+  bool error = false;
   List<YoutubePlayerController> videosControllers = [];
 
   Future getTrendingMoviesTrailers(List<MovieMiniResultEntity> movies) async {
     var result = await getNowPlayingMoviesTrailerUseCase.execute(movies);
     result.fold(
-      (failure) => Get.snackbar(
-        StringsManager.operationFailed,
-        failure.message,
-        backgroundColor: Colors.red.withOpacity(0.5),
-      ),
+      (failure) {
+        Get.snackbar(
+          StringsManager.operationFailed,
+          failure.message,
+          backgroundColor: Colors.red.withOpacity(0.5),
+        );
+        if (error == true) return;
+
+        error = true;
+      },
       (keys) {
         youtubeKeys.addAll(keys);
         _initTrailersVideos();

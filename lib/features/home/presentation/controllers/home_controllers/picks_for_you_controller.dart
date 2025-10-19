@@ -8,6 +8,7 @@ class PicksForYouController extends GetxController {
   PicksForYouController({required this.getPicksForYouUseCase});
   List<dynamic> shows = [];
   RxBool loading = false.obs;
+  bool error = false;
   @override
   void onInit() {
     super.onInit();
@@ -18,11 +19,16 @@ class PicksForYouController extends GetxController {
     loading.value = true;
     var result = await getPicksForYouUseCase.execute(1);
     result.fold(
-      (failure) => Get.snackbar(
-        StringsManager.operationFailed,
-        failure.message,
-        backgroundColor: Colors.red.withOpacity(0.5),
-      ),
+      (failure) {
+        Get.snackbar(
+          StringsManager.operationFailed,
+          failure.message,
+          backgroundColor: Colors.red.withOpacity(0.5),
+        );
+        if (error == true) return;
+
+        error = true;
+      },
       (showList) {
         shows.addAll(showList);
         update();

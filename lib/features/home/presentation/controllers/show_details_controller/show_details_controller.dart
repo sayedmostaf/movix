@@ -31,14 +31,15 @@ class ShowDetailsController extends GetxController {
   int? id;
   ShowType? showType;
   List<YoutubePlayerController> videosControllers = [];
+  bool error = false;
 
   ShowDetailsController({required this.getShowDetailsUseCase});
 
   @override
   void onInit() async {
     super.onInit();
-     id = Get.arguments['id'];
-     showType = Get.arguments['showType'];
+    id = Get.arguments['id'];
+    showType = Get.arguments['showType'];
     await getShowDetails(id!, showType!);
     _initVideos();
   }
@@ -69,6 +70,8 @@ class ShowDetailsController extends GetxController {
           failure.message,
           backgroundColor: Colors.red.withOpacity(0.5),
         );
+        if (error == true) return;
+        error = true;
       },
       (showDetails) {
         showResultEntity = showDetails;

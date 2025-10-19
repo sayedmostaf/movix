@@ -4,6 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:movix/core/utils/assets_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
+import 'package:movix/core/widgets/custom_error_widget.dart';
 import 'package:movix/core/widgets/custom_search_field.dart';
 import 'package:movix/features/explore/presentation/controllers/explore_view_controller.dart';
 import 'package:movix/features/explore/presentation/controllers/get_search_result_controller.dart';
@@ -56,14 +57,19 @@ class ExploreViewBody extends StatelessWidget {
               surfaceTintColor: Colors.transparent,
             ),
             const SliverToBoxAdapter(child: SizedBox(height: 20)),
-            SliverToBoxAdapter(
-              child: Obx(() {
-                if (getSearchResultController.defaultWidget.isTrue) {
-                  // TODO: fix this
-                  if (exploreViewController.loading.isTrue) {
-                    return ExploreDefaultViewShimmer();
-                  } else {
-                    return const Column(
+            Obx(() {
+              if (getSearchResultController.defaultWidget.isTrue) {
+                if (exploreViewController.loading.isTrue) {
+                  return SliverToBoxAdapter(child: ExploreDefaultViewShimmer());
+                } else {
+                  if (exploreViewController.error) {
+                    return SliverFillRemaining(
+                      hasScrollBody: false,
+                      child: Center(child: CustomErrorWidget()),
+                    );
+                  }
+                  return SliverToBoxAdapter(
+                    child: const Column(
                       children: [
                         MoviesSearchSection(),
                         SizedBox(height: 30),
@@ -72,19 +78,27 @@ class ExploreViewBody extends StatelessWidget {
                         PeopleSearchSection(),
                         SizedBox(height: 30),
                       ],
-                    );
-                  }
-                } else {
-                  return GetBuilder<GetSearchResultController>(
-                    builder: (getSearchResultController) {
-                      return SearchResultList(
-                        shows: getSearchResultController.shows,
-                      );
-                    },
+                    ),
                   );
                 }
-              }),
-            ),
+              } else {
+                return GetBuilder<GetSearchResultController>(
+                  builder: (getSearchResultController) {
+                    if (getSearchResultController.error) {
+                      return SliverFillRemaining(
+                        hasScrollBody: false,
+                        child: Center(child: CustomErrorWidget()),
+                      );
+                    }
+                    return SliverToBoxAdapter(
+                      child: SearchResultList(
+                        shows: getSearchResultController.shows,
+                      ),
+                    );
+                  },
+                );
+              }
+            }),
             SliverToBoxAdapter(
               child: Obx(() {
                 if (getSearchResultController.paginationLoading.isTrue) {

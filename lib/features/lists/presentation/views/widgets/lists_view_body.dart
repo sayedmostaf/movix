@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
+import 'package:movix/core/widgets/custom_error_widget.dart';
 import 'package:movix/features/lists/presentation/controllers/get_user_lists_controller.dart';
 import 'package:movix/features/lists/presentation/views/widgets/create_new_list_button.dart';
 import 'package:movix/features/lists/presentation/views/widgets/lists_item.dart';
@@ -42,13 +43,19 @@ class ListsViewBody extends StatelessWidget {
                 if (getUserListsController.loading.isTrue) {
                   return SliverToBoxAdapter(child: ListsViewShimmer());
                 } else {
-                  return SliverList.builder(
-                    itemBuilder: (context, index) => Padding(
-                      padding: EdgeInsets.only(bottom: 15),
-                      child: ListsItem(index: index),
-                    ),
-                    itemCount: getUserListsController.lists.length,
-                  );
+                  return getUserListsController.error
+                      ? SliverFillRemaining(
+                          fillOverscroll: false,
+                          hasScrollBody: false,
+                          child: Center(child: CustomErrorWidget()),
+                        )
+                      : SliverList.builder(
+                          itemBuilder: (context, index) => Padding(
+                            padding: EdgeInsets.only(bottom: 15),
+                            child: ListsItem(index: index),
+                          ),
+                          itemCount: getUserListsController.lists.length,
+                        );
                 }
               }),
               const SliverToBoxAdapter(child: SizedBox(height: 70)),

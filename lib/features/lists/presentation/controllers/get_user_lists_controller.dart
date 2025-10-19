@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/strings_manager.dart';
-import 'package:movix/features/lists/domain/entities/list_entity.dart';
 import 'package:movix/features/lists/domain/usecases/get_user_lists_usecase.dart';
 
 class GetUserListsController extends GetxController {
@@ -11,6 +10,7 @@ class GetUserListsController extends GetxController {
   RxBool loading = false.obs;
   RxList lists = [].obs;
   RxList banners = [].obs;
+  bool error = false;
   GetUserListsController({required this.getUserListsUseCase});
   @override
   void onInit() {
@@ -21,11 +21,15 @@ class GetUserListsController extends GetxController {
   void getUserLists() async {
     var result = await getUserListsUseCase.execute();
     result.fold(
-      (failure) => Get.snackbar(
-        StringsManager.operationFailed,
-        failure.message,
-        backgroundColor: Colors.red.withOpacity(0.5),
-      ),
+      (failure) {
+        Get.snackbar(
+          StringsManager.operationFailed,
+          failure.message,
+          backgroundColor: Colors.red.withOpacity(0.5),
+        );
+        if (error) return;
+        error = true;
+      },
       (listsList) {
         lists.value = [];
         banners.value = [];

@@ -8,6 +8,7 @@ class GetPersonDetailsController extends GetxController {
   final GetPersonDetailsUseCase getPersonDetailsUseCase;
   late PersonResultEntity? personResultEntity;
   RxBool loading = true.obs;
+  bool error = false;
 
   GetPersonDetailsController({required this.getPersonDetailsUseCase});
   @override
@@ -20,11 +21,15 @@ class GetPersonDetailsController extends GetxController {
   getPersonDetails(int id) async {
     var result = await getPersonDetailsUseCase.execute(id);
     result.fold(
-      (failure) => Get.snackbar(
-        StringsManager.operationFailed,
-        failure.message,
-        backgroundColor: Colors.red.withOpacity(0.5),
-      ),
+      (failure) {
+        Get.snackbar(
+          StringsManager.operationFailed,
+          failure.message,
+          backgroundColor: Colors.red.withOpacity(0.5),
+        );
+        if (error == true) return;
+        error = true;
+      },
       (personDetails) {
         personResultEntity = personDetails;
         update();

@@ -8,16 +8,20 @@ class TopRatedTvShowsController extends GetxController {
   final GetTopRatedTvShowsUseCase getTopRatedTvShowsUseCase;
   List<TvShowMiniResultEntity> shows = [];
   RxBool loading = false.obs;
+  bool error = false;
   TopRatedTvShowsController({required this.getTopRatedTvShowsUseCase});
   Future getTopRatedTvShows() async {
     loading.value = true;
     var result = await getTopRatedTvShowsUseCase.execute(1);
     result.fold(
-      (failure) => Get.snackbar(
-        StringsManager.operationFailed,
-        failure.message,
-        backgroundColor: Colors.red.withOpacity(0.5),
-      ),
+      (failure) {
+        Get.snackbar(
+          StringsManager.operationFailed,
+          failure.message,
+          backgroundColor: Colors.red.withOpacity(0.5),
+        );
+        error = true;
+      },
       (moviesList) {
         shows.addAll(moviesList);
       },

@@ -7,7 +7,7 @@ import 'package:movix/features/home/domain/usecases/get_trending_tv_shows_usecas
 class TrendingTvShowsController extends GetxController {
   final GetTrendingTvShowsUseCase getTrendingTvShowsUseCase;
   TrendingTvShowsController({required this.getTrendingTvShowsUseCase});
-
+  bool error = false;
   List<TvShowMiniResultEntity> tvShows = [];
   RxBool loading = false.obs;
 
@@ -21,11 +21,16 @@ class TrendingTvShowsController extends GetxController {
     loading.value = true;
     var result = await getTrendingTvShowsUseCase.execute(1);
     result.fold(
-      (failure) => Get.snackbar(
-        StringsManager.operationFailed,
-        failure.message,
-        backgroundColor: Colors.red.withOpacity(0.5),
-      ),
+      (failure) {
+        Get.snackbar(
+          StringsManager.operationFailed,
+          failure.message,
+          backgroundColor: Colors.red.withOpacity(0.5),
+        );
+        if (error == true) return;
+
+        error = true;
+      },
       (tvShowsList) {
         tvShows.addAll(tvShowsList);
         update();

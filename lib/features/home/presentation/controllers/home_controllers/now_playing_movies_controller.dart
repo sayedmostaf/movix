@@ -16,6 +16,7 @@ class NowPlayingMoviesController extends GetxController {
   PageController pageController = PageController();
   final MovieTrailersController movieTrailersController =
       Get.find<MovieTrailersController>();
+  bool error = false;
 
   @override
   void onInit() async {
@@ -29,11 +30,16 @@ class NowPlayingMoviesController extends GetxController {
     loading.value = true;
     var result = await getNowPlayingMoviesUseCase.execute(1);
     result.fold(
-      (failure) => Get.snackbar(
-        StringsManager.operationFailed,
-        failure.message,
-        backgroundColor: Colors.red.withOpacity(0.5),
-      ),
+      (failure) {
+        Get.snackbar(
+          StringsManager.operationFailed,
+          failure.message,
+          backgroundColor: Colors.red.withOpacity(0.5),
+        );
+        if (error == true) return;
+
+        error = true;
+      },
       (moviesList) {
         movies.addAll(moviesList);
         update();

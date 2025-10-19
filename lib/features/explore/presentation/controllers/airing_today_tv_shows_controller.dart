@@ -14,13 +14,17 @@ class AiringTodayTvShowsController extends GetxController {
 
   Future getAiringTodayTvShows() async {
     loading.value = true;
+    bool error = false;
     var result = await getAiringTodayTvShowsUseCase.execute(1);
     result.fold(
-      (failure) => Get.snackbar(
-        StringsManager.operationFailed,
-        failure.message,
-        backgroundColor: Colors.red.withOpacity(0.5),
-      ),
+      (failure) {
+        Get.snackbar(
+          StringsManager.operationFailed,
+          failure.message,
+          backgroundColor: Colors.red.withOpacity(0.5),
+        );
+        error = true;
+      },
       (showsList) {
         shows.addAll(showsList);
       },

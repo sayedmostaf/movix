@@ -10,6 +10,7 @@ class FavouriteCelebritiesController extends GetxController {
     required this.getUserFavouriteCelebritiesUseCase,
   });
   RxBool loading = false.obs;
+  bool error = false;
   List<PersonMiniResultEntity> favouriteCelebrities = [];
   @override
   void onInit() {
@@ -26,6 +27,7 @@ class FavouriteCelebritiesController extends GetxController {
           failure.message,
           backgroundColor: Colors.red.withOpacity(0.5),
         );
+        error = true;
       },
       (celebrities) {
         favouriteCelebrities = [];

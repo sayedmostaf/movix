@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:movix/core/utils/color_manager.dart';
+import 'package:movix/core/widgets/custom_error_widget.dart';
 import 'package:movix/core/widgets/loading_overlay.dart';
 import 'package:movix/features/home/presentation/controllers/favourite_controller/favourite_controller.dart';
-import 'package:movix/features/home/presentation/controllers/show_details_controller/add_remove_show_to_list_controller.dart';
 import 'package:movix/features/home/presentation/controllers/show_details_controller/show_details_controller.dart';
 import 'package:movix/features/home/presentation/views/person_details_view/widgets/person_details_view_shimmer.dart';
 import 'package:movix/features/home/presentation/views/show_details_view/views/widgets/show_details_view_body.dart';
@@ -30,7 +32,30 @@ class ShowDetailsView extends StatelessWidget {
                 favouriteController.checkLoading.isTrue) {
               return PersonDetailsViewShimmer();
             } else {
-              return ShowDetailsViewBody();
+              return showDetailsController.error
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 30,
+                            horizontal: 30,
+                          ),
+                          child: IconButton(
+                            onPressed: () => Get.back(),
+                            icon: Icon(
+                              FontAwesomeIcons.angleLeft,
+                              color: ColorManager.primaryColor,
+                            ),
+                          ),
+                        ),
+                        Spacer(),
+                        CustomErrorWidget(),
+                        Spacer(),
+                        SizedBox(height: 24, width: 24),
+                      ],
+                    )
+                  : ShowDetailsViewBody();
             }
           }),
           Obx(() {

@@ -7,9 +7,10 @@ import 'package:movix/features/home/domain/usecases/get_trending_movies_usecase.
 class TrendingMoviesController extends GetxController {
   final GetTrendingMoviesUseCase getTrendingMoviesUseCase;
   TrendingMoviesController({required this.getTrendingMoviesUseCase});
-  List<MovieMiniResultEntity > movies = [];
+  List<MovieMiniResultEntity> movies = [];
 
   RxBool loading = false.obs;
+  bool error = false;
 
   @override
   void onInit() {
@@ -21,11 +22,16 @@ class TrendingMoviesController extends GetxController {
     loading.value = true;
     var result = await getTrendingMoviesUseCase.execute(1);
     result.fold(
-      (failure) => Get.snackbar(
-        StringsManager.operationFailed,
-        failure.message,
-        backgroundColor: Colors.red.withOpacity(0.5),
-      ),
+      (failure) {
+        Get.snackbar(
+          StringsManager.operationFailed,
+          failure.message,
+          backgroundColor: Colors.red.withOpacity(0.5),
+        );
+        if (error == true) return;
+
+        error = true;
+      },
       (moviesList) {
         movies.addAll(moviesList);
         update();
