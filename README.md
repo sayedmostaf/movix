@@ -254,7 +254,7 @@ dev_dependencies:
     <td><img src="images/empty-lists.jpg" alt="empty List" width="200"/></td>
     <td><img src="images/profile.jpg" alt="User Profile" width="200"/></td>
     <td><img src="images/settings.jpg" alt="Settings" width="200"/></td>
-    <td colspan="3"></td>
+    <td><img src="images/dialog.jpg" alt="Settings" width="200"/></td>
   </tr>
 </table>
 </details>
