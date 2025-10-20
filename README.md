@@ -1,7 +1,7 @@
 # 🎬 Movix
 
 <div align="center">
-  <img src="assets/images/logo.png" alt="Movix Logo" width="200"/>
+  <img src="assets/images/movix_logo_splash.png" alt="Movix Logo" width="200"/>
   
   <h3>🌟 Your Ultimate Movie Discovery Companion 🌟</h3>
   
@@ -195,7 +195,7 @@ dev_dependencies:
 
 ---
 
-📱 Screenshots
+## 📱 Screenshots
 <details>
 <summary><strong>🚀 Authentication & Onboarding</strong> (Click to expand)</summary>
 <table>
