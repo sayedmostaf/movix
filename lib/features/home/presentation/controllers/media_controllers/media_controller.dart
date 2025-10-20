@@ -9,7 +9,7 @@ class MediaController extends GetxController {
   List mediaList = [];
   MediaType? mediaType;
   int itemsPerPageImage = 30;
-  int itemsPerPageVideo = 5;
+  int itemsPerPageVideo = 4;
   List<dynamic> allMedia = [];
   ScrollController? scrollController;
   RxBool loadingMore = false.obs;

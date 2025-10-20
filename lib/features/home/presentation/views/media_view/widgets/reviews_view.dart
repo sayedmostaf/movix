@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:movix/core/utils/assets_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/widgets/custom_app_bar.dart';
-import 'package:movix/features/home/domain/entities/review_entity.dart';
 import 'package:movix/features/home/presentation/controllers/media_controllers/media_controller.dart';
 import 'package:movix/features/home/presentation/views/show_details_view/views/widgets/review_card.dart';
 
@@ -27,14 +27,26 @@ class ReviewsView extends StatelessWidget {
           const SliverToBoxAdapter(child: SizedBox(height: 30)),
           GetBuilder<MediaController>(
             builder: (mediaController) {
-              return SliverList.builder(
-                itemBuilder: (context, index) => Padding(
-                  padding: EdgeInsets.only(bottom: 15),
-                  child: ReviewCard(
-                    reviewEntity: mediaController.mediaList[index],
-                  ),
+              return AnimationLimiter(
+                child: SliverList.builder(
+                  itemBuilder: (context, index) =>
+                      AnimationConfiguration.staggeredList(
+                        position: index,
+                        duration: const Duration(milliseconds: 375),
+                        child: SlideAnimation(
+                          verticalOffset: 50.0,
+                          child: FadeInAnimation(
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 15),
+                              child: ReviewCard(
+                                reviewEntity: mediaController.mediaList[index],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                  itemCount: mediaController.mediaList.length,
                 ),
-                itemCount: mediaController.mediaList.length,
               );
             },
           ),

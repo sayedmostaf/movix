@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
-import 'package:movix/core/widgets/functions/enums.dart';
 
-import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/show_card.dart';
 
 class ShowSection extends StatelessWidget {
@@ -41,14 +40,26 @@ class ShowSection extends StatelessWidget {
         SizedBox(height: 15),
         SizedBox(
           height: MediaQuery.of(context).size.width * 0.3 / 0.6,
-          child: ListView.builder(
-            physics: BouncingScrollPhysics(),
-            itemBuilder: (context, index) => Padding(
-              padding: EdgeInsets.only(right: 15),
-              child: ShowCard(show: items[index]),
+          child: AnimationLimiter(
+            child: ListView.builder(
+              physics: const BouncingScrollPhysics(),
+              itemBuilder: (context, index) =>
+                  AnimationConfiguration.staggeredList(
+                    position: index,
+                    duration: const Duration(milliseconds: 375),
+                    child: SlideAnimation(
+                      horizontalOffset: 50.0,
+                      child: FadeInAnimation(
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 15),
+                          child: ShowCard(show: items[index]),
+                        ),
+                      ),
+                    ),
+                  ),
+              itemCount: items.length,
+              scrollDirection: Axis.horizontal,
             ),
-            itemCount: items.length,
-            scrollDirection: Axis.horizontal,
           ),
         ),
       ],

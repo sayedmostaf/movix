@@ -41,6 +41,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_dotenv: ^6.0.0
+  flutter_staggered_animations: ^1.1.1
   flutter_svg: ^2.2.0
   font_awesome_flutter: ^10.9.1
   freezed: ^3.0.0

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/app_router.dart';
@@ -36,28 +37,39 @@ class MoviesSearchSection extends StatelessWidget {
         const SizedBox(height: 15),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child: Row(
-            children: List.generate(
-              exploreViewController.moviesExploreBanners.length,
-              (index) => Padding(
-                padding: const EdgeInsets.only(right: 15),
-                child: GestureDetector(
-                  onTap: () => Get.toNamed(
-                    AppRoutes.kShowsSectionView,
-                    arguments: {
-                      'title': exploreViewController.moviesExploreTitles[index],
-                      'showType': ShowType.Movie,
-                      'sectionType': exploreViewController
-                          .moviesExploreSectionTypes[index],
-                      'showsList': exploreViewController.moviesExplore[index],
-                    },
-                    preventDuplicates: false,
-                  ),
-                  child: ExploreItem(
-                    exploreItemTitle:
-                        exploreViewController.moviesExploreTitles[index],
-                    exploreItemBanners:
-                        exploreViewController.moviesExploreBanners[index],
+          child: AnimationLimiter(
+            child: Row(
+              children: AnimationConfiguration.toStaggeredList(
+                duration: Duration(milliseconds: 375),
+                childAnimationBuilder: (widget) => SlideAnimation(
+                  horizontalOffset: 50,
+                  child: FadeInAnimation(child: widget),
+                ),
+                children: List.generate(
+                  exploreViewController.moviesExploreBanners.length,
+                  (index) => Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: GestureDetector(
+                      onTap: () => Get.toNamed(
+                        AppRoutes.kShowsSectionView,
+                        arguments: {
+                          'title':
+                              exploreViewController.moviesExploreTitles[index],
+                          'showType': ShowType.Movie,
+                          'sectionType': exploreViewController
+                              .moviesExploreSectionTypes[index],
+                          'showsList':
+                              exploreViewController.moviesExplore[index],
+                        },
+                        preventDuplicates: false,
+                      ),
+                      child: ExploreItem(
+                        exploreItemTitle:
+                            exploreViewController.moviesExploreTitles[index],
+                        exploreItemBanners:
+                            exploreViewController.moviesExploreBanners[index],
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -67,25 +79,36 @@ class MoviesSearchSection extends StatelessWidget {
         const SizedBox(height: 15),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child: Row(
-            children: List.generate(
-              exploreViewController.moviesGenres.length,
-              (index) => Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: GestureDetector(
-                  onTap: () => Get.toNamed(
-                    AppRoutes.kShowsSectionView,
-                    arguments: {
-                      'title': exploreViewController.moviesGenres[index].name,
-                      'showType': ShowType.Movie,
-                      'sectionType': SectionType.MoviesCategory,
-                      'showsList': [],
-                      'category': exploreViewController.moviesGenres[index].id,
-                    },
-                    preventDuplicates: false,
-                  ),
-                  child: ExploreGenreItem(
-                    name: exploreViewController.moviesGenres[index].name,
+          child: AnimationLimiter(
+            child: Row(
+              children: AnimationConfiguration.toStaggeredList(
+                duration: Duration(milliseconds: 375),
+                childAnimationBuilder: (widget) => SlideAnimation(
+                  horizontalOffset: 50,
+                  child: FadeInAnimation(child: widget),
+                ),
+                children: List.generate(
+                  exploreViewController.moviesGenres.length,
+                  (index) => Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: GestureDetector(
+                      onTap: () => Get.toNamed(
+                        AppRoutes.kShowsSectionView,
+                        arguments: {
+                          'title':
+                              exploreViewController.moviesGenres[index].name,
+                          'showType': ShowType.Movie,
+                          'sectionType': SectionType.MoviesCategory,
+                          'showsList': [],
+                          'category':
+                              exploreViewController.moviesGenres[index].id,
+                        },
+                        preventDuplicates: false,
+                      ),
+                      child: ExploreGenreItem(
+                        name: exploreViewController.moviesGenres[index].name,
+                      ),
+                    ),
                   ),
                 ),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:movix/core/utils/assets_manager.dart';
@@ -30,17 +31,29 @@ class ShowsSection extends StatelessWidget {
             SliverToBoxAdapter(child: SizedBox(height: 50)),
             SliverToBoxAdapter(child: CustomAppBar(sectionName: sectionName)),
             const SliverToBoxAdapter(child: SizedBox(height: 30)),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) => Column(
-                  children: [
-                    CustomShowListViewItem(show: shows[index]),
-                    const SizedBox(height: 10),
-                    if (index != shows.length - 1) Divider(),
-                    if (index != shows.length - 1) SizedBox(height: 10),
-                  ],
+            AnimationLimiter(
+              child: SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) => AnimationConfiguration.staggeredList(
+                    position: index,
+                    duration: const Duration(milliseconds: 375),
+                    child: SlideAnimation(
+                      verticalOffset: 50.0,
+                      child: FadeInAnimation(
+                        child: Column(
+                          children: [
+                            CustomShowListViewItem(show: shows[index]),
+                            const SizedBox(height: 10),
+                            if (index != shows.length - 1) const Divider(),
+                            if (index != shows.length - 1)
+                              const SizedBox(height: 10),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  childCount: shows.length,
                 ),
-                childCount: shows.length,
               ),
             ),
             SliverToBoxAdapter(

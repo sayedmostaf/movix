@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/features/auth/data/data_sources/static.dart';
 import 'package:movix/features/auth/presentation/controllers/auth_controllers/log_in_with_google_controller.dart';
 import 'package:movix/features/auth/presentation/views/auth_view/widgets/custom_login_provider_button.dart';
