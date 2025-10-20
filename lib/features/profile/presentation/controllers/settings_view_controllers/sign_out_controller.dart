@@ -10,6 +10,7 @@ class SignOutController extends GetxController {
   RxBool loading = false.obs;
 
   void signOutUser() async {
+    if (loading.value == true) return;
     loading.value = true;
     var result = await signOutUseCase.execute();
     result.fold(

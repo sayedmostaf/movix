@@ -34,6 +34,10 @@ class Assets {
   /// assets/fonts/roboto/Roboto-Regular.ttf
   static const String assetsFontsRobotoRobotoRegular = "assets/fonts/roboto/Roboto-Regular.ttf";
 
+  /// Assets for assetsImagesAccessDenied
+  /// assets/images/access_denied.svg
+  static const String assetsImagesAccessDenied = "assets/images/access_denied.svg";
+
   /// Assets for assetsImagesAddMovie
   /// assets/images/add_movie.svg
   static const String assetsImagesAddMovie = "assets/images/add_movie.svg";

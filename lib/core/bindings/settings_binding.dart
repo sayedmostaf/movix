@@ -15,13 +15,5 @@ class SettingsBinding extends Bindings {
       () => ChangeUserNameController(changeUserNameUseCase: Get.find()),
       fenix: true,
     );
-    Get.lazyPut<SignOutUseCase>(
-      () => SignOutUseCase(profileRepo: Get.find()),
-      fenix: true,
-    );
-    Get.lazyPut<SignOutController>(
-      () => SignOutController(signOutUseCase: Get.find()),
-      fenix: true,
-    );
   }
 }

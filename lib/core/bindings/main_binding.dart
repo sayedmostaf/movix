@@ -70,10 +70,12 @@ import 'package:movix/features/profile/domain/usecases/get_user_favourite_celebr
 import 'package:movix/features/profile/domain/usecases/get_user_favourite_movies_usecase.dart';
 import 'package:movix/features/profile/domain/usecases/get_user_favourite_tv_shows_usecase.dart';
 import 'package:movix/features/profile/domain/usecases/get_user_info_usecase.dart';
+import 'package:movix/features/profile/domain/usecases/sign_out_usecase.dart';
 import 'package:movix/features/profile/presentation/controllers/profile_view_controllers/favourite_celebrities_controller.dart';
 import 'package:movix/features/profile/presentation/controllers/profile_view_controllers/favourite_movies_controller.dart';
 import 'package:movix/features/profile/presentation/controllers/profile_view_controllers/favourite_tv_shows_controller.dart';
 import 'package:movix/features/profile/presentation/controllers/profile_view_controllers/user_info_controller.dart';
+import 'package:movix/features/profile/presentation/controllers/settings_view_controllers/sign_out_controller.dart';
 
 class MainBinding extends Bindings {
   @override
@@ -351,6 +353,18 @@ class MainBinding extends Bindings {
     Get.lazyPut(
       () => FavouriteCelebritiesController(
         getUserFavouriteCelebritiesUseCase: Get.find(),
+      ),
+      fenix: true,
+    );
+    Get.lazyPut<SignOutUseCase>(
+      () => SignOutUseCase(
+        profileRepo: Get.find(),
+      ),
+      fenix: true,
+    );
+    Get.lazyPut<SignOutController>(
+      () => SignOutController(
+        signOutUseCase: Get.find(),
       ),
       fenix: true,
     );

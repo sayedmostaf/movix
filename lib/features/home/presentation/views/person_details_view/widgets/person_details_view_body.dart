@@ -1,9 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/functions/enums.dart';
+import 'package:movix/core/widgets/functions/show_access_denied_dialog.dart';
 import 'package:movix/features/home/presentation/controllers/favourite_controller/favourite_controller.dart';
 import 'package:movix/features/home/presentation/controllers/person_details_controller/get_person_details_controller.dart';
 import 'package:movix/features/home/presentation/controllers/person_details_controller/person_details_controller.dart';
@@ -69,6 +71,11 @@ class PersonDetailsViewBody extends StatelessWidget {
                 builder: (favouriteController) {
                   return IconButton(
                     onPressed: () {
+                      final firebaseAuth = Get.find<FirebaseAuth>();
+                      if (firebaseAuth.currentUser!.isAnonymous) {
+                        showAccessDeniedDialog(context);
+                        return;
+                      }
                       favouriteController.favouriteOnPressed(
                         getPersonDetailsController.personResultEntity,
                         ShowType.Person,
