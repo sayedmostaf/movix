@@ -46,44 +46,6 @@ class ShowImageTitle extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 30,
-            left: 20,
-            right: 20,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  onPressed: () => Get.back(),
-                  icon: Icon(
-                    FontAwesomeIcons.angleLeft,
-                    color: ColorManager.primaryColor,
-                  ),
-                ),
-                GetBuilder<FavouriteController>(
-                  tag:
-                      "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
-                  builder: (favouriteController) {
-                    return IconButton(
-                      onPressed: () {
-                        favouriteController.favouriteOnPressed(
-                          showDetailsController.showResultEntity,
-                          showDetailsController.showResultEntity?.showType ??
-                              ShowType.Movie,
-                        );
-                      },
-                      icon: Icon(
-                        favouriteController.favourite
-                            ? FontAwesomeIcons.solidHeart
-                            : FontAwesomeIcons.heart,
-                        color: ColorManager.primaryColor,
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
-          ),
-          Positioned(
             bottom: 50,
             right: 50,
             child: IconButton(

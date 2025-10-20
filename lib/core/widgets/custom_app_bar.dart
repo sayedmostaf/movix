@@ -9,20 +9,8 @@ class CustomAppBar extends StatelessWidget {
   final String sectionName;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        IconButton(
-          onPressed: () => Get.back(),
-          icon: const Icon(
-            FontAwesomeIcons.angleLeft,
-            color: ColorManager.primaryColor,
-          ),
-        ),
-        const Spacer(),
-        Text(sectionName, style: StylesManager.styleLatoMedium20(context)),
-        const Spacer(),
-        SizedBox(width: getResponsiveFontSize(context, fontSize: 24)),
-      ],
+    return Center(
+      child: Text(sectionName, style: StylesManager.styleLatoMedium20(context)),
     );
   }
 }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/features/home/presentation/views/media_view/widgets/media_view_body.dart';
 
 class MediaView extends StatelessWidget {
@@ -6,6 +9,23 @@ class MediaView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: MediaViewBody());
+    return Scaffold(
+      body: Stack(
+        children: [
+          MediaViewBody(),
+          Positioned(
+            top: 40,
+            left: 20,
+            child: IconButton(
+              onPressed: () => Get.back(),
+              icon: Icon(
+                FontAwesomeIcons.angleLeft,
+                color: ColorManager.primaryColor,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

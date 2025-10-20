@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
+import 'package:movix/core/widgets/functions/enums.dart';
+import 'package:movix/features/home/presentation/controllers/favourite_controller/favourite_controller.dart';
+import 'package:movix/features/home/presentation/controllers/person_details_controller/get_person_details_controller.dart';
 import 'package:movix/features/home/presentation/controllers/person_details_controller/person_details_controller.dart';
 import 'package:movix/features/home/presentation/views/person_details_view/widgets/custom_person_tab_bar.dart';
 import 'package:movix/features/home/presentation/views/person_details_view/widgets/person_image_title.dart';
@@ -10,33 +15,75 @@ class PersonDetailsViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverToBoxAdapter(child: PersonImageTitle()),
-        SliverToBoxAdapter(child: SizedBox(height: 20)),
-        SliverToBoxAdapter(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 2),
-                child: SizedBox(
-                  height: getResponsiveFontSize(context, fontSize: 25),
-                  child: const CustomPersonTabBar(),
+    final GetPersonDetailsController
+    getPersonDetailsController = Get.find<GetPersonDetailsController>(
+      tag:
+          "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
+    );
+    return Stack(
+      children: [
+        CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(child: PersonImageTitle()),
+            SliverToBoxAdapter(child: SizedBox(height: 20)),
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 2),
+                    child: SizedBox(
+                      height: getResponsiveFontSize(context, fontSize: 25),
+                      child: const CustomPersonTabBar(),
+                    ),
+                  ),
+                  const Divider(),
+                ],
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: GetBuilder<PersonDetailsController>(
+                tag:
+                    "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
+                builder: (personDetailsController) => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: personDetailsController
+                      .tabsWidgets[personDetailsController.index],
                 ),
               ),
-              const Divider(),
-            ],
-          ),
-        ),
-        SliverToBoxAdapter(
-          child: GetBuilder<PersonDetailsController>(
-            tag:
-                "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
-            builder: (personDetailsController) => Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: personDetailsController
-                  .tabsWidgets[personDetailsController.index],
             ),
+          ],
+        ),
+        Positioned(
+          top: 30,
+          left: 20,
+          right: 20,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                onPressed: () => Get.back(),
+                icon: Icon(FontAwesomeIcons.angleLeft),
+                color: ColorManager.primaryColor,
+              ),
+              GetBuilder<FavouriteController>(
+                builder: (favouriteController) {
+                  return IconButton(
+                    onPressed: () {
+                      favouriteController.favouriteOnPressed(
+                        getPersonDetailsController.personResultEntity,
+                        ShowType.Person,
+                      );
+                    },
+                    icon: Icon(
+                      favouriteController.favourite
+                          ? FontAwesomeIcons.solidHeart
+                          : FontAwesomeIcons.heart,
+                      color: ColorManager.primaryColor,
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
         ),
       ],
