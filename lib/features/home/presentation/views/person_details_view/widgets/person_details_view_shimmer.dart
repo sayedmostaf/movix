@@ -1,3 +1,4 @@
+import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/shimmer_container.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -23,11 +24,19 @@ class PersonDetailsViewShimmer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 20),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(FontAwesomeIcons.angleLeft, color: Colors.black),
-                  Icon(FontAwesomeIcons.solidHeart, color: Colors.black),
+                  Icon(
+                    FontAwesomeIcons.angleLeft,
+                    color: Colors.black,
+                    size: getResponsiveFontSize(context, fontSize: 24),
+                  ),
+                  Icon(
+                    FontAwesomeIcons.solidHeart,
+                    color: Colors.black,
+                    size: getResponsiveFontSize(context, fontSize: 24),
+                  ),
                 ],
               ),
               const SizedBox(height: 20),

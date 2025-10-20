@@ -58,7 +58,10 @@ class SeasonImageTitle extends StatelessWidget {
               children: [
                 IconButton(
                   onPressed: () => Get.back(),
-                  icon: Icon(FontAwesomeIcons.angleLeft),
+                  icon: Icon(
+                    FontAwesomeIcons.angleLeft,
+                    size: getResponsiveFontSize(context, fontSize: 24),
+                  ),
                   color: ColorManager.primaryColor,
                 ),
               ],

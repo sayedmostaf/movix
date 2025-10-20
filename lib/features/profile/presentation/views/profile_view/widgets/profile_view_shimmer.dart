@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:movix/core/utils/color_manager.dart';
+import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/shimmer_container.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/people_section_shimmer.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/section_shimmer.dart';
@@ -22,13 +23,14 @@ class ProfileViewShimmer extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 50),
-            const Align(
+            Align(
               alignment: Alignment.centerRight,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Icon(
                   FontAwesomeIcons.gear,
                   color: ColorManager.primaryColor,
+                  size: getResponsiveFontSize(context, fontSize: 24),
                 ),
               ),
             ),
@@ -40,10 +42,10 @@ class ProfileViewShimmer extends StatelessWidget {
                 decoration: const BoxDecoration(
                   color: ColorManager.primaryColor,
                 ),
-                child: const Icon(
+                child:  Icon(
                   FontAwesomeIcons.solidUser,
                   color: Colors.black,
-                  size: 50,
+                  size: getResponsiveFontSize(context, fontSize: 24),
                 ),
               ),
             ),

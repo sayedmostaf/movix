@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
+import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/features/explore/presentation/views/explore_view.dart';
 import 'package:movix/features/home/presentation/views/home_view/home_view.dart';
 import 'package:movix/features/lists/presentation/views/lists_view.dart';
@@ -40,7 +41,10 @@ class MainView extends StatelessWidget {
   List<PersistentBottomNavBarItem> _buildNavBarItems(BuildContext context) {
     return [
       PersistentBottomNavBarItem(
-        icon: const Icon(FontAwesomeIcons.house),
+        icon: Icon(
+          FontAwesomeIcons.house,
+          size: getResponsiveFontSize(context, fontSize: 24),
+        ),
         title: StringsManager.home,
         activeColorPrimary: Theme.of(context).brightness == Brightness.light
             ? Colors.black
@@ -48,7 +52,10 @@ class MainView extends StatelessWidget {
         inactiveColorPrimary: Colors.white,
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(FontAwesomeIcons.list),
+        icon: Icon(
+          FontAwesomeIcons.list,
+          size: getResponsiveFontSize(context, fontSize: 24),
+        ),
         title: StringsManager.lists,
         activeColorPrimary: Theme.of(context).brightness == Brightness.light
             ? Colors.black
@@ -56,7 +63,10 @@ class MainView extends StatelessWidget {
         inactiveColorPrimary: Colors.white,
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(FontAwesomeIcons.circlePlay),
+        icon: Icon(
+          FontAwesomeIcons.circlePlay,
+          size: getResponsiveFontSize(context, fontSize: 24),
+        ),
         title: StringsManager.explore,
         activeColorPrimary: Theme.of(context).brightness == Brightness.light
             ? Colors.black
@@ -64,7 +74,10 @@ class MainView extends StatelessWidget {
         inactiveColorPrimary: Colors.white,
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(FontAwesomeIcons.user),
+        icon: Icon(
+          FontAwesomeIcons.user,
+          size: getResponsiveFontSize(context, fontSize: 24),
+        ),
         title: StringsManager.profile,
         activeColorPrimary: Theme.of(context).brightness == Brightness.light
             ? Colors.black

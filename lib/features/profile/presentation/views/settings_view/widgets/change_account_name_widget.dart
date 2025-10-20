@@ -105,7 +105,11 @@ class ChangeAccountNameWidget extends StatelessWidget {
               StringsManager.changeAccountName,
               style: StylesManager.styleLatoBold20(context),
             ),
-            Icon(FontAwesomeIcons.angleRight, color: ColorManager.primaryColor),
+            Icon(
+              FontAwesomeIcons.angleRight,
+              color: ColorManager.primaryColor,
+              size: getResponsiveFontSize(context, fontSize: 24),
+            ),
           ],
         ),
       ),

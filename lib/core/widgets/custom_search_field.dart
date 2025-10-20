@@ -30,7 +30,11 @@ class CustomSearchField extends StatelessWidget {
             child: getSearchResultController.showSuffixIcon.isTrue
                 ? Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Icon(Icons.close, color: ColorManager.primaryColor),
+                    child: Icon(
+                      Icons.close,
+                      color: ColorManager.primaryColor,
+                      size: getResponsiveFontSize(context, fontSize: 24),
+                    ),
                   )
                 : SizedBox.shrink(),
           ),
@@ -51,9 +55,10 @@ class CustomSearchField extends StatelessWidget {
               : BorderSide.none,
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
-        prefixIcon: const Icon(
+        prefixIcon: Icon(
           FontAwesomeIcons.magnifyingGlass,
           color: ColorManager.primaryColor,
+          size: getResponsiveFontSize(context, fontSize: 24),
         ),
         hintText: StringsManager.searchMore,
         hintStyle: StylesManager.styleLatoLight20(context),

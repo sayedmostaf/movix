@@ -21,12 +21,12 @@ class CustomLoginProviderRow extends StatelessWidget {
             logInWithGoogleController.logInWithGoogle();
           },
         ),
-        CustomLoginProviderButton(
-          image: customLoginProviderImages[1],
-          onTap: () {
-            Get.toNamed(AppRoutes.kEmailVerifyView);
-          },
-        ),
+        // CustomLoginProviderButton(
+        //   image: customLoginProviderImages[1],
+        //   onTap: () {
+        //     Get.toNamed(AppRoutes.kEmailVerifyView);
+        //   },
+        // ),
       ],
     );
   }

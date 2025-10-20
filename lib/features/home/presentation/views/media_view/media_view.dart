@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/color_manager.dart';
+import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/features/home/presentation/views/media_view/widgets/media_view_body.dart';
 
 class MediaView extends StatelessWidget {
@@ -21,6 +22,7 @@ class MediaView extends StatelessWidget {
               icon: Icon(
                 FontAwesomeIcons.angleLeft,
                 color: ColorManager.primaryColor,
+                size: getResponsiveFontSize(context, fontSize: 24),
               ),
             ),
           ),

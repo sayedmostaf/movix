@@ -21,7 +21,11 @@ class MoviesSearchSection extends StatelessWidget {
       children: [
         Row(
           children: [
-            const Icon(FontAwesomeIcons.film, color: ColorManager.primaryColor),
+            Icon(
+              FontAwesomeIcons.film,
+              color: ColorManager.primaryColor,
+              size: getResponsiveFontSize(context, fontSize: 24),
+            ),
             const SizedBox(width: 15),
             Text(
               StringsManager.movies,

@@ -24,7 +24,6 @@ class SignInWidget extends StatelessWidget {
         SizedBox(height: 50),
         SignInForm(),
         SizedBox(height: 25),
-        LoginButton(),
       ],
     );
   }

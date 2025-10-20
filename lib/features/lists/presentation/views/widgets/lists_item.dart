@@ -133,7 +133,10 @@ class ListsItem extends StatelessWidget {
                 );
               }
             },
-            child: const Icon(FontAwesomeIcons.ellipsisVertical),
+            child: Icon(
+              FontAwesomeIcons.ellipsisVertical,
+              size: getResponsiveFontSize(context, fontSize: 24),
+            ),
           ),
         ),
       ],

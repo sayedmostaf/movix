@@ -25,6 +25,7 @@ class PeopleSearchSection extends StatelessWidget {
             Icon(
               FontAwesomeIcons.peopleGroup,
               color: ColorManager.primaryColor,
+              size: getResponsiveFontSize(context, fontSize: 24),
             ),
             const SizedBox(width: 15),
             Text(

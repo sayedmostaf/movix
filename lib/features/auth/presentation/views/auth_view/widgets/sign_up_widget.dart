@@ -19,7 +19,6 @@ class SignUpWidget extends StatelessWidget {
         SizedBox(height: 50),
         SignUpForm(),
         SizedBox(height: 25),
-        RegisterButton(),
       ],
     );
   }

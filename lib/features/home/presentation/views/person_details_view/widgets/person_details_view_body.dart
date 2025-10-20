@@ -64,7 +64,10 @@ class PersonDetailsViewBody extends StatelessWidget {
             children: [
               IconButton(
                 onPressed: () => Get.back(),
-                icon: Icon(FontAwesomeIcons.angleLeft),
+                icon: Icon(
+                  FontAwesomeIcons.angleLeft,
+                  size: getResponsiveFontSize(context, fontSize: 24),
+                ),
                 color: ColorManager.primaryColor,
               ),
               GetBuilder<FavouriteController>(
@@ -86,6 +89,7 @@ class PersonDetailsViewBody extends StatelessWidget {
                           ? FontAwesomeIcons.solidHeart
                           : FontAwesomeIcons.heart,
                       color: ColorManager.primaryColor,
+                      size: getResponsiveFontSize(context, fontSize: 24),
                     ),
                   );
                 },

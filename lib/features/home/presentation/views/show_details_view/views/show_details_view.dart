@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/color_manager.dart';
+import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/custom_error_widget.dart';
 import 'package:movix/core/widgets/loading_overlay.dart';
 import 'package:movix/features/home/presentation/controllers/favourite_controller/favourite_controller.dart';
@@ -46,6 +47,7 @@ class ShowDetailsView extends StatelessWidget {
                             icon: Icon(
                               FontAwesomeIcons.angleLeft,
                               color: ColorManager.primaryColor,
+                              size: getResponsiveFontSize(context, fontSize: 24),
                             ),
                           ),
                         ),

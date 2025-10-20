@@ -21,7 +21,11 @@ class TvShowSearchSection extends StatelessWidget {
       children: [
         Row(
           children: [
-            Icon(FontAwesomeIcons.tv, color: ColorManager.primaryColor),
+            Icon(
+              FontAwesomeIcons.tv,
+              color: ColorManager.primaryColor,
+              size: getResponsiveFontSize(context, fontSize: 24),
+            ),
             SizedBox(width: 15),
             Text(
               StringsManager.tvShows,

@@ -8,6 +8,8 @@ import 'package:movix/features/auth/presentation/views/auth_view/widgets/already
 import 'package:movix/features/auth/presentation/views/auth_view/widgets/continue_as_guest_button.dart';
 import 'package:movix/features/auth/presentation/views/auth_view/widgets/custom_login_provider_row.dart';
 import 'package:movix/features/auth/presentation/views/auth_view/widgets/dont_have_account_widget.dart';
+import 'package:movix/features/auth/presentation/views/auth_view/widgets/login_button.dart';
+import 'package:movix/features/auth/presentation/views/auth_view/widgets/register_button.dart';
 import 'package:movix/features/auth/presentation/views/auth_view/widgets/sign_in_widget.dart';
 import 'package:movix/features/auth/presentation/views/auth_view/widgets/sign_up_widget.dart';
 
@@ -30,33 +32,45 @@ class AuthViewBody extends StatelessWidget {
               },
             ),
           ),
-          const SliverToBoxAdapter(child: SizedBox(height: 40)),
-          SliverToBoxAdapter(
-            child: Align(
-              alignment: Alignment.center,
-              child: Text(
-                StringsManager.orContinueWith,
-                style: StylesManager.styleRobotoRegular16(
-                  context,
-                ).copyWith(color: ColorManager.primaryColor),
-              ),
-            ),
-          ),
-          const SliverToBoxAdapter(child: SizedBox(height: 20)),
-          SliverToBoxAdapter(child: CustomLoginProviderRow()),
           SliverFillRemaining(
             hasScrollBody: false,
-            child: SizedBox(
-              height: 100,
-              child: GetBuilder<AuthController>(
-                builder: (authController) {
-                  return Center(
-                    child: authController.login
-                        ? DontHaveAccountWidget()
-                        : AlreadyHaveAccountWidget(),
-                  );
-                },
-              ),
+            fillOverscroll: false,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                GetBuilder<AuthController>(
+                  builder: (authController) {
+                    return authController.login
+                        ? LoginButton()
+                        : RegisterButton();
+                  },
+                ),
+                const SizedBox(height: 40),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    StringsManager.orContinueWith,
+                    style: StylesManager.styleLatoRegular16(
+                      context,
+                    ).copyWith(color: ColorManager.primaryColor),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                CustomLoginProviderRow(),
+                SizedBox(
+                  height: 100,
+                  child: GetBuilder<AuthController>(
+                    builder: (authController) {
+                      return Center(
+                        child: authController.login
+                            ? DontHaveAccountWidget()
+                            : AlreadyHaveAccountWidget(),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
         ],

@@ -6,7 +6,8 @@ import 'package:lottie/lottie.dart';
 import 'package:movix/core/utils/assets_manager.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
-import 'package:movix/core/utils/styles_manager.dart' show StylesManager;
+import 'package:movix/core/utils/styles_manager.dart'
+    show StylesManager, getResponsiveFontSize;
 import 'package:movix/features/profile/presentation/controllers/profile_view_controllers/user_info_controller.dart';
 
 class ProfileCard extends StatelessWidget {
@@ -34,7 +35,7 @@ class ProfileCard extends StatelessWidget {
                     child: Icon(
                       FontAwesomeIcons.solidStar,
                       color: Colors.black,
-                      size: 50,
+                      size: getResponsiveFontSize(context, fontSize: 24),
                     ),
                   ),
                   fit: BoxFit.cover,
