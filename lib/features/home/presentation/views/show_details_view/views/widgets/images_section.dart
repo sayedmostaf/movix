@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:movix/core/utils/app_router.dart';
@@ -60,11 +61,14 @@ class ImagesSection extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5),
                     child: CachedNetworkImage(
                       imageUrl:
-                          'https://image.tmdb.org/t/p/w342${images[index].filePath}',
+                          'https://image.tmdb.org/t/p/w342/${images[index].filePath}',
                       fit: BoxFit.cover,
-                      placeholder: (context, url) => Center(
-                        child: CircularProgressIndicator(
-                          color: ColorManager.primaryColor,
+                      placeholder: (context, url) => FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Icon(
+                          FontAwesomeIcons.film,
+                          color: Colors.grey,
+                          size: getResponsiveFontSize(context, fontSize: 60),
                         ),
                       ),
                       errorWidget: (context, url, error) => Center(

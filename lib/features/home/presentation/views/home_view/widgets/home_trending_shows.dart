@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:movix/core/widgets/functions/build_cover_image.dart';
 import 'package:movix/core/widgets/functions/build_cover_overlay.dart';
 import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';
-import 'package:movix/features/home/presentation/controllers/home_controllers/home_controller.dart';
 import 'package:movix/features/home/presentation/controllers/home_controllers/now_playing_movies_controller.dart';
 import 'package:movix/features/home/presentation/views/home_view/widgets/more_info_column.dart';
 
@@ -38,7 +37,7 @@ class HomeTrendingShows extends StatelessWidget {
     return Stack(
       children: [
         buildCoverImage(
-          'https://image.tmdb.org/t/p/original${movie.posterPath}',
+          'https://image.tmdb.org/t/p/original/${movie.posterPath}',
         ),
         buildCoverOverlay(context),
         MoreInfoColumn(movie: movie),

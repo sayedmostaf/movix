@@ -2,8 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
-import 'package:movix/core/utils/assets_manager.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart'
@@ -28,9 +26,12 @@ class ProfileCard extends StatelessWidget {
                 ),
                 child: CachedNetworkImage(
                   imageUrl: userInfoController.userInfo?.profileUrl ?? "",
-                  placeholder: (context, url) => Center(
-                    child: CircularProgressIndicator(
-                      color: ColorManager.primaryColor,
+                  placeholder: (context, url) => FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Icon(
+                      FontAwesomeIcons.user,
+                      color: Colors.grey,
+                      size: getResponsiveFontSize(context, fontSize: 24),
                     ),
                   ),
                   errorWidget: (context, url, error) => Center(

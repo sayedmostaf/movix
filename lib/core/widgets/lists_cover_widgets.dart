@@ -39,7 +39,7 @@ class ListsCoverWidget extends StatelessWidget {
                   ),
                   child: CachedNetworkImage(
                     imageUrl:
-                        'https://image.tmdb.org/t/p/w342${banners[index]}',
+                        'https://image.tmdb.org/t/p/w342/${banners[index]}',
                     
                     errorWidget: (context, url, error) => Center(
                       child: Image.asset(
