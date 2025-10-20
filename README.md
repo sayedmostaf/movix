@@ -228,10 +228,10 @@ dev_dependencies:
 <summary><strong>🎬 Movies & TV Shows</strong> (Click to expand)</summary>
 <table>
   <tr>
-    <td><img src="images/movie-details.jpg" alt="Movie Details" width="200"/></td>
-    <td><img src="images/overview.jpg" alt="Movie Overview" width="200"/></td>
+    <td><img src="images/movie.jpg" alt="Movie Details" width="200"/></td>
+    <td><img src="images/movie-overview.jpg" alt="Movie Overview" width="200"/></td>
     <td><img src="images/movie_details.jpg" alt="Movie Details Info" width="200"/></td>
-    <td><img src="images/tv.jpg" alt="TV Show" width="200"/></td>
+    <td><img src="images/movie-similar.jpg" alt="TV Show" width="200"/></td>
   </tr>
   <tr>
     <td><img src="images/tv_overview.jpg" alt="TV Overview" width="200"/></td>
