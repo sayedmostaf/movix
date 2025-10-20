@@ -41,7 +41,7 @@
         <br><em>Smooth & responsive</em>
       </td>
       <td align="center">
-        <img src="https://img.icons8.com/color/48/000000/tmdb.png" width="40"/>
+        <img src="https://img.shields.io/badge/TMDb-01B4E4?style=for-the-badge&logo=themoviedatabase&logoColor=white" width="40"/>
         <br><strong>TMDb API</strong>
         <br><em>Vast movie database</em>
       </td>
@@ -200,16 +200,16 @@ dev_dependencies:
 <summary><strong>🚀 Authentication & Onboarding</strong> (Click to expand)</summary>
 <table>
   <tr>
-    <td><img src="images/splash.png" alt="Splash Screen" width="200"/></td>
-    <td><img src="images/onboarding1.png" alt="Onboarding 1" width="200"/></td>
-    <td><img src="images/onboarding2.png" alt="Onboarding 2" width="200"/></td>
-    <td><img src="images/onboarding3.png" alt="Onboarding 3" width="200"/></td>
+    <td><img src="images/splash.jpg" alt="Splash Screen" width="200"/></td>
+    <td><img src="images/onboarding-1.jpg" alt="Onboarding 1" width="200"/></td>
+    <td><img src="images/onboarding-2.jpg" alt="Onboarding 2" width="200"/></td>
+    <td><img src="images/onboarding-3.jpg" alt="Onboarding 3" width="200"/></td>
   </tr>
   <tr>
-    <td><img src="images/login.png" alt="Login Screen" width="200"/></td>
-    <td><img src="images/register.png" alt="Register Screen" width="200"/></td>
-    <td><img src="images/forget_password.png" alt="Forgot Password" width="200"/></td>
-    <td><img src="images/improve_your_feed.png" alt="Improve Your Feed" width="200"/></td>
+    <td><img src="images/signin.jpg" alt="Login Screen" width="200"/></td>
+    <td><img src="images/signup.jpg" alt="Register Screen" width="200"/></td>
+    <td><img src="images/reset-pass.jpg" alt="Forgot Password" width="200"/></td>
+    <td><img src="images/feeds-sets.jpg" alt="Improve Your Feed" width="200"/></td>
   </tr>
 </table>
 </details>
@@ -217,10 +217,10 @@ dev_dependencies:
 <summary><strong>🏠 Home & Discovery</strong> (Click to expand)</summary>
 <table>
   <tr>
-    <td><img src="images/home1.png" alt="Home Screen 1" width="200"/></td>
-    <td><img src="images/home2.png" alt="Home Screen 2" width="200"/></td>
-    <td><img src="images/home3.png" alt="Home Screen 3" width="200"/></td>
-    <td><img src="images/section.png" alt="Section View" width="200"/></td>
+    <td><img src="images/home-1.jpg" alt="Home Screen 1" width="200"/></td>
+    <td><img src="images/home-2.jpg" alt="Home Screen 2" width="200"/></td>
+    <td><img src="images/home-3.jpg" alt="Home Screen 3" width="200"/></td>
+    <td><img src="images/more-shows.jpg" alt="Section View" width="200"/></td>
   </tr>
 </table>
 </details>
@@ -228,16 +228,16 @@ dev_dependencies:
 <summary><strong>🎬 Movies & TV Shows</strong> (Click to expand)</summary>
 <table>
   <tr>
-    <td><img src="images/movie.png" alt="Movie Details" width="200"/></td>
-    <td><img src="images/movie_overview.png" alt="Movie Overview" width="200"/></td>
-    <td><img src="images/movie_details.png" alt="Movie Details Info" width="200"/></td>
-    <td><img src="images/tv.png" alt="TV Show" width="200"/></td>
+    <td><img src="images/movie-details.jpg" alt="Movie Details" width="200"/></td>
+    <td><img src="images/overview.jpg" alt="Movie Overview" width="200"/></td>
+    <td><img src="images/movie_details.jpg" alt="Movie Details Info" width="200"/></td>
+    <td><img src="images/tv.jpg" alt="TV Show" width="200"/></td>
   </tr>
   <tr>
-    <td><img src="images/tv_overview.png" alt="TV Overview" width="200"/></td>
-    <td><img src="images/tv_details.png" alt="TV Details" width="200"/></td>
-    <td><img src="images/reviews.png" alt="Reviews" width="200"/></td>
-    <td><img src="images/images.png" alt="Image Gallery" width="200"/></td>
+    <td><img src="images/tv_overview.jpg" alt="TV Overview" width="200"/></td>
+    <td><img src="images/tv_details.jpg" alt="TV Details" width="200"/></td>
+    <td><img src="images/reviews.jpg" alt="Reviews" width="200"/></td>
+    <td><img src="images/more-images.jpg" alt="Image Gallery" width="200"/></td>
   </tr>
 </table>
 </details>
@@ -245,13 +245,13 @@ dev_dependencies:
 <summary><strong>🔍 Search & Profile</strong> (Click to expand)</summary>
 <table>
   <tr>
-    <td><img src="images/search.png" alt="Search Results" width="200"/></td>
-    <td><img src="images/search_default.png" alt="Search Default State" width="200"/></td>
-    <td><img src="images/lists.png" alt="User Lists" width="200"/></td>
-    <td><img src="images/profile.png" alt="User Profile" width="200"/></td>
+    <td><img src="images/serch.jpg" alt="Search Results" width="200"/></td>
+    <td><img src="images/explore.jpg" alt="Search Default State" width="200"/></td>
+    <td><img src="images/lists.jpg" alt="User Lists" width="200"/></td>
+    <td><img src="images/profile.jpg" alt="User Profile" width="200"/></td>
   </tr>
   <tr>
-    <td><img src="images/setting.png" alt="Settings" width="200"/></td>
+    <td><img src="images/settings.jpg" alt="Settings" width="200"/></td>
     <td colspan="3"></td>
   </tr>
 </table>
