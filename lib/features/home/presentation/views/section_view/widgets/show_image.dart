@@ -1,9 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:movix/core/utils/assets_manager.dart';
-import 'package:movix/core/utils/styles_manager.dart';
+import 'package:movix/core/utils/color_manager.dart';
 
 class ShowImage extends StatelessWidget {
   const ShowImage({super.key, required this.imageUrl});
@@ -17,7 +16,7 @@ class ShowImage extends StatelessWidget {
         child: CachedNetworkImage(
           imageUrl: imageUrl,
           placeholder: (context, url) => Center(
-            child: LottieBuilder.asset(Assets.assetsAnimationsMovieLoading),
+            child: CircularProgressIndicator(color: ColorManager.primaryColor),
           ),
           errorWidget: (context, url, error) => Center(
             child: Image.asset(Assets.assetsImagesTv, height: 80, width: 80),

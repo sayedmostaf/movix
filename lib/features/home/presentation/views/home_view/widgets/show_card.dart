@@ -34,10 +34,12 @@ class ShowCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5),
                   child: CachedNetworkImage(
                     imageUrl: show.posterPath != null
-                        ? 'https://image.tmdb.org/t/p/original${show.posterPath}'
+                        ? 'https://image.tmdb.org/t/p/w342${show.posterPath}'
                         : '',
                     placeholder: (context, url) => Center(
-                      child: Lottie.asset(Assets.assetsAnimationsMovieLoading),
+                      child: CircularProgressIndicator(
+                        color: ColorManager.primaryColor,
+                      ),
                     ),
                     errorWidget: (context, url, error) => Center(
                       child: Image.asset(

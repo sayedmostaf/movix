@@ -26,7 +26,7 @@ class CustomPersonListViewItem extends StatelessWidget {
             children: [
               ShowImage(
                 imageUrl: person.profilePath != null
-                    ? 'https://image.tmdb.org/t/p/original${person.profilePath}'
+                    ? 'https://image.tmdb.org/t/p/w342${person.profilePath}'
                     : "",
               ),
               const SizedBox(width: 10),

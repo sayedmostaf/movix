@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/assets_manager.dart';
+import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/functions/enums.dart';
 import 'package:movix/features/home/domain/entities/episode_entity.dart';
@@ -45,9 +46,11 @@ class EpisodeItem extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 child: CachedNetworkImage(
                   imageUrl:
-                      'https://image.tmdb.org/t/p/original/${episode.episodePosterUrl}',
+                      'https://image.tmdb.org/t/p/w342/${episode.episodePosterUrl}',
                   placeholder: (context, url) => Center(
-                    child: Lottie.asset(Assets.assetsAnimationsMovieLoading),
+                    child: CircularProgressIndicator(
+                      color: ColorManager.primaryColor,
+                    ),
                   ),
                   errorWidget: (context, url, error) => Center(
                     child: Image.asset(

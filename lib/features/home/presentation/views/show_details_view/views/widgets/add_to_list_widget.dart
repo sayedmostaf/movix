@@ -3,10 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
-import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/features/home/presentation/controllers/show_details_controller/show_details_controller.dart';
 import 'package:movix/features/home/presentation/views/show_details_view/views/widgets/key_value_column.dart';
-import 'package:movix/features/home/presentation/views/show_details_view/views/widgets/list_button.dart';
 import 'package:movix/features/home/presentation/views/show_details_view/views/widgets/lists_drop_down.dart';
 
 class AddToListWidget extends StatelessWidget {
@@ -41,6 +39,7 @@ class AddToListWidget extends StatelessWidget {
                       ?.toStringAsFixed(1) ??
                   '',
               iconColor: Colors.red,
+              ratingCount: showDetailsController.showResultEntity?.voteCount,
             ),
           ],
         ),

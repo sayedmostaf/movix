@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/app_router.dart';
-import 'package:movix/core/widgets/functions/enums.dart';
-
 import 'package:movix/features/home/presentation/views/section_view/widgets/show_details.dart';
 import 'package:movix/features/home/presentation/views/section_view/widgets/show_image.dart';
 
@@ -25,7 +23,7 @@ class CustomShowListViewItem extends StatelessWidget {
           children: [
             ShowImage(
               imageUrl: show.posterPath != null
-                  ? 'https://image.tmdb.org/t/p/original${show.posterPath}'
+                  ? 'https://image.tmdb.org/t/p/w342${show.posterPath}'
                   : "",
             ),
             SizedBox(width: 10),

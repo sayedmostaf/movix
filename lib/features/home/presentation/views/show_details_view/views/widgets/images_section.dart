@@ -60,11 +60,11 @@ class ImagesSection extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5),
                     child: CachedNetworkImage(
                       imageUrl:
-                          'https://image.tmdb.org/t/p/original${images[index].filePath}',
+                          'https://image.tmdb.org/t/p/w342${images[index].filePath}',
                       fit: BoxFit.cover,
                       placeholder: (context, url) => Center(
-                        child: LottieBuilder.asset(
-                          Assets.assetsAnimationsMovieLoading,
+                        child: CircularProgressIndicator(
+                          color: ColorManager.primaryColor,
                         ),
                       ),
                       errorWidget: (context, url, error) => Center(

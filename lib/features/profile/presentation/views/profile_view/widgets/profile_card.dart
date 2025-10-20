@@ -29,7 +29,9 @@ class ProfileCard extends StatelessWidget {
                 child: CachedNetworkImage(
                   imageUrl: userInfoController.userInfo?.profileUrl ?? "",
                   placeholder: (context, url) => Center(
-                    child: Lottie.asset(Assets.assetsAnimationsMovieLoading),
+                    child: CircularProgressIndicator(
+                      color: ColorManager.primaryColor,
+                    ),
                   ),
                   errorWidget: (context, url, error) => Center(
                     child: Icon(

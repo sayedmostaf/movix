@@ -36,10 +36,10 @@ class ReviewCard extends StatelessWidget {
                 child: ClipOval(
                   child: CachedNetworkImage(
                     imageUrl:
-                        'https://image.tmdb.org/t/p/original/${reviewEntity.userProfile}',
+                        'https://image.tmdb.org/t/p/w342/${reviewEntity.userProfile}',
                     placeholder: (context, url) => Center(
-                      child: LottieBuilder.asset(
-                        Assets.assetsAnimationsMovieLoading,
+                      child: CircularProgressIndicator(
+                        color: ColorManager.primaryColor,
                       ),
                     ),
                     errorWidget: (context, url, error) => Center(
