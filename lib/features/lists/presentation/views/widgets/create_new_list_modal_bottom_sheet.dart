@@ -32,18 +32,20 @@ class CreateNewListModalBottomSheet extends StatelessWidget {
             TextField(
               controller: createNewListController.controller,
               decoration: InputDecoration(
-                fillColor: Color.lerp(
-                  ColorManager.primaryColor,
-                  Colors.black,
-                  0.7,
-                ),
+                fillColor: Theme.of(context).brightness == Brightness.light
+                    ? Colors.white
+                    : Color.lerp(ColorManager.primaryColor, Colors.black, 0.7),
                 filled: true,
-                border: const OutlineInputBorder(
-                  borderSide: BorderSide.none,
+                border: OutlineInputBorder(
+                  borderSide: Theme.of(context).brightness == Brightness.light
+                      ? const BorderSide(color: ColorManager.primaryColor)
+                      : BorderSide.none,
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                 ),
-                enabledBorder: const OutlineInputBorder(
-                  borderSide: BorderSide.none,
+                enabledBorder: OutlineInputBorder(
+                  borderSide: Theme.of(context).brightness == Brightness.light
+                      ? const BorderSide(color: ColorManager.primaryColor)
+                      : BorderSide.none,
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                 ),
                 hintText: StringsManager.listTitle,
@@ -68,7 +70,9 @@ class CreateNewListModalBottomSheet extends StatelessWidget {
         ),
       ),
       onClosing: () {},
-      backgroundColor: Color.lerp(ColorManager.primaryColor, Colors.black, 0.9),
+      backgroundColor: Theme.of(context).brightness == Brightness.light
+          ? Colors.white
+          : Color.lerp(ColorManager.primaryColor, Colors.black, 0.9),
     );
   }
 }

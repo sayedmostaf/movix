@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:movix/core/cache/cache_helper.dart';
+import 'package:movix/core/cache/cache_keys_values.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
@@ -28,8 +30,12 @@ class ChangeAppThemeWidget extends StatelessWidget {
                 const SizedBox(height: 10),
                 InkWell(
                   borderRadius: BorderRadius.circular(5),
-                  onTap: () {
+                  onTap: () async {
                     Get.changeThemeMode(ThemeMode.light);
+                    await CacheData.setData(
+                      key: CacheKeys.KLIGHTHEME,
+                      value: CacheValues.LIGHT,
+                    );
                     Get.back();
                   },
                   child: Container(
@@ -46,8 +52,12 @@ class ChangeAppThemeWidget extends StatelessWidget {
                 const SizedBox(height: 10),
                 InkWell(
                   borderRadius: BorderRadius.circular(5),
-                  onTap: () {
+                  onTap: () async {
                     Get.changeThemeMode(ThemeMode.dark);
+                    await CacheData.setData(
+                      key: CacheKeys.KLIGHTHEME,
+                      value: CacheValues.DARK,
+                    );
                     Get.back();
                   },
                   child: Container(
@@ -66,11 +76,9 @@ class ChangeAppThemeWidget extends StatelessWidget {
             ),
           ),
           onClosing: () {},
-          backgroundColor: Color.lerp(
-            ColorManager.primaryColor,
-            Colors.black,
-            0.9,
-          ),
+          backgroundColor: Theme.of(context).brightness == Brightness.light
+              ? Colors.white
+              : Color.lerp(ColorManager.primaryColor, Colors.black, 0.9),
         ),
       ),
       child: Padding(

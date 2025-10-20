@@ -7,7 +7,6 @@ import 'package:movix/features/home/domain/entities/show_result_entity.dart';
 import 'package:movix/features/home/presentation/views/show_details_view/views/widgets/list_item.dart';
 import 'package:movix/features/lists/presentation/controllers/get_user_lists_controller.dart';
 import 'package:movix/features/lists/presentation/views/widgets/create_new_list_button.dart';
-import 'package:movix/features/lists/presentation/views/widgets/lists_item.dart';
 
 class AddToListBottomSheet extends StatelessWidget {
   const AddToListBottomSheet({super.key, required this.show});
@@ -48,13 +47,15 @@ class AddToListBottomSheet extends StatelessWidget {
                 );
               }
             }),
-            SizedBox(height: 10,),
+            SizedBox(height: 10),
             CreateNewListButton(),
           ],
         ),
       ),
       onClosing: () {},
-      backgroundColor: Color.lerp(ColorManager.primaryColor, Colors.black, 0.9),
+      backgroundColor: Theme.of(context).brightness == Brightness.light
+          ? Colors.white
+          : Color.lerp(ColorManager.primaryColor, Colors.black, 0.9),
     );
   }
 }

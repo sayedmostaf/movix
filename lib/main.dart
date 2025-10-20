@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:movix/core/cache/cache_helper.dart';
+import 'package:movix/core/cache/cache_keys_values.dart';
 import 'package:movix/core/utils/app_router.dart';
 import 'package:movix/core/utils/theme_manager.dart';
 import 'package:movix/firebase_options.dart';
@@ -29,7 +30,10 @@ class MyApp extends StatelessWidget {
       getPages: AppRoutes.getPages,
       theme: ThemeManager.lightThemeData,
       darkTheme: ThemeManager.darkThemeData,
-      themeMode: ThemeMode.dark,
+      themeMode:
+          CacheData.getData(key: CacheKeys.KLIGHTHEME) == CacheValues.LIGHT
+          ? ThemeMode.light
+          : ThemeMode.dark,
       initialRoute: AppRoutes.kSplashView,
     );
   }

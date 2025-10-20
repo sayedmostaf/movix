@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
-import 'package:movix/core/widgets/functions/extensions.dart';
 import 'package:movix/features/home/domain/entities/show_result_entity.dart';
 import 'package:movix/features/home/presentation/controllers/show_details_controller/add_remove_show_to_list_controller.dart';
 import 'package:movix/features/lists/domain/entities/list_entity.dart';

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:movix/features/explore/presentation/views/widgets/explore_section_shimmer.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -9,8 +8,12 @@ class ExploreDefaultViewShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: Colors.grey[800]!,
-      highlightColor: Colors.grey[600]!,
+      baseColor: Theme.of(context).brightness == Brightness.light
+          ? Colors.grey[400]!
+          : Colors.grey[800]!,
+      highlightColor: Theme.of(context).brightness == Brightness.light
+          ? Colors.grey[300]!
+          : Colors.grey[600]!,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

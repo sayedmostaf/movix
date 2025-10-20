@@ -40,9 +40,11 @@ class ExploreViewBody extends StatelessWidget {
             SliverToBoxAdapter(
               child: Text(
                 StringsManager.exploreDescription,
-                style: StylesManager.styleLatoRegular14(
-                  context,
-                ).copyWith(color: Colors.grey),
+                style: StylesManager.styleLatoRegular14(context).copyWith(
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.grey[800]
+                      : Colors.grey,
+                ),
               ),
             ),
             const SliverAppBar(

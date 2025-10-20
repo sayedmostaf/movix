@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:movix/core/utils/app_router.dart';
@@ -26,9 +25,11 @@ class ImagesSection extends StatelessWidget {
             const SizedBox(width: 10),
             Text(
               '${images.length}',
-              style: StylesManager.styleLatoBold20(
-                context,
-              ).copyWith(color: Colors.grey),
+              style: StylesManager.styleLatoBold20(context).copyWith(
+                color: Theme.of(context).brightness == Brightness.light
+                    ? Colors.grey[800]
+                    : Colors.grey,
+              ),
             ),
             const Spacer(),
             GestureDetector(

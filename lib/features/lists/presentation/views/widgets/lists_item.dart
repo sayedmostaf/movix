@@ -40,8 +40,11 @@ class ListsItem extends StatelessWidget {
               : null,
           child: Container(
             decoration: BoxDecoration(
-              color: Color.lerp(ColorManager.primaryColor, Colors.black, 0.6),
+              color: Theme.of(context).brightness == Brightness.light
+                  ? Colors.white
+                  : Color.lerp(ColorManager.primaryColor, Colors.black, 0.6),
               borderRadius: const BorderRadius.all(Radius.circular(5)),
+              border: Border.all(color: ColorManager.primaryColor),
             ),
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
             child: Column(
@@ -94,9 +97,11 @@ class ListsItem extends StatelessWidget {
                                   .isNotEmpty
                           ? '${getUserListsController.lists[index].shows!.length} Shows'
                           : '',
-                      style: StylesManager.styleLatoRegular16(
-                        context,
-                      ).copyWith(color: Colors.grey),
+                      style: StylesManager.styleLatoRegular16(context).copyWith(
+                        color: Theme.of(context).brightness == Brightness.light
+                            ? Colors.grey[800]
+                            : Colors.grey,
+                      ),
                     ),
                   ],
                 ),
@@ -108,7 +113,9 @@ class ListsItem extends StatelessWidget {
           top: 10,
           right: 5,
           child: PopupMenuButton(
-            color: Color.lerp(ColorManager.primaryColor, Colors.black, 0.9),
+            color: Theme.of(context).brightness == Brightness.light
+                ? Colors.white
+                : Color.lerp(ColorManager.primaryColor, Colors.black, 0.9),
             offset: Offset.fromDirection(1.25, 10),
             itemBuilder: (context) => [
               PopupMenuItem<String>(

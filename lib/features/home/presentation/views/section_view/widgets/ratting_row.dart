@@ -25,9 +25,11 @@ class RattingRow extends StatelessWidget {
         SizedBox(width: 10),
         Text(
           '( $ratingCount )',
-          style: StylesManager.styleLatoRegular16(
-            context,
-          ).copyWith(color: Colors.grey),
+          style: StylesManager.styleLatoRegular16(context).copyWith(
+            color: Theme.of(context).brightness == Brightness.light
+                ? Colors.grey[800]
+                : Colors.grey,
+          ),
         ),
       ],
     );

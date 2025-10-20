@@ -35,14 +35,20 @@ class CustomSearchField extends StatelessWidget {
                 : SizedBox.shrink(),
           ),
         ),
-        fillColor: ColorManager.greyColor,
+        fillColor: Theme.of(context).brightness == Brightness.light
+            ? Colors.white
+            : ColorManager.greyColor,
         filled: true,
-        border: const OutlineInputBorder(
-          borderSide: BorderSide.none,
+        border: OutlineInputBorder(
+          borderSide: Theme.of(context).brightness == Brightness.light
+              ? BorderSide()
+              : BorderSide.none,
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
-        enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide.none,
+        enabledBorder: OutlineInputBorder(
+          borderSide: Theme.of(context).brightness == Brightness.light
+              ? BorderSide()
+              : BorderSide.none,
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
         prefixIcon: const Icon(

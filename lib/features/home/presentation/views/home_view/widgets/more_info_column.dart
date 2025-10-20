@@ -43,7 +43,7 @@ class MoreInfoColumn extends StatelessWidget {
                 StringsManager.moreInfo,
                 style: StylesManager.styleLatoBold20(
                   context,
-                ).copyWith(color: ColorManager.genreColor),
+                ).copyWith(color: Colors.black),
               ),
             ),
           ),

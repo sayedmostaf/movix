@@ -56,9 +56,11 @@ class SearchResultItem extends StatelessWidget {
                 if (show.releaseDate != null)
                   Text(
                     show.releaseDate!.year.toString(),
-                    style: StylesManager.styleLatoRegular16(
-                      context,
-                    ).copyWith(color: Colors.grey),
+                    style: StylesManager.styleLatoRegular16(context).copyWith(
+                      color: Theme.of(context).brightness == Brightness.light
+                          ? Colors.grey[800]
+                          : Colors.grey,
+                    ),
                   ),
                 if (show.releaseDate != null) const SizedBox(height: 2),
                 if (show.personKnownFor != null ||
@@ -66,9 +68,11 @@ class SearchResultItem extends StatelessWidget {
                     show.personMostKnownForDate != null)
                   Text(
                     '${show.personKnownFor != null ? "${show.personKnownFor} , " : ''}${show.personMostKnownForName ?? ""} ${show.personMostKnownForDate != null ? "( ${show.personMostKnownForDate!.year.toString()} )" : ""}',
-                    style: StylesManager.styleLatoRegular16(
-                      context,
-                    ).copyWith(color: Colors.grey),
+                    style: StylesManager.styleLatoRegular16(context).copyWith(
+                      color: Theme.of(context).brightness == Brightness.light
+                          ? Colors.grey[800]
+                          : Colors.grey,
+                    ),
                   ),
                 if (show.personKnownFor != null ||
                     show.personMostKnownForName != null ||
@@ -79,7 +83,9 @@ class SearchResultItem extends StatelessWidget {
                     ids: show.genreIds!,
                     idToValueMap: idsToGenres,
                     context: context,
-                    textColor: Colors.grey,
+                    textColor: Theme.of(context).brightness == Brightness.light
+                        ? Colors.grey[800]
+                        : Colors.grey,
                   ),
                 if (show.genreIds != null && show.genreIds!.isNotEmpty)
                   const SizedBox(height: 2),

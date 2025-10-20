@@ -42,9 +42,11 @@ class PersonOverviewTab extends StatelessWidget {
                 collapseText: 'show less',
                 expandOnTextTap: true,
                 collapseOnTextTap: true,
-                style: StylesManager.styleLatoRegular16(
-                  context,
-                ).copyWith(color: Colors.grey),
+                style: StylesManager.styleLatoRegular16(context).copyWith(
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.grey[800]
+                      : Colors.grey,
+                ),
                 animation: true,
                 maxLines: 5,
                 linkColor: ColorManager.primaryColor,
@@ -70,9 +72,11 @@ class PersonOverviewTab extends StatelessWidget {
                   DateFormat('MMMM d, yyyy').format(
                     getPersonDetailsController.personResultEntity!.birthDate!,
                   ),
-                  style: StylesManager.styleLatoRegular16(
-                    context,
-                  ).copyWith(color: Colors.grey),
+                  style: StylesManager.styleLatoRegular16(context).copyWith(
+                    color: Theme.of(context).brightness == Brightness.light
+                        ? Colors.grey[800]
+                        : Colors.grey,
+                  ),
                 ),
               if (getPersonDetailsController
                       .personResultEntity
@@ -82,9 +86,11 @@ class PersonOverviewTab extends StatelessWidget {
                   getPersonDetailsController
                       .personResultEntity!
                       .birthdayLocation!,
-                  style: StylesManager.styleLatoRegular16(
-                    context,
-                  ).copyWith(color: Colors.grey),
+                  style: StylesManager.styleLatoRegular16(context).copyWith(
+                    color: Theme.of(context).brightness == Brightness.light
+                        ? Colors.grey[800]
+                        : Colors.grey,
+                  ),
                 ),
               const SizedBox(height: 15),
             ],
@@ -103,9 +109,11 @@ class PersonOverviewTab extends StatelessWidget {
                 DateFormat('MMMM d, yyyy').format(
                   getPersonDetailsController.personResultEntity!.deathDate!,
                 ),
-                style: StylesManager.styleLatoRegular16(
-                  context,
-                ).copyWith(color: Colors.grey),
+                style: StylesManager.styleLatoRegular16(context).copyWith(
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.grey[800]
+                      : Colors.grey,
+                ),
               ),
               const SizedBox(height: 30),
             ],

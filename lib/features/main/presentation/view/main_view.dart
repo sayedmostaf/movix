@@ -23,7 +23,9 @@ class MainView extends StatelessWidget {
       screens: _buildScreens(),
       items: _buildNavBarItems(context),
       confineToSafeArea: true,
-      backgroundColor: ColorManager.darkScaffoldColor,
+      backgroundColor: Theme.of(context).brightness == Brightness.light
+          ? ColorManager.primaryColor
+          : ColorManager.darkScaffoldColor,
       animationSettings: const NavBarAnimationSettings(
         navBarItemAnimation: ItemAnimationSettings(
           duration: Duration(milliseconds: 200),
@@ -40,25 +42,33 @@ class MainView extends StatelessWidget {
       PersistentBottomNavBarItem(
         icon: const Icon(FontAwesomeIcons.house),
         title: StringsManager.home,
-        activeColorPrimary: ColorManager.primaryColor,
+        activeColorPrimary: Theme.of(context).brightness == Brightness.light
+            ? Colors.black
+            : ColorManager.primaryColor,
         inactiveColorPrimary: Colors.white,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(FontAwesomeIcons.list),
         title: StringsManager.lists,
-        activeColorPrimary: ColorManager.primaryColor,
+        activeColorPrimary: Theme.of(context).brightness == Brightness.light
+            ? Colors.black
+            : ColorManager.primaryColor,
         inactiveColorPrimary: Colors.white,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(FontAwesomeIcons.circlePlay),
         title: StringsManager.explore,
-        activeColorPrimary: ColorManager.primaryColor,
+        activeColorPrimary: Theme.of(context).brightness == Brightness.light
+            ? Colors.black
+            : ColorManager.primaryColor,
         inactiveColorPrimary: Colors.white,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(FontAwesomeIcons.user),
         title: StringsManager.profile,
-        activeColorPrimary: ColorManager.primaryColor,
+        activeColorPrimary: Theme.of(context).brightness == Brightness.light
+            ? Colors.black
+            : ColorManager.primaryColor,
         inactiveColorPrimary: Colors.white,
       ),
     ];

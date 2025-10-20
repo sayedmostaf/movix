@@ -87,9 +87,14 @@ class EpisodeItem extends StatelessWidget {
                             : DateFormat(
                                 'MMMM d, yyyy',
                               ).format(episode.episodeReleaseDate!),
-                        style: StylesManager.styleLatoRegular16(
-                          context,
-                        ).copyWith(color: Colors.grey),
+                        style: StylesManager.styleLatoRegular16(context)
+                            .copyWith(
+                              color:
+                                  Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? Colors.grey[800]
+                                  : Colors.grey,
+                            ),
                       ),
                       const SizedBox(height: 5),
                     ],
