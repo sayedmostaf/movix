@@ -248,9 +248,11 @@ dev_dependencies:
     <td><img src="images/serch.jpg" alt="Search Results" width="200"/></td>
     <td><img src="images/explore.jpg" alt="Search Default State" width="200"/></td>
     <td><img src="images/lists.jpg" alt="User Lists" width="200"/></td>
-    <td><img src="images/profile.jpg" alt="User Profile" width="200"/></td>
+    <td><img src="images/create-new-list.jpg" alt="Create New List" width="200"/></td>
   </tr>
   <tr>
+    <td><img src="images/empty-lists.jpg" alt="empty List" width="200"/></td>
+    <td><img src="images/profile.jpg" alt="User Profile" width="200"/></td>
     <td><img src="images/settings.jpg" alt="Settings" width="200"/></td>
     <td colspan="3"></td>
   </tr>
