@@ -30,7 +30,6 @@ import 'package:movix/features/home/domain/entities/review_entity.dart';
 import 'package:movix/features/home/domain/entities/season_result_entity.dart';
 import 'package:movix/features/home/domain/entities/show_result_entity.dart';
 import 'package:movix/features/home/domain/entities/tv_show_mini_result_entity.dart';
-import 'package:movix/features/lists/domain/entities/show_mini_result_entity.dart';
 
 extension TrendingMovieX on MovieMiniResult {
   MovieMiniResultEntity toEntity() {

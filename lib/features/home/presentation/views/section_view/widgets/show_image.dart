@@ -1,9 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lottie/lottie.dart';
 import 'package:movix/core/utils/assets_manager.dart';
-import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 
 class ShowImage extends StatelessWidget {

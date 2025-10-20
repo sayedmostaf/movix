@@ -7,7 +7,6 @@ import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/functions/build_cover_image.dart';
 import 'package:movix/core/widgets/functions/build_cover_overlay.dart';
 import 'package:movix/core/widgets/functions/enums.dart';
-import 'package:movix/features/home/presentation/controllers/favourite_controller/favourite_controller.dart';
 import 'package:movix/features/home/presentation/controllers/show_details_controller/show_details_controller.dart';
 
 class ShowImageTitle extends StatelessWidget {

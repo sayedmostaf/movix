@@ -15,11 +15,10 @@ class PersonDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GetPersonDetailsController
-    getPersonDetailsController = Get.find<GetPersonDetailsController>(
-      tag:
-          "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
-    );
+    final tag =
+        "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}";
+    final GetPersonDetailsController getPersonDetailsController =
+        Get.find<GetPersonDetailsController>(tag: tag);
     final FavouriteController
     favouriteController = Get.find<FavouriteController>(
       tag:

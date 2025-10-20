@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:movix/features/main/presentation/controllers/bottom_navigation_bar_controller.dart';
 

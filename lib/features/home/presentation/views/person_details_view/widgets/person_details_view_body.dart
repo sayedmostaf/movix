@@ -17,8 +17,8 @@ class PersonDetailsViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GetPersonDetailsController
-    getPersonDetailsController = Get.find<GetPersonDetailsController>(
+    final GetPersonDetailsController getPersonDetailsController =
+        Get.find<GetPersonDetailsController>(
       tag:
           "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
     );
@@ -26,8 +26,14 @@ class PersonDetailsViewBody extends StatelessWidget {
       children: [
         CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(child: PersonImageTitle()),
-            SliverToBoxAdapter(child: SizedBox(height: 20)),
+            const SliverToBoxAdapter(
+              child: PersonImageTitle(),
+            ),
+            const SliverToBoxAdapter(
+              child: SizedBox(
+                height: 20,
+              ),
+            ),
             SliverToBoxAdapter(
               child: Column(
                 children: [
@@ -52,7 +58,7 @@ class PersonDetailsViewBody extends StatelessWidget {
                       .tabsWidgets[personDetailsController.index],
                 ),
               ),
-            ),
+            )
           ],
         ),
         Positioned(
@@ -71,6 +77,8 @@ class PersonDetailsViewBody extends StatelessWidget {
                 color: ColorManager.primaryColor,
               ),
               GetBuilder<FavouriteController>(
+                tag:
+                    "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
                 builder: (favouriteController) {
                   return IconButton(
                     onPressed: () {

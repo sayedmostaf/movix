@@ -4,8 +4,6 @@ import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/features/auth/presentation/controllers/auth_controllers/log_in_user_with_email_and_password_controller.dart';
 
-import '../../../controllers/auth_controllers/auth_controller.dart';
-
 class LoginButton extends StatelessWidget {
   const LoginButton({super.key});
 

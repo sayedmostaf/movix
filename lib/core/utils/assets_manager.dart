@@ -70,6 +70,10 @@ class Assets {
   /// assets/images/movix_logo.png
   static const String assetsImagesMovixLogo = "assets/images/movix_logo.png";
 
+  /// Assets for assetsImagesMovixLogoSplash
+  /// assets/images/movix_logo_splash.png
+  static const String assetsImagesMovixLogoSplash = "assets/images/movix_logo_splash.png";
+
   /// Assets for assetsImagesOnboarding1
   /// assets/images/onboarding1.png
   static const String assetsImagesOnboarding1 = "assets/images/onboarding1.png";
@@ -85,10 +89,6 @@ class Assets {
   /// Assets for assetsImagesShade
   /// assets/images/shade.png
   static const String assetsImagesShade = "assets/images/shade.png";
-
-  /// Assets for assetsImagesSparkLogo
-  /// assets/images/spark_logo.png
-  static const String assetsImagesSparkLogo = "assets/images/spark_logo.png";
 
   /// Assets for assetsImagesTv
   /// assets/images/tv.png

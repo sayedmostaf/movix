@@ -23,8 +23,9 @@ class ProfileViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final signOutController = Get.find<SignOutController>();
+
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: CustomScrollView(
         slivers: [
           const SliverToBoxAdapter(child: SizedBox(height: 50)),
@@ -35,7 +36,7 @@ class ProfileViewBody extends StatelessWidget {
             child: GetBuilder<FavouriteMoviesController>(
               builder: (favouriteMoviesController) {
                 if (favouriteMoviesController.favouriteMovies.isEmpty) {
-                  return SizedBox.shrink();
+                  return const SizedBox.shrink();
                 } else {
                   return Column(
                     children: [
@@ -56,19 +57,18 @@ class ProfileViewBody extends StatelessWidget {
                             .take(10)
                             .toList(),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                     ],
                   );
                 }
               },
             ),
           ),
-          const SliverToBoxAdapter(child: SizedBox(height: 20)),
           SliverToBoxAdapter(
             child: GetBuilder<FavouriteTvShowsController>(
               builder: (favouriteTvShowsController) {
                 if (favouriteTvShowsController.favouriteTvShows.isEmpty) {
-                  return SizedBox.shrink();
+                  return const SizedBox.shrink();
                 } else {
                   return Column(
                     children: [
@@ -89,21 +89,20 @@ class ProfileViewBody extends StatelessWidget {
                             .take(10)
                             .toList(),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                     ],
                   );
                 }
               },
             ),
           ),
-          const SliverToBoxAdapter(child: SizedBox(height: 20)),
           SliverToBoxAdapter(
             child: GetBuilder<FavouriteCelebritiesController>(
               builder: (favouriteCelebritiesController) {
                 if (favouriteCelebritiesController
                     .favouriteCelebrities
                     .isEmpty) {
-                  return SizedBox.shrink();
+                  return const SizedBox.shrink();
                 } else {
                   return PeopleSection(
                     sectionTitle: StringsManager.favouriteCelebrities,

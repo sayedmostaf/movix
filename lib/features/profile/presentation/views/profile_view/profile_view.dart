@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/widgets/custom_error_widget.dart';
-import 'package:movix/features/home/presentation/views/home_view/widgets/home_view_shimmer.dart';
 import 'package:movix/features/profile/presentation/controllers/profile_view_controllers/favourite_celebrities_controller.dart';
 import 'package:movix/features/profile/presentation/controllers/profile_view_controllers/favourite_movies_controller.dart';
 import 'package:movix/features/profile/presentation/controllers/profile_view_controllers/favourite_tv_shows_controller.dart';

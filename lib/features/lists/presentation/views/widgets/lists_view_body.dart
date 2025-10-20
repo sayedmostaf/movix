@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/custom_error_widget.dart';
-import 'package:movix/features/home/presentation/views/show_details_view/views/widgets/list_item.dart';
 import 'package:movix/features/lists/presentation/controllers/get_user_lists_controller.dart';
 import 'package:movix/features/lists/presentation/views/widgets/create_new_list_button.dart';
 import 'package:movix/features/lists/presentation/views/widgets/lists_item.dart';

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/features/explore/domain/usecases/get_popular_movies_usecase.dart';
-import 'package:movix/features/explore/domain/usecases/get_up_coming_movies_usecase.dart';
 import 'package:movix/features/home/domain/entities/movie_mini_result_entity.dart';
 
 class PopularMoviesController extends GetxController {

@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
-import 'package:movix/features/auth/presentation/views/auth_view/widgets/login_button.dart';
 import 'package:movix/features/auth/presentation/views/auth_view/widgets/sign_in_form.dart';
 
 class SignInWidget extends StatelessWidget {

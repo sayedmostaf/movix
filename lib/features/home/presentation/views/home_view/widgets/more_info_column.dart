@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/app_router.dart';
-import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/functions/build_genre_id_values_row.dart';

@@ -18,7 +18,7 @@ class CustomHomeAppBar extends StatelessWidget {
         children: [
           Row(
             children: [
-              Image.asset(Assets.assetsImagesSparkLogo, height: 30),
+              Image.asset(Assets.assetsImagesMovixLogoSplash, height: 30),
               Spacer(),
               IconButton(
                 onPressed: homeController.toggleSearch,

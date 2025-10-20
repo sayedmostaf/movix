@@ -20,7 +20,7 @@ class SplashController extends GetxController
   @override
   void onInit() {
     super.onInit();
-    precacheImage(const AssetImage(Assets.assetsImagesSparkLogo), Get.context!);
+    precacheImage(const AssetImage(Assets.assetsImagesMovixLogoSplash), Get.context!);
     animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 2000),

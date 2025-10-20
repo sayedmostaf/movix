@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:movix/core/utils/app_router.dart';

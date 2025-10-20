@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:movix/core/utils/assets_manager.dart';
 import 'package:movix/core/utils/styles_manager.dart';
 import 'package:movix/core/widgets/functions/build_genre_id_values_row.dart';

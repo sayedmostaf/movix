@@ -3,7 +3,6 @@ import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:lottie/lottie.dart';
 import 'package:movix/core/utils/assets_manager.dart';
 import 'package:movix/core/utils/color_manager.dart';
 import 'package:movix/core/utils/strings_manager.dart';

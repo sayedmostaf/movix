@@ -19,7 +19,7 @@ class SplashViewBody extends StatelessWidget {
             child: child,
           );
         },
-        child: Image.asset(Assets.assetsImagesSparkLogo),
+        child: Image.asset(Assets.assetsImagesMovixLogoSplash),
       ),
     );
   }
