@@ -369,37 +369,43 @@ flutter pub run change_app_package_name:main com.yourcompany.movix
 ```
 lib/
 ├── 📁 core/
-│   ├── config/            # App configuration and constants
-│   ├── constants/         # Color schemes, text styles, and dimensions
-│   ├── errors/            # Error handling and failure classes
-│   ├── network/           # API clients and network configuration
-│   ├── routes/            # Navigation and route management
-│   ├── themes/            # Light and dark theme definitions
-│   └── utils/             # Helper functions and utilities
-├── 📁 data/
-│   ├── datasources/       # Remote and local data sources
-│   ├── models/            # Data models and DTOs
-│   └── repositories/      # Repository implementations
-├── 📁 domain/
-│   ├── entities/          # Business entities
-│   ├── repositories/      # Repository interfaces
-│   └── usecases/          # Business logic use cases
-├── 📁 presentation/
-│   ├── controllers/       # GetX controllers for state management
-│   ├── pages/             # App screens and views
-│   │   ├── auth/          # Authentication screens
-│   │   ├── home/          # Home and discovery screens
-│   │   ├── movies/        # Movie detail screens
-│   │   ├── tv_shows/      # TV show detail screens
-│   │   ├── search/        # Search functionality
-│   │   ├── profile/       # User profile and settings
-│   │   └── player/        # Video player screens
-│   └── widgets/           # Reusable UI components
-├── 📁 services/
-│   ├── auth/              # Authentication services
-│   ├── firebase/          # Firebase integration
-│   └── storage/           # Local storage management
-└── main.dart              # App entry point
+│   ├── bindings/          # GetX bindings for dependency injection
+│   ├── cache/             # Local cache management (Hive, SharedPrefs, etc.)
+│   ├── config/            # App-wide configuration files
+│   ├── constants/         # Colors, typography, spacing, and style constants
+│   ├── errors/            # Error handling, exceptions, and failure classes
+│   ├── network/           # Network layer and API setup
+│   ├── routes/            # App navigation and route definitions
+│   ├── themes/            # Light and dark themes
+│   ├── usecase/           # Base use case classes or helpers for clean architecture
+│   ├── utils/             # Utility functions and extensions
+│   └── widgets/           # Global reusable UI components (buttons, dialogs, etc.)
+│
+├── 📁 features/
+│   ├── auth/
+│   │   ├── data/
+│   │   │   ├── data_source/   # Authentication data sources (remote/local)
+│   │   │   ├── models/        # User models and response objects
+│   │   │   └── repos/         # Auth repository implementations
+│   │   ├── domain/
+│   │   │   ├── entities/      # Core entities (e.g., User)
+│   │   │   ├── repos/         # Auth repository contracts
+│   │   │   └── usecases/      # Auth-related business logic
+│   │   └── presentation/
+│   │       ├── controllers/   # Auth controllers (login/signup logic)
+│   │       └── views/         # UI screens (login, register, forgot password)
+│   │
+│   ├── explore/               # Explore and discovery module
+│   ├── home/                  # Home page and dashboard logic
+│   ├── lists/                 # Watchlists, favorites, etc.
+│   ├── main/                  # Main app shell, navigation bar, etc.
+│   ├── onboarding/            # Onboarding and introduction screens
+│   ├── profile/               # User profile, settings, and account management
+│   └── splash/                # Splash and app initialization logic
+│
+├── firebase_options.dart      # Firebase configuration generated file
+└── main.dart                  # Application entry point
+
 ```
 
 ---
