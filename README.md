@@ -1,7 +1,7 @@
 # 🎬 Movix
 
 <div align="center">
-  <img src="images/movix_cover.png" alt="Movix Cover" width=800/>
+  <img src="images/movix_cover.png" alt="Movix Cover"/>
   
   <h3>🌟 Your Ultimate Movie Discovery Companion 🌟</h3>
   
